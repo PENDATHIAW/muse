@@ -42,6 +42,7 @@
   --color-muse-moka: var(--muse-moka);
   --color-muse-charcoal: var(--muse-charcoal);
   --color-muse-stone: var(--muse-stone);
+  --color-muse-gold: var(--muse-gold);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -77,6 +78,7 @@
   --muse-moka: #6b5344;
   --muse-charcoal: #2a2520;
   --muse-stone: #c4b8a8;
+  --muse-gold: #c9a227;
   --sidebar: #fffdf9;
   --sidebar-foreground: #2a2520;
   --sidebar-primary: #b85c38;

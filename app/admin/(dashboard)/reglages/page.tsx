@@ -37,6 +37,10 @@ export default async function AdminSettingsPage() {
               <Input id="hero_tagline" name="hero_tagline" defaultValue={settings.hero_tagline} />
             </div>
             <div>
+              <Label htmlFor="brand_tagline">Signature logo (ex: Shaping your ideas)</Label>
+              <Input id="brand_tagline" name="brand_tagline" defaultValue={settings.brand_tagline} />
+            </div>
+            <div>
               <Label htmlFor="why_muse">Section « Pourquoi MUSE »</Label>
               <Textarea id="why_muse" name="why_muse" rows={3} defaultValue={settings.why_muse} />
             </div>

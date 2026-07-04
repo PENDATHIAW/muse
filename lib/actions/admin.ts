@@ -206,6 +206,7 @@ export async function updateSettings(formData: FormData) {
     "hero_title",
     "hero_subtitle",
     "hero_tagline",
+    "brand_tagline",
     "why_muse",
     "personalization_intro",
     "order_intro",

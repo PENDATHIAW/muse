@@ -6,6 +6,7 @@ INSERT INTO public.settings (key, value) VALUES
   ('hero_title', 'Des objets utiles, beaux et personnalisables'),
   ('hero_subtitle', 'MUSE conçoit des objets premium en impression 3D, pensés pour votre quotidien, votre maison et vos événements.'),
   ('hero_tagline', 'Impression 3D · Personnalisation · Artisanat moderne'),
+  ('brand_tagline', 'Shaping your ideas'),
   ('why_muse', 'Chaque objet MUSE est conçu avec soin, imprimé avec des filaments de qualité et personnalisable selon vos envies.'),
   ('personalization_intro', 'Prénom, nom de famille, logo, date, couleur, finition, taille ou motif — nous adaptons chaque pièce à votre histoire.'),
   ('order_intro', 'Pas de paiement en ligne pour le moment. Contactez-nous par formulaire ou WhatsApp pour commander.'),

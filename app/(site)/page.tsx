@@ -31,6 +31,7 @@ export default async function HomePage() {
           settings.hero_tagline ||
           "Impression 3D · Personnalisation · Artisanat moderne"
         }
+        brandTagline={settings.brand_tagline || "Shaping your ideas"}
       />
       <UniversesSection universes={universes} />
       <FeaturedProductsSection products={featuredProducts} />

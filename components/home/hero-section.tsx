@@ -7,15 +7,29 @@ interface HeroSectionProps {
   title: string;
   subtitle: string;
   tagline: string;
+  brandTagline?: string;
 }
 
-export function HeroSection({ title, subtitle, tagline }: HeroSectionProps) {
+export function HeroSection({
+  title,
+  subtitle,
+  tagline,
+  brandTagline = "Shaping your ideas",
+}: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden">
       <div className="muse-section pb-8 pt-12 sm:pt-20">
         <div className="mx-auto max-w-3xl text-center">
-          <MuseLogo size="lg" className="justify-center" />
-          <p className="mt-6 text-sm uppercase tracking-[0.25em] text-muse-sage">
+          <div className="flex justify-center">
+            <MuseLogo
+              size="hero"
+              framed
+              showTagline
+              tagline={brandTagline}
+              className="mx-auto"
+            />
+          </div>
+          <p className="mt-8 text-sm uppercase tracking-[0.25em] text-muse-sage">
             {tagline}
           </p>
           <h1 className="mt-4 font-serif text-4xl leading-tight text-muse-charcoal sm:text-5xl lg:text-6xl">

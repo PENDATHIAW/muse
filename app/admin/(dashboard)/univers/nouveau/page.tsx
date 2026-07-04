@@ -25,8 +25,15 @@ export default function NewUniversePage() {
               <Textarea id="description" name="description" rows={4} />
             </div>
             <div>
-              <Label htmlFor="cover_image_url">URL image de couverture</Label>
-              <Input id="cover_image_url" name="cover_image_url" type="url" />
+              <Label htmlFor="cover_image_url">Image de couverture (chemin GitHub)</Label>
+              <Input
+                id="cover_image_url"
+                name="cover_image_url"
+                placeholder="/univers/muse-kitchen/cover.jpg"
+              />
+              <p className="mt-1 text-xs text-muted-foreground">
+                Fichier dans public/univers/… puis push GitHub
+              </p>
             </div>
             <div>
               <Label htmlFor="display_order">Ordre d&apos;affichage</Label>

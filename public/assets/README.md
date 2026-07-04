@@ -1,35 +1,29 @@
 # Assets MUSE
 
-Déposez vos fichiers visuels ici pour enrichir le site.
+Tous les visuels statiques vivent dans **`public/`** et sont versionnés sur **GitHub**.  
+Aucun Supabase Storage requis.
 
-## Logo officiel
-
-| Fichier | Usage |
-|---------|--------|
-| `public/logo-muse.png` | Logo principal (header, footer, accueil) |
-
-**Recommandation :** utilisez le visuel officiel avec fond sombre (comme votre enseigne dorée).  
-Le site l’affiche dans un cadre sombre sur l’accueil, et en version compacte dans le header.
-
-Export conseillé : PNG, fond transparent ou fond `#2D241E`, min. 800 px de large.
-
-## Catalogue PDF
+## Fichiers principaux
 
 | Fichier | Usage |
 |---------|--------|
-| `public/catalogue_muse_2026.pdf` | Téléchargement depuis la page À propos |
+| `public/logo-muse.png` | Logo (header, accueil, à propos) |
+| `public/catalogue_muse_2026.pdf` | Téléchargement page À propos |
 
-Copiez votre fichier depuis :
+## Photos produits
 
-`~/Downloads/catalogue_muse_2026.pdf`
+Voir **`public/products/README.md`**
 
-## Visuels produits
+Exemple :
 
-Uploadez les photos via **Admin → Produits → [produit] → Images**.
+```
+public/products/charge-guard-2-en-1/main.jpg
+```
 
-Formats acceptés : JPEG, PNG, WebP (max 5 Mo).
+Puis dans l’admin : `/products/charge-guard-2-en-1/main.jpg`
 
-## Visuels univers
+## Couvertures univers
 
-Ajoutez l’URL de couverture dans **Admin → Univers → Modifier**  
-(champ « URL image de couverture »), ou uploadez sur Supabase Storage et collez l’URL publique.
+```
+public/univers/muse-kitchen/cover.jpg  →  /univers/muse-kitchen/cover.jpg
+```

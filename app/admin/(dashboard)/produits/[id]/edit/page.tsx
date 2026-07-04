@@ -159,7 +159,11 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
           <CardTitle>Images du produit</CardTitle>
         </CardHeader>
         <CardContent>
-          <ImageManager productId={product.id} images={product.images ?? []} />
+          <ImageManager
+            productId={product.id}
+            productSlug={product.slug}
+            images={product.images ?? []}
+          />
         </CardContent>
       </Card>
     </div>

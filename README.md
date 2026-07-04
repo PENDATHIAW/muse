@@ -6,7 +6,7 @@ Site premium pour la marque **MUSE**, objets personnalisables conçus en impress
 
 - **Next.js 16** (App Router) + TypeScript
 - **Tailwind CSS** + shadcn/ui
-- **Supabase** (Auth, PostgreSQL, Storage)
+- **Supabase** (Auth + PostgreSQL uniquement — pas de Storage requis)
 
 ## Installation
 
@@ -26,6 +26,9 @@ cp .env.example .env.local
 # Dans le SQL Editor Supabase, exécutez dans l'ordre :
 #   - supabase/migrations/20240704000000_initial_schema.sql
 #   - supabase/seed.sql
+#
+# Note plan Free : si vous avez déjà 2 projets Supabase, réutilisez
+# un projet existant (ajoutez les tables MUSE dedans) — pas besoin d'en créer un 3e.
 
 # 5. Lancer le projet
 npm run dev
@@ -78,22 +81,34 @@ public/            # Assets statiques (logo-muse.png)
 
 - Dashboard, Univers, Produits, Images, Demandes, Réglages
 - CRUD complet sans toucher au code
-- Upload images vers Supabase Storage (`product-images`)
+- CRUD complet sans toucher au code
+- **Visuels via GitHub** (`public/products/`) — voir ci-dessous
+
+## Visuels produits (GitHub — recommandé)
+
+Pas besoin de Supabase Storage ni de plan payant.
+
+1. Ajoutez vos photos dans `public/products/[slug-du-produit]/main.jpg`
+2. **Commit + push** sur GitHub
+3. Admin → Produit → **Images** → liez le chemin : `/products/[slug]/main.jpg`
+4. Cochez « image principale »
+
+Détail : `public/products/README.md`
 
 ## Ajouter un produit
 
 1. Connectez-vous à `/admin`
 2. **Produits → Ajouter**
 3. Remplissez les champs et choisissez **Publié** ou **Brouillon**
-4. Après création, uploadez les images sur la page d'édition
+4. Ajoutez les images (GitHub + liaison dans l'admin)
 5. Définissez l'image principale
 
-## Uploader une image
+## Lier une image produit
 
-1. Éditez un produit (`/admin/produits/[id]/edit`)
-2. Section **Images du produit**
-3. Choisissez un fichier (JPEG, PNG, WebP)
-4. L'image est stockée dans le bucket `product-images`
+1. Placez le fichier : `public/products/mon-produit/main.jpg`
+2. Poussez sur GitHub
+3. Admin → **Produits → [produit] → Images**
+4. Chemin : `/products/mon-produit/main.jpg` → **Lier cette image**
 
 ## Logo
 

@@ -43,8 +43,16 @@ export default async function EditUniversePage({ params }: EditUniversePageProps
               <Textarea id="description" name="description" rows={4} defaultValue={universe.description} />
             </div>
             <div>
-              <Label htmlFor="cover_image_url">URL image de couverture</Label>
-              <Input id="cover_image_url" name="cover_image_url" type="url" defaultValue={universe.cover_image_url ?? ""} />
+              <Label htmlFor="cover_image_url">Image de couverture (chemin GitHub)</Label>
+              <Input
+                id="cover_image_url"
+                name="cover_image_url"
+                placeholder="/univers/muse-kitchen/cover.jpg"
+                defaultValue={universe.cover_image_url ?? ""}
+              />
+              <p className="mt-1 text-xs text-muted-foreground">
+                Ex. <code>/univers/{universe.slug}/cover.jpg</code> — fichier dans public/
+              </p>
             </div>
             <div>
               <Label htmlFor="display_order">Ordre d&apos;affichage</Label>

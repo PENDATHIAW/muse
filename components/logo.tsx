@@ -1,8 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface MuseLogoProps {
@@ -30,10 +28,9 @@ export function MuseLogo({
   tagline = "Shaping your ideas",
   framed = false,
 }: MuseLogoProps) {
-  const [showText, setShowText] = useState(false);
   const sizes = sizeMap[size];
 
-  const fallback = (
+  const content = (
     <div className={cn("flex flex-col items-center text-center", className)}>
       <span
         className={cn(
@@ -51,31 +48,31 @@ export function MuseLogo({
     </div>
   );
 
-  const image = (
-    <Image
-      src="/logo-muse.png"
-      alt="MUSE — Shaping your ideas"
-      width={sizes.width}
-      height={sizes.height}
-      className={cn("h-auto w-auto max-w-full object-contain", className)}
-      onError={() => setShowText(true)}
-      priority={size === "hero" || size === "lg"}
-    />
-  );
-
-  const content = showText ? (
-    fallback
-  ) : framed ? (
+  const wrapped = framed ? (
     <div
       className={cn(
         "inline-flex items-center justify-center rounded-2xl bg-muse-charcoal px-6 py-4 shadow-lg",
         size === "hero" && "px-10 py-6"
       )}
     >
-      {image}
+      <div className="flex flex-col items-center text-center">
+        <span
+          className={cn(
+            "font-serif font-semibold tracking-[0.4em] text-white",
+            sizes.text
+          )}
+        >
+          MUSE
+        </span>
+        {(showTagline || size === "hero") && (
+          <span className="mt-2 font-serif text-sm italic tracking-wide text-muse-beige sm:text-base">
+            {tagline}
+          </span>
+        )}
+      </div>
     </div>
   ) : (
-    image
+    content
   );
 
   return (
@@ -84,7 +81,7 @@ export function MuseLogo({
       className="inline-flex flex-col items-center"
       aria-label="MUSE — Accueil"
     >
-      {content}
+      {wrapped}
     </Link>
   );
 }

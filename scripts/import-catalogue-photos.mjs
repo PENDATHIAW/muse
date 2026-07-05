@@ -349,8 +349,16 @@ function loadUniverseMap() {
 function guessUniverse(relativePath, filename) {
   const manual = loadUniverseMap();
   const key = relativePath.replace(/\\/g, "/");
-  if (manual[key]) return manual[key];
-  if (manual[filename]) return manual[filename];
+  const candidates = [
+    key,
+    filename,
+    `/products/${key}`,
+    `/products/${filename}`,
+    `/catalogue-a-traiter/${key}`,
+  ];
+  for (const candidate of candidates) {
+    if (manual[candidate]) return manual[candidate];
+  }
 
   const parts = key.split("/").filter(Boolean);
   const folder = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
@@ -610,7 +618,7 @@ function main() {
     UNIVERSES_JSON,
     JSON.stringify(updateUniverseCovers(existing, universes), null, 2) + "\n"
   );
-  fs.writeFileSync(SQL_OUT, generateSql(importedProducts));
+  fs.writeFileSync(SQL_OUT, generateSql(cleanupProducts(existing)));
 
   console.log(`\n✓ ${images.length} photo(s) scannée(s), ${importedProducts.length} produit(s) généré(s)`);
   console.log(`✓ data/products.json mis à jour`);

@@ -35,43 +35,33 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ---
 
-## Étape 3 — Copier vos photos dans le bon dossier
-
-Structure :
-
-```
-muse/public/catalogue-a-traiter/
-  muse-kitchen/              ← cuisine, organisateurs
-  plaques-de-porte-chez-nous/
-  muse-tech-charge-guard/
-  a-classer/                 ← si vous hésitez sur l'univers
-  ...
-```
-
-**Exemple** — vous avez des photos cuisine dans Téléchargements :
+## Étape 3 — Copier vos photos (simple : tout dans `public/products/`)
 
 ```bash
 cd ~/Desktop/muse
-
-# Copier toutes les JPG d'un dossier Téléchargements vers cuisine
-cp ~/Downloads/mes-photos-cuisine/*.jpg public/catalogue-a-traiter/muse-kitchen/
-
-# Ou une photo à la fois
-cp ~/Downloads/organisateur.jpg public/catalogue-a-traiter/muse-kitchen/
+cp ~/Downloads/*.jpg public/products/
+# ou vos .png / .webp
 ```
 
-Formats acceptés : `.jpg`, `.jpeg`, `.png`, `.webp`
+Formats : `.jpg`, `.jpeg`, `.png`, `.webp`
+
+L'assistant classera par univers en regardant chaque photo après le push.
 
 ---
 
-## Étape 4 — Générer les produits automatiquement
+## Étape 4 — Générer les produits + envoyer sur GitHub
 
 ```bash
 npm run import-photos
+git add public/products/ data/products.json supabase/import-from-photos.sql data/photo-universe-map.json
+git commit -m "Ajout visuels catalogue MUSE"
+git push origin main
 ```
 
+Puis dites à l'assistant : **« c'est pushé »**
+
 Ce script :
-- lit chaque photo dans `catalogue-a-traiter/`
+- lit chaque photo dans `public/products/` et `catalogue-a-traiter/`
 - crée nom, description, prix proposé par univers
 - met à jour `data/products.json`
 - génère `supabase/import-from-photos.sql`

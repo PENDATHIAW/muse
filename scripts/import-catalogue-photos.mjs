@@ -16,6 +16,7 @@ const ROOT = path.join(__dirname, "..");
 const CATALOGUE_DIR = path.join(ROOT, "public/catalogue-a-traiter");
 const PRODUCTS_DIR = path.join(ROOT, "public/products");
 const MAP_FILE = path.join(ROOT, "data/photo-universe-map.json");
+const META_FILE = path.join(ROOT, "data/photo-product-meta.json");
 const PRODUCTS_JSON = path.join(ROOT, "data/products.json");
 const UNIVERSES_JSON = path.join(ROOT, "data/universes.json");
 const SQL_OUT = path.join(ROOT, "supabase/import-from-photos.sql");
@@ -198,6 +199,18 @@ function humanName(filename) {
     .trim();
 }
 
+function isUuidFilename(filename) {
+  const base = path.basename(filename, path.extname(filename));
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-/i.test(base);
+}
+
+function buildProductName(image, universe, displayOrder, meta) {
+  if (meta?.name) return meta.name;
+  if (!isUuidFilename(image.filename)) return humanName(image.filename);
+  const universeName = universe?.name ?? image.universeSlug;
+  return `${universeName} — modèle ${displayOrder}`;
+}
+
 function loadUniverseMap() {
   if (!fs.existsSync(MAP_FILE)) return {};
   try {
@@ -207,11 +220,25 @@ function loadUniverseMap() {
   }
 }
 
+function loadProductMeta() {
+  if (!fs.existsSync(META_FILE)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(META_FILE, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
 function guessUniverse(relativePath, filename) {
   const manual = loadUniverseMap();
   const key = relativePath.replace(/\\/g, "/");
-  if (manual[key]) return manual[key];
-  if (manual[filename]) return manual[filename];
+  const mapped =
+    manual[key] ??
+    manual[filename] ??
+    manual[`/products/${key}`] ??
+    manual[`/products/${filename}`];
+  if (mapped === "_exclude") return "_exclude";
+  if (mapped) return mapped;
 
   const parts = key.split("/").filter(Boolean);
   const folder = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
@@ -269,7 +296,7 @@ function scanImages() {
   ];
 }
 
-function buildProduct(image, universe, displayOrder) {
+function buildProduct(image, universe, displayOrder, meta) {
   const defaults = UNIVERSE_DEFAULTS[image.universeSlug] ?? {
     price: 10000,
     material: "PLA mat ou PETG",
@@ -277,7 +304,7 @@ function buildProduct(image, universe, displayOrder) {
     personalization: ["couleur", "personnalisation"],
   };
 
-  const name = humanName(image.filename);
+  const name = buildProductName(image, universe, displayOrder, meta);
   const slug = slugify(path.basename(image.filename, path.extname(image.filename)));
   const universeName = universe?.name ?? image.universeSlug;
 
@@ -388,11 +415,16 @@ function main() {
   const universesBySlug = Object.fromEntries(universes.map((u) => [u.slug, u]));
   const existing = JSON.parse(fs.readFileSync(PRODUCTS_JSON, "utf8"));
   const existingSlugs = new Set(existing.map((p) => p.slug));
+  const productMeta = loadProductMeta();
 
   const orderByUniverse = {};
   const importedProducts = [];
 
   for (const image of images) {
+    if (image.universeSlug === "_exclude") {
+      console.log(`⊘ Exclu : ${image.imagePath}`);
+      continue;
+    }
     if (image.universeSlug === "a-classer") {
       console.warn(`⚠ À classer : ${image.imagePath}`);
       continue;
@@ -406,7 +438,8 @@ function main() {
     const product = buildProduct(
       image,
       universesBySlug[image.universeSlug],
-      orderByUniverse[image.universeSlug]
+      orderByUniverse[image.universeSlug],
+      productMeta[image.imagePath]
     );
 
     if (existingSlugs.has(product.slug)) {

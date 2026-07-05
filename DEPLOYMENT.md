@@ -1,41 +1,101 @@
-# Déploiement Vercel — site inaccessible ?
+# MUSE — déploiement Vercel (guide rapide)
 
-## Erreur « This page couldn't load »
+## Bonne nouvelle
 
-Si vous voyez ce message, c'est souvent parce que **Vercel bloque l'accès public** au site (protection activée).
+Le site **fonctionne** sur cette URL (testée) :
 
-### Solution (2 minutes)
+**https://muse-git-main-pendathiaws-projects.vercel.app**
 
-1. Allez sur **https://vercel.com** → projet **muse**
-2. **Settings** → **Deployment Protection**
-3. Section **Vercel Authentication** ou **Password Protection**
-4. Désactivez la protection pour **Production** (ou mettez « Only Preview Deployments »)
-5. **Save**
-6. **Deployments** → **Redeploy** le dernier déploiement
+Si vous voyez « error loading » ou « This page couldn't load » :
 
-Le site doit alors être accessible publiquement sans connexion Vercel.
+1. **Videz le cache** du navigateur (ou ouvrez en navigation privée)
+2. **N'utilisez pas** `muse.vercel.app` (domaine désactivé)
+3. **Redeploy** obligatoire après toute modification de variable d'environnement
 
-### URL à utiliser pour `NEXT_PUBLIC_SITE_URL`
+---
 
-Préférez l'URL stable de production :
+## Étape 1 — Retrouver vos clés Supabase (2 min)
+
+1. Allez sur **https://supabase.com/dashboard**
+2. Ouvrez le projet MUSE (`zboduyqtfhzlrfiqymju`)
+3. **Project Settings** (engrenage) → **API**
+4. Copiez :
+
+| Variable Vercel | Où la trouver dans Supabase |
+|---------------|----------------------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | **Project URL** → `https://zboduyqtfhzlrfiqymju.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | **Project API keys** → `anon` `public` (commence par `eyJ...`) |
+| `SUPABASE_SERVICE_ROLE_KEY` | **Project API keys** → `service_role` `secret` (commence par `eyJ...`) |
+
+5. **Project Settings** → **API** → vérifiez que **JWT Secret** n'a pas été régénéré récemment (sinon recopiez les nouvelles clés)
+
+---
+
+## Étape 2 — Variables Vercel (copier-coller)
+
+Dans **Vercel → muse → Settings → Environment Variables** :
 
 ```
-https://muse-git-main-pendathiaws-projects.vercel.app
+NEXT_PUBLIC_SUPABASE_URL=https://zboduyqtfhzlrfiqymju.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ... (votre clé anon complète)
+SUPABASE_SERVICE_ROLE_KEY=eyJ... (votre clé service_role complète)
+NEXT_PUBLIC_SITE_URL=https://muse-git-main-pendathiaws-projects.vercel.app
 ```
 
-Ou le domaine personnalisé si vous en avez un.
+Cochez **Production** et **Preview** pour chaque variable.
 
-## Variables d'environnement requises
+⚠️ Ne mettez pas d'espaces avant/après. La clé doit être **complète** (plusieurs centaines de caractères).
 
+---
+
+## Étape 3 — Redeploy (obligatoire)
+
+Les variables `NEXT_PUBLIC_*` sont injectées **au build**. Sans redeploy, le site peut planter côté navigateur.
+
+1. **Vercel → Deployments**
+2. Dernier déploiement → **⋯** → **Redeploy**
+3. Cochez **Use existing Build Cache** → **OFF** (décoché)
+4. **Redeploy**
+
+Attendez 2–3 minutes, puis testez en navigation privée.
+
+---
+
+## Étape 4 — Vérifier que tout marche
+
+Ouvrez dans le navigateur :
+
+| Test | URL attendue |
+|------|--------------|
+| Santé API | https://muse-git-main-pendathiaws-projects.vercel.app/api/health |
+| Accueil | https://muse-git-main-pendathiaws-projects.vercel.app |
+| Catalogue | https://muse-git-main-pendathiaws-projects.vercel.app/catalogue |
+
+`/api/health` doit afficher :
+
+```json
+{"ok":true,"supabaseConfigured":true,"siteUrl":"https://...","timestamp":"..."}
 ```
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY
-NEXT_PUBLIC_SITE_URL
-```
 
-Après modification des variables → **Redeploy** obligatoire.
+Si `supabaseConfigured` est `false` → clés manquantes ou mal formatées → refaire étape 2 + redeploy.
+
+---
+
+## Protection Vercel
+
+**Settings → Deployment Protection** :
+
+- **Vercel Authentication** → « Preview Deployments only » (pas Production)
+- **Password Protection** → désactivé pour Production
+
+---
 
 ## Admin
 
-Connexion : `/admin/login` avec **email + mot de passe Supabase Auth** (pas ADMIN_PASSWORD).
+`/admin/login` — email + mot de passe du compte créé dans Supabase Auth (Authentication → Users).
+
+---
+
+## Le site marche sans Supabase
+
+Même si Supabase est mal configuré, le catalogue JSON local s'affiche (4 produits exemples + fallback). Une fois Supabase OK + SQL importé, les 158+ produits apparaissent en ligne.

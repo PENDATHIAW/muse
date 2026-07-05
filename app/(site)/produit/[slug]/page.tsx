@@ -176,6 +176,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             defaultProductId={product.id}
             defaultUniverseId={product.universe_id}
             defaultMessage={whatsappMessage}
+            returnTo={`/produit/${product.slug}#demande`}
           />
         </div>
       </section>

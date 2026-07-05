@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const options = [
   "Prénom & nom de famille",
@@ -22,9 +21,12 @@ export function PersonalizationSection({ intro }: PersonalizationSectionProps) {
           <div>
             <h2 className="muse-heading">Personnalisation</h2>
             <p className="muse-subheading mt-4">{intro}</p>
-            <Button asChild className="mt-6">
-              <Link href="/personnalisation">En savoir plus</Link>
-            </Button>
+            <Link
+              href="/personnalisation"
+              className="mt-6 inline-flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              En savoir plus
+            </Link>
           </div>
           <div className="grid grid-cols-2 gap-3">
             {options.map((opt) => (

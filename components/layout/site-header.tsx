@@ -1,13 +1,5 @@
 import Link from "next/link";
-import { Menu } from "lucide-react";
 import { MuseLogo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
 import type { Universe } from "@/types/database";
 
 const navLinks = [
@@ -39,9 +31,9 @@ export function SiteHeader({ universes = [] }: SiteHeaderProps) {
           ))}
           {universes.length > 0 && (
             <div className="group relative">
-              <button className="text-sm font-medium text-muted-foreground transition-colors hover:text-muse-charcoal">
+              <span className="cursor-default text-sm font-medium text-muted-foreground">
                 Univers
-              </button>
+              </span>
               <div className="invisible absolute left-0 top-full z-50 mt-2 w-72 rounded-xl border border-border bg-card p-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100">
                 {universes.slice(0, 8).map((u) => (
                   <Link
@@ -63,31 +55,31 @@ export function SiteHeader({ universes = [] }: SiteHeaderProps) {
           )}
         </nav>
 
-        <div className="hidden lg:block">
-          <Button asChild>
-            <Link href="/contact">Commander</Link>
-          </Button>
-        </div>
+        <Link
+          href="/contact"
+          className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 lg:inline-flex"
+        >
+          Commander
+        </Link>
 
-        <Sheet>
-          <SheetTrigger asChild className="lg:hidden">
-            <Button variant="outline" size="icon" aria-label="Menu">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-80 bg-background">
-            <SheetTitle className="sr-only">Navigation</SheetTitle>
-            <div className="mt-8 flex flex-col gap-4">
+        <details className="relative lg:hidden">
+          <summary className="list-none rounded-lg border border-border px-3 py-2 text-sm font-medium cursor-pointer">
+            Menu
+          </summary>
+          <div className="absolute right-0 top-full z-50 mt-2 w-72 rounded-xl border border-border bg-card p-4 shadow-lg">
+            <nav className="flex flex-col gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-lg font-medium text-muse-charcoal"
+                  className="text-base font-medium text-muse-charcoal"
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="border-t border-border pt-4">
+            </nav>
+            {universes.length > 0 && (
+              <div className="mt-4 border-t border-border pt-4">
                 <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
                   Univers
                 </p>
@@ -101,12 +93,15 @@ export function SiteHeader({ universes = [] }: SiteHeaderProps) {
                   </Link>
                 ))}
               </div>
-              <Button asChild className="mt-4">
-                <Link href="/contact">Commander</Link>
-              </Button>
-            </div>
-          </SheetContent>
-        </Sheet>
+            )}
+            <Link
+              href="/contact"
+              className="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+            >
+              Commander
+            </Link>
+          </div>
+        </details>
       </div>
     </header>
   );

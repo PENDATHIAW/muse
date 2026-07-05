@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { InquiryForm } from "@/components/forms/inquiry-form";
-import { WhatsAppButton } from "@/components/ui/whatsapp-button";
+import Link from "next/link";
+import { MessageCircle } from "lucide-react";
+import {
+  InquiryForm,
+  InquiryFormError,
+  InquiryFormSuccess,
+} from "@/components/forms/inquiry-form";
+import { buildWhatsAppUrl } from "@/lib/utils-muse";
 import {
   getActiveUniverses,
   getPublishedProducts,
@@ -14,17 +20,28 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function ContactPage() {
-  const [settings, universes, products] = await Promise.all([
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ sent?: string; error?: string }>;
+}) {
+  const [settings, universes, products, params] = await Promise.all([
     getSettings(),
     getActiveUniverses(),
     getPublishedProducts(),
+    searchParams,
   ]);
 
   const productOptions = products.map((p) => ({
     id: p.id,
     name: p.name,
   }));
+
+  const whatsappUrl = buildWhatsAppUrl(
+    settings.whatsapp_number || "221771234567",
+    settings.whatsapp_default_message ||
+      "Bonjour MUSE, je souhaite passer une commande."
+  );
 
   return (
     <div className="muse-section">
@@ -38,22 +55,40 @@ export default async function ContactPage() {
 
       <div className="mx-auto mt-10 max-w-xl">
         <div className="mb-6 flex justify-center">
-          <WhatsAppButton
-            phone={settings.whatsapp_number || "221771234567"}
-            message={
-              settings.whatsapp_default_message ||
-              "Bonjour MUSE, je souhaite passer une commande."
-            }
-            label="Contacter via WhatsApp"
-          />
+          <Link
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+          >
+            <MessageCircle className="mr-2 h-4 w-4" />
+            Contacter via WhatsApp
+          </Link>
         </div>
 
         <div className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-          <InquiryForm
-            products={productOptions}
-            universes={universes}
-            defaultMessage=""
-          />
+          {params.sent === "1" ? (
+            <InquiryFormSuccess />
+          ) : params.error ? (
+            <>
+              <InquiryFormError message={params.error} />
+              <div className="mt-6">
+                <InquiryForm
+                  products={productOptions}
+                  universes={universes}
+                  defaultMessage=""
+                  returnTo="/contact"
+                />
+              </div>
+            </>
+          ) : (
+            <InquiryForm
+              products={productOptions}
+              universes={universes}
+              defaultMessage=""
+              returnTo="/contact"
+            />
+          )}
         </div>
 
         {settings.contact_email && (

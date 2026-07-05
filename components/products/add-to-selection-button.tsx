@@ -1,17 +1,20 @@
-"use client";
-
+import Link from "next/link";
 import { Heart } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useSelection } from "@/components/selection/selection-provider";
 import type { Product } from "@/types/database";
 
 export function AddToSelectionButton({ product }: { product: Product }) {
-  const { addItem } = useSelection();
+  const params = new URLSearchParams({
+    product: product.id,
+    message: `Bonjour MUSE, je suis intéressée par : ${product.name}`,
+  });
 
   return (
-    <Button variant="outline" onClick={() => addItem(product)}>
+    <Link
+      href={`/contact?${params.toString()}`}
+      className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium hover:bg-muted"
+    >
       <Heart className="mr-2 h-4 w-4" />
-      Ajouter à ma sélection
-    </Button>
+      Demander ce produit
+    </Link>
   );
 }

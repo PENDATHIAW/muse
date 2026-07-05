@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Printer, Palette, Home } from "lucide-react";
 import { MuseLogo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   title: string;
@@ -38,15 +37,19 @@ export function HeroSection({
           <p className="muse-subheading mx-auto mt-6 max-w-2xl">{subtitle}</p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg">
-              <Link href="/catalogue">
-                Découvrir le catalogue
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/personnalisation">Demander une personnalisation</Link>
-            </Button>
+            <Link
+              href="/catalogue"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90"
+            >
+              Découvrir le catalogue
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+            <Link
+              href="/personnalisation"
+              className="inline-flex items-center justify-center rounded-lg border border-border bg-background px-6 py-3 text-base font-medium hover:bg-muted"
+            >
+              Demander une personnalisation
+            </Link>
           </div>
         </div>
 

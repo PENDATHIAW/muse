@@ -78,10 +78,24 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
     });
   }
 
+  function handleLinkUrl(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    startTransition(async () => {
+      const result = await addProductImage(formData);
+      if (result?.error) toast.error(result.error);
+      else {
+        toast.success("Image liée au produit.");
+        form.reset();
+      }
+    });
+  }
+
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor={`upload-${productId}`}>Uploader une image</Label>
+        <Label htmlFor={`upload-${productId}`}>Uploader une image (Supabase Storage)</Label>
         <div className="mt-2">
           <Input
             id={`upload-${productId}`}
@@ -96,6 +110,32 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
           <p className="mt-1 text-xs text-muted-foreground">Upload en cours...</p>
         )}
       </div>
+
+      <form
+        onSubmit={handleLinkUrl}
+        className="space-y-3 rounded-lg border border-dashed border-border p-4"
+      >
+        <p className="text-sm font-medium">Ou lier une photo déjà sur GitHub</p>
+        <input type="hidden" name="product_id" value={productId} />
+        <input type="hidden" name="display_order" value={String(images.length)} />
+        {images.length === 0 && <input type="hidden" name="is_main" value="on" />}
+        <div>
+          <Label htmlFor={`url-${productId}`}>Chemin public</Label>
+          <Input
+            id={`url-${productId}`}
+            name="image_url"
+            placeholder="/catalogue-a-traiter/muse-kitchen/mon-produit.jpg"
+            required
+          />
+        </div>
+        <div>
+          <Label htmlFor={`alt-${productId}`}>Texte alternatif</Label>
+          <Input id={`alt-${productId}`} name="alt_text" placeholder="Description courte de l'image" />
+        </div>
+        <Button type="submit" variant="outline" size="sm" disabled={pending}>
+          Lier cette image
+        </Button>
+      </form>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {images.map((img) => (

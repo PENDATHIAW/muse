@@ -7,6 +7,8 @@ import type {
   SettingsMap,
   Universe,
 } from "@/types/database";
+import * as catalog from "@/lib/catalog";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/server";
 import { parseJsonArray } from "@/lib/utils-muse";
 
@@ -23,6 +25,7 @@ function mapProduct(row: Record<string, unknown>): Product {
 }
 
 export async function getActiveUniverses(): Promise<Universe[]> {
+  if (!isSupabaseConfigured()) return catalog.getActiveUniverses();
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -34,11 +37,12 @@ export async function getActiveUniverses(): Promise<Universe[]> {
     if (error) throw error;
     return data ?? [];
   } catch {
-    return [];
+    return catalog.getActiveUniverses();
   }
 }
 
 export async function getUniverseBySlug(slug: string): Promise<Universe | null> {
+  if (!isSupabaseConfigured()) return catalog.getUniverseBySlug(slug);
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -51,13 +55,14 @@ export async function getUniverseBySlug(slug: string): Promise<Universe | null> 
     if (error) throw error;
     return data;
   } catch {
-    return null;
+    return catalog.getUniverseBySlug(slug);
   }
 }
 
 export async function getPublishedProducts(
   filters: ProductFilters = {}
 ): Promise<Product[]> {
+  if (!isSupabaseConfigured()) return catalog.getPublishedProducts(filters);
   try {
     const supabase = await createClient();
     let query = supabase
@@ -127,11 +132,12 @@ export async function getPublishedProducts(
 
     return products;
   } catch {
-    return [];
+    return catalog.getPublishedProducts(filters);
   }
 }
 
 export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
+  if (!isSupabaseConfigured()) return catalog.getFeaturedProducts(limit);
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -145,11 +151,12 @@ export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
     if (error) throw error;
     return (data ?? []).map((row) => mapProduct(row as Record<string, unknown>));
   } catch {
-    return [];
+    return catalog.getFeaturedProducts(limit);
   }
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  if (!isSupabaseConfigured()) return catalog.getProductBySlug(slug);
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -162,7 +169,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
     if (error) throw error;
     return mapProduct(data as Record<string, unknown>);
   } catch {
-    return null;
+    return catalog.getProductBySlug(slug);
   }
 }
 
@@ -170,6 +177,7 @@ export async function getSimilarProducts(
   product: Product,
   limit = 4
 ): Promise<Product[]> {
+  if (!isSupabaseConfigured()) return catalog.getSimilarProducts(product, limit);
   try {
     const supabase = await createClient();
     const { data, error } = await supabase
@@ -184,11 +192,12 @@ export async function getSimilarProducts(
     if (error) throw error;
     return (data ?? []).map((row) => mapProduct(row as Record<string, unknown>));
   } catch {
-    return [];
+    return catalog.getSimilarProducts(product, limit);
   }
 }
 
 export async function getAllUniversesAdmin(): Promise<Universe[]> {
+  if (!isSupabaseConfigured()) return catalog.getAllUniversesAdmin();
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("universes")
@@ -200,6 +209,7 @@ export async function getAllUniversesAdmin(): Promise<Universe[]> {
 }
 
 export async function getUniverseByIdAdmin(id: string): Promise<Universe | null> {
+  if (!isSupabaseConfigured()) return catalog.getUniverseByIdAdmin(id);
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("universes")
@@ -212,6 +222,7 @@ export async function getUniverseByIdAdmin(id: string): Promise<Universe | null>
 }
 
 export async function getAllProductsAdmin(): Promise<Product[]> {
+  if (!isSupabaseConfigured()) return catalog.getAllProductsAdmin();
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("products")
@@ -223,6 +234,7 @@ export async function getAllProductsAdmin(): Promise<Product[]> {
 }
 
 export async function getProductByIdAdmin(id: string): Promise<Product | null> {
+  if (!isSupabaseConfigured()) return catalog.getProductByIdAdmin(id);
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("products")
@@ -246,6 +258,7 @@ export async function getAllInquiriesAdmin(): Promise<Inquiry[]> {
 }
 
 export async function getAllProductImagesAdmin(): Promise<ProductImage[]> {
+  if (!isSupabaseConfigured()) return catalog.getAllProductImagesAdmin();
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("product_images")
@@ -257,6 +270,7 @@ export async function getAllProductImagesAdmin(): Promise<ProductImage[]> {
 }
 
 export async function getSettings(): Promise<SettingsMap> {
+  if (!isSupabaseConfigured()) return catalog.getSettings();
   try {
     const supabase = await createClient();
     const { data, error } = await supabase.from("settings").select("key, value");
@@ -268,11 +282,12 @@ export async function getSettings(): Promise<SettingsMap> {
       return acc;
     }, {});
   } catch {
-    return {};
+    return catalog.getSettings();
   }
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {
+  if (!isSupabaseConfigured()) return catalog.getDashboardStats();
   const supabase = await createClient();
 
   const [products, universes, inquiries, newInquiries] = await Promise.all([
@@ -294,6 +309,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
 }
 
 export async function getRecentProductsAdmin(limit = 5): Promise<Product[]> {
+  if (!isSupabaseConfigured()) return catalog.getRecentProductsAdmin(limit);
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("products")

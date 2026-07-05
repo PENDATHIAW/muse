@@ -11,14 +11,31 @@
     "dimensions": "30 × 20 × 8 cm",
     "print_time": "6-8 heures",
     "material": "PETG ou ASA recommandé",
-    "colors": ["ivoire", "sage", "terracotta", "moka", "noir mat"],
-    "finishes": ["mat", "effet bois"],
-    "personalization_options": ["logo MUSE", "couleur", "nombre de pots", "nombre de crochets"],
+    "colors": [
+      "ivoire",
+      "sage",
+      "terracotta",
+      "moka",
+      "noir mat"
+    ],
+    "finishes": [
+      "mat",
+      "effet bois"
+    ],
+    "personalization_options": [
+      "logo MUSE",
+      "couleur",
+      "nombre de pots",
+      "nombre de crochets"
+    ],
     "stock_status": "available",
     "status": "published",
     "is_featured": true,
     "display_order": 1,
-    "tags": ["bestseller", "personnalisable"],
+    "tags": [
+      "bestseller",
+      "personnalisable"
+    ],
     "internal_note": "",
     "images": [
       {
@@ -42,14 +59,26 @@
     "dimensions": "15 × 12 × 18 cm",
     "print_time": "3-4 heures",
     "material": "PETG recommandé",
-    "colors": ["ivoire", "sage", "terracotta", "moka"],
+    "colors": [
+      "ivoire",
+      "sage",
+      "terracotta",
+      "moka"
+    ],
     "finishes": [],
-    "personalization_options": ["couleur", "nom", "logo"],
+    "personalization_options": [
+      "couleur",
+      "nom",
+      "logo"
+    ],
     "stock_status": "available",
     "status": "published",
     "is_featured": true,
     "display_order": 2,
-    "tags": ["nouveauté", "personnalisable"],
+    "tags": [
+      "nouveauté",
+      "personnalisable"
+    ],
     "internal_note": "",
     "images": [
       {
@@ -73,14 +102,27 @@
     "dimensions": "8 × 5 × 3 cm",
     "print_time": "2-3 heures",
     "material": "PLA+, PETG ou TPU selon partie",
-    "colors": ["ivoire", "sage", "blush", "terracotta", "noir mat"],
+    "colors": [
+      "ivoire",
+      "sage",
+      "blush",
+      "terracotta",
+      "noir mat"
+    ],
     "finishes": [],
-    "personalization_options": ["initiales", "couleur", "logo discret"],
+    "personalization_options": [
+      "initiales",
+      "couleur",
+      "logo discret"
+    ],
     "stock_status": "available",
     "status": "published",
     "is_featured": true,
     "display_order": 1,
-    "tags": ["bestseller", "personnalisable"],
+    "tags": [
+      "bestseller",
+      "personnalisable"
+    ],
     "internal_note": "",
     "images": [
       {
@@ -104,14 +146,30 @@
     "dimensions": "20 × 8 × 0.5 cm",
     "print_time": "4-5 heures",
     "material": "PLA mat, effet bois ou effet pierre",
-    "colors": ["ivoire", "moka", "terracotta", "noir mat"],
-    "finishes": ["effet bois", "effet pierre", "mat"],
-    "personalization_options": ["nom de famille", "prénom", "couleur", "finition"],
+    "colors": [
+      "ivoire",
+      "moka",
+      "terracotta",
+      "noir mat"
+    ],
+    "finishes": [
+      "effet bois",
+      "effet pierre",
+      "mat"
+    ],
+    "personalization_options": [
+      "nom de famille",
+      "prénom",
+      "couleur",
+      "finition"
+    ],
     "stock_status": "available",
     "status": "published",
     "is_featured": true,
     "display_order": 1,
-    "tags": ["personnalisable"],
+    "tags": [
+      "personnalisable"
+    ],
     "internal_note": "",
     "images": [
       {

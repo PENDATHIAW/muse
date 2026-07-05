@@ -1,27 +1,40 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/server";
+
+const COOKIE_NAME = "muse-admin-session";
 
 export async function signIn(formData: FormData) {
-  const email = String(formData.get("email") ?? "");
   const password = String(formData.get("password") ?? "");
   const redirectTo = String(formData.get("redirect") ?? "/admin");
+  const adminPassword = process.env.ADMIN_PASSWORD || "muse2026";
 
-  const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
+  if (password !== adminPassword) {
     redirect(
-      `/admin/login?error=${encodeURIComponent(error.message)}&redirect=${encodeURIComponent(redirectTo)}`
+      `/admin/login?error=${encodeURIComponent("Mot de passe incorrect")}&redirect=${encodeURIComponent(redirectTo)}`
     );
   }
+
+  const cookieStore = await cookies();
+  cookieStore.set(COOKIE_NAME, "authenticated", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
 
   redirect(redirectTo);
 }
 
 export async function signOut() {
-  const supabase = await createClient();
-  await supabase.auth.signOut();
+  const cookieStore = await cookies();
+  cookieStore.delete(COOKIE_NAME);
   redirect("/admin/login");
+}
+
+export async function isAdminAuthenticated(): Promise<boolean> {
+  const cookieStore = await cookies();
+  return cookieStore.get(COOKIE_NAME)?.value === "authenticated";
 }

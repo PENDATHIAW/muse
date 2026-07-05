@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -10,19 +10,32 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getAllProductImagesAdmin } from "@/lib/queries";
+import { GithubEditBanner } from "@/components/admin/github-edit-banner";
+import { getAllProductImagesAdmin } from "@/lib/catalog";
 
-export const dynamic = "force-dynamic";
-
-export default async function AdminImagesPage() {
-  const images = await getAllProductImagesAdmin();
+export default function AdminImagesPage() {
+  const images = getAllProductImagesAdmin();
 
   return (
     <div>
+      <GithubEditBanner
+        filePath="data/products.json"
+        label="Les chemins d'images se modifient dans products.json."
+      />
+
       <h1 className="text-2xl font-semibold">Images</h1>
       <p className="text-sm text-muted-foreground">
-        Gérez les images depuis la fiche produit ou consultez-les ici.
+        Uploadez vos fichiers dans <code>public/products/[slug]/</code> sur GitHub.
       </p>
+
+      <div className="mt-4">
+        <Button asChild variant="outline">
+          <Link href="https://github.com/PENDATHIAW/muse/upload/main/public/products" target="_blank">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            Uploader dans public/products/
+          </Link>
+        </Button>
+      </div>
 
       <div className="mt-6 overflow-x-auto rounded-lg border border-border">
         <Table>
@@ -30,41 +43,21 @@ export default async function AdminImagesPage() {
             <TableRow>
               <TableHead>Aperçu</TableHead>
               <TableHead>Produit</TableHead>
-              <TableHead>Alt text</TableHead>
+              <TableHead>Chemin</TableHead>
               <TableHead>Principale</TableHead>
-              <TableHead>Ordre</TableHead>
-              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {images.map((img) => (
               <TableRow key={img.id}>
                 <TableCell>
-                  <div className="relative h-12 w-12 overflow-hidden rounded">
-                    <Image src={img.image_url} alt={img.alt_text} fill className="object-cover" />
+                  <div className="relative h-12 w-12 overflow-hidden rounded bg-muted">
+                    <Image src={img.image_url} alt={img.alt_text} fill className="object-cover" unoptimized />
                   </div>
                 </TableCell>
-                <TableCell>
-                  {img.product ? (
-                    <Link href={`/admin/produits/${img.product.id}/edit`} className="hover:text-primary">
-                      {img.product.name}
-                    </Link>
-                  ) : "—"}
-                </TableCell>
-                <TableCell className="max-w-[200px] truncate text-muted-foreground">
-                  {img.alt_text}
-                </TableCell>
-                <TableCell>
-                  {img.is_main ? <Badge>Principale</Badge> : "—"}
-                </TableCell>
-                <TableCell>{img.display_order}</TableCell>
-                <TableCell>
-                  {img.product && (
-                    <Button asChild variant="outline" size="sm">
-                      <Link href={`/admin/produits/${img.product.id}/edit`}>Gérer</Link>
-                    </Button>
-                  )}
-                </TableCell>
+                <TableCell>{img.product?.name ?? "—"}</TableCell>
+                <TableCell className="max-w-xs truncate font-mono text-xs">{img.image_url}</TableCell>
+                <TableCell>{img.is_main ? "Oui" : "—"}</TableCell>
               </TableRow>
             ))}
           </TableBody>

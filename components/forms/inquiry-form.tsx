@@ -40,7 +40,7 @@ export function InquiryForm({
       return;
     }
 
-    toast.success("Votre demande a été envoyée. Nous vous recontacterons bientôt.");
+    toast.success("Message envoyé ! Contactez-nous aussi sur WhatsApp pour une réponse rapide.");
     router.refresh();
     e.currentTarget.reset();
   }

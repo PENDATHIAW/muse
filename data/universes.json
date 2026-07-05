@@ -1,0 +1,155 @@
+[
+  {
+    "id": "plaques-de-porte-chez-nous",
+    "name": "Plaques de porte « Chez nous »",
+    "slug": "plaques-de-porte-chez-nous",
+    "description": "Plaques de porte personnalisées avec nom de famille et finitions premium.",
+    "cover_image_url": "/univers/plaques-de-porte-chez-nous/cover.jpg",
+    "display_order": 1,
+    "is_active": true
+  },
+  {
+    "id": "boite-a-cles-murale",
+    "name": "Boîte à clés murale",
+    "slug": "boite-a-cles-murale",
+    "description": "Organisez votre entrée avec élégance.",
+    "cover_image_url": null,
+    "display_order": 2,
+    "is_active": true
+  },
+  {
+    "id": "vide-poche-teranga",
+    "name": "Vide-poche d'entrée « Teranga »",
+    "slug": "vide-poche-teranga",
+    "description": "Accueillez vos clés, montres et petits objets du quotidien.",
+    "cover_image_url": null,
+    "display_order": 3,
+    "is_active": true
+  },
+  {
+    "id": "support-telephone-vide-poche",
+    "name": "Support téléphone + vide-poche",
+    "slug": "support-telephone-vide-poche",
+    "description": "Alliez praticité et design pour votre bureau ou entrée.",
+    "cover_image_url": null,
+    "display_order": 4,
+    "is_active": true
+  },
+  {
+    "id": "porte-moussor-foulards",
+    "name": "Porte-moussor / porte-foulards mural",
+    "slug": "porte-moussor-foulards",
+    "description": "Organisation murale élégante pour vos accessoires.",
+    "cover_image_url": null,
+    "display_order": 5,
+    "is_active": true
+  },
+  {
+    "id": "support-bijoux-coiffeuse",
+    "name": "Support bijoux de coiffeuse",
+    "slug": "support-bijoux-coiffeuse",
+    "description": "Rangez vos bijoux avec style sur votre coiffeuse.",
+    "cover_image_url": null,
+    "display_order": 6,
+    "is_active": true
+  },
+  {
+    "id": "boite-a-bijoux",
+    "name": "Boîte à bijoux personnalisée",
+    "slug": "boite-a-bijoux",
+    "description": "Coffrets personnalisés pour vos trésors.",
+    "cover_image_url": null,
+    "display_order": 7,
+    "is_active": true
+  },
+  {
+    "id": "support-tasbih-chapelet",
+    "name": "Support tasbih / chapelet",
+    "slug": "support-tasbih-chapelet",
+    "description": "Supports décoratifs pour vos moments de recueillement.",
+    "cover_image_url": null,
+    "display_order": 8,
+    "is_active": true
+  },
+  {
+    "id": "plaques-naissance-bapteme",
+    "name": "Plaques naissance / baptême à poser",
+    "slug": "plaques-naissance-bapteme",
+    "description": "Souvenirs personnalisés pour célébrer la vie.",
+    "cover_image_url": null,
+    "display_order": 9,
+    "is_active": true
+  },
+  {
+    "id": "supports-qr-paiement",
+    "name": "Supports QR boutique / Wave / Orange Money",
+    "slug": "supports-qr-paiement",
+    "description": "Présentez vos moyens de paiement avec élégance.",
+    "cover_image_url": null,
+    "display_order": 10,
+    "is_active": true
+  },
+  {
+    "id": "etiquettes-prix-boutiques",
+    "name": "Étiquettes prix premium pour boutiques",
+    "slug": "etiquettes-prix-boutiques",
+    "description": "Étiquettes raffinées pour vos espaces commerciaux.",
+    "cover_image_url": null,
+    "display_order": 11,
+    "is_active": true
+  },
+  {
+    "id": "porte-cartes-flyers",
+    "name": "Porte-cartes / porte-flyers",
+    "slug": "porte-cartes-flyers",
+    "description": "Présentez vos cartes et flyers professionnellement.",
+    "cover_image_url": null,
+    "display_order": 12,
+    "is_active": true
+  },
+  {
+    "id": "supports-parfum-thiouraye",
+    "name": "Supports parfum / thiouraye décoratif",
+    "slug": "supports-parfum-thiouraye",
+    "description": "Supports décoratifs sans brûleur pour parfums et thiouraye.",
+    "cover_image_url": null,
+    "display_order": 13,
+    "is_active": true
+  },
+  {
+    "id": "cache-pot-decoratif",
+    "name": "Cache-pot décoratif",
+    "slug": "cache-pot-decoratif",
+    "description": "Habillez vos plantes avec des cache-pots personnalisés.",
+    "cover_image_url": null,
+    "display_order": 14,
+    "is_active": true
+  },
+  {
+    "id": "mini-deco-murale-senegal",
+    "name": "Mini déco murale Sénégal",
+    "slug": "mini-deco-murale-senegal",
+    "description": "Décoration murale inspirée de l'art et de la culture sénégalaise.",
+    "cover_image_url": null,
+    "display_order": 15,
+    "is_active": true
+  },
+  {
+    "id": "muse-tech-charge-guard",
+    "name": "MUSE Tech / Charge Guard",
+    "slug": "muse-tech-charge-guard",
+    "description": "Accessoires tech élégants pour organiser vos chargeurs.",
+    "cover_image_url": "/univers/muse-tech-charge-guard/cover.jpg",
+    "display_order": 16,
+    "is_active": true
+  },
+  {
+    "id": "muse-kitchen",
+    "name": "MUSE Kitchen / Organisateurs cuisine",
+    "slug": "muse-kitchen",
+    "description": "Organiseurs muraux et accessoires pour une cuisine ordonnée.",
+    "cover_image_url": "/univers/muse-kitchen/cover.jpg",
+    "display_order": 17,
+    "is_active": true
+  }
+]

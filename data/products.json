@@ -1,0 +1,126 @@
+[
+  {
+    "id": "organisateur-mural-cuisine-drainage",
+    "universe_id": "muse-kitchen",
+    "name": "Organisateur mural cuisine avec drainage",
+    "slug": "organisateur-mural-cuisine-drainage",
+    "short_description": "Support mural modulable pour ustensiles de cuisine.",
+    "long_description": "Support mural modulable pour ustensiles de cuisine, avec pots perforés, crochets et plateau de récupération d'eau. Idéal pour libérer votre plan de travail tout en gardant vos outils à portée de main.",
+    "price": 18000,
+    "old_price": null,
+    "dimensions": "30 × 20 × 8 cm",
+    "print_time": "6-8 heures",
+    "material": "PETG ou ASA recommandé",
+    "colors": ["ivoire", "sage", "terracotta", "moka", "noir mat"],
+    "finishes": ["mat", "effet bois"],
+    "personalization_options": ["logo MUSE", "couleur", "nombre de pots", "nombre de crochets"],
+    "stock_status": "available",
+    "status": "published",
+    "is_featured": true,
+    "display_order": 1,
+    "tags": ["bestseller", "personnalisable"],
+    "internal_note": "",
+    "images": [
+      {
+        "id": "organisateur-main",
+        "image_url": "/products/organisateur-mural-cuisine-drainage/main.jpg",
+        "alt_text": "Organisateur mural cuisine MUSE",
+        "is_main": true,
+        "display_order": 0
+      }
+    ]
+  },
+  {
+    "id": "pot-a-couverts-drainant",
+    "universe_id": "muse-kitchen",
+    "name": "Pot à couverts drainant",
+    "slug": "pot-a-couverts-drainant",
+    "short_description": "Pot mural pour cuillères, spatules et fouets.",
+    "long_description": "Pot mural pour cuillères, spatules et fouets, avec trous de drainage et bac récupérateur amovible. Design épuré et fonctionnel pour une cuisine organisée.",
+    "price": 8000,
+    "old_price": null,
+    "dimensions": "15 × 12 × 18 cm",
+    "print_time": "3-4 heures",
+    "material": "PETG recommandé",
+    "colors": ["ivoire", "sage", "terracotta", "moka"],
+    "finishes": [],
+    "personalization_options": ["couleur", "nom", "logo"],
+    "stock_status": "available",
+    "status": "published",
+    "is_featured": true,
+    "display_order": 2,
+    "tags": ["nouveauté", "personnalisable"],
+    "internal_note": "",
+    "images": [
+      {
+        "id": "pot-main",
+        "image_url": "/products/pot-a-couverts-drainant/main.jpg",
+        "alt_text": "Pot à couverts drainant MUSE",
+        "is_main": true,
+        "display_order": 0
+      }
+    ]
+  },
+  {
+    "id": "charge-guard-2-en-1",
+    "universe_id": "muse-tech-charge-guard",
+    "name": "Charge Guard 2-en-1",
+    "slug": "charge-guard-2-en-1",
+    "short_description": "Organisateur de chargeur 2-en-1 pour bloc et câble.",
+    "long_description": "Organisateur de chargeur 2-en-1 pour ranger le bloc chargeur, enrouler le câble et clipser l'embout téléphone. Utilisable en déplacement et pendant la charge.",
+    "price": 5000,
+    "old_price": null,
+    "dimensions": "8 × 5 × 3 cm",
+    "print_time": "2-3 heures",
+    "material": "PLA+, PETG ou TPU selon partie",
+    "colors": ["ivoire", "sage", "blush", "terracotta", "noir mat"],
+    "finishes": [],
+    "personalization_options": ["initiales", "couleur", "logo discret"],
+    "stock_status": "available",
+    "status": "published",
+    "is_featured": true,
+    "display_order": 1,
+    "tags": ["bestseller", "personnalisable"],
+    "internal_note": "",
+    "images": [
+      {
+        "id": "charge-guard-main",
+        "image_url": "/products/charge-guard-2-en-1/main.jpg",
+        "alt_text": "Charge Guard 2-en-1 MUSE",
+        "is_main": true,
+        "display_order": 0
+      }
+    ]
+  },
+  {
+    "id": "plaque-chez-les-diagne",
+    "universe_id": "plaques-de-porte-chez-nous",
+    "name": "Plaque « Chez les Diagne »",
+    "slug": "plaque-chez-les-diagne",
+    "short_description": "Plaque de porte personnalisée avec nom de famille.",
+    "long_description": "Plaque de porte personnalisée avec nom de famille, finition premium et logo MUSE discret. Parfaite pour accueillir vos visiteurs avec chaleur et élégance.",
+    "price": 12000,
+    "old_price": null,
+    "dimensions": "20 × 8 × 0.5 cm",
+    "print_time": "4-5 heures",
+    "material": "PLA mat, effet bois ou effet pierre",
+    "colors": ["ivoire", "moka", "terracotta", "noir mat"],
+    "finishes": ["effet bois", "effet pierre", "mat"],
+    "personalization_options": ["nom de famille", "prénom", "couleur", "finition"],
+    "stock_status": "available",
+    "status": "published",
+    "is_featured": true,
+    "display_order": 1,
+    "tags": ["personnalisable"],
+    "internal_note": "",
+    "images": [
+      {
+        "id": "plaque-main",
+        "image_url": "/products/plaque-chez-les-diagne/main.jpg",
+        "alt_text": "Plaque Chez les Diagne MUSE",
+        "is_main": true,
+        "display_order": 0
+      }
+    ]
+  }
+]

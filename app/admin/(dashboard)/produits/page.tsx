@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Plus, Pencil, Trash2 } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -10,26 +10,26 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getAllProductsAdmin } from "@/lib/queries";
-import { deleteProduct } from "@/lib/actions/admin";
+import { GithubEditBanner } from "@/components/admin/github-edit-banner";
+import { getAllProductsAdmin, githubEditUrl } from "@/lib/catalog";
 import { formatPrice, PRODUCT_STATUS_LABELS } from "@/lib/utils-muse";
 
-export const dynamic = "force-dynamic";
-
-export default async function AdminProductsPage() {
-  const products = await getAllProductsAdmin();
+export default function AdminProductsPage() {
+  const products = getAllProductsAdmin();
 
   return (
     <div>
+      <GithubEditBanner filePath="data/products.json" />
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Produits</h1>
           <p className="text-sm text-muted-foreground">{products.length} produits</p>
         </div>
         <Button asChild>
-          <Link href="/admin/produits/nouveau">
-            <Plus className="mr-2 h-4 w-4" />
-            Ajouter
+          <Link href={githubEditUrl("data/products.json")} target="_blank">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            Modifier sur GitHub
           </Link>
         </Button>
       </div>
@@ -42,8 +42,8 @@ export default async function AdminProductsPage() {
               <TableHead>Univers</TableHead>
               <TableHead>Prix</TableHead>
               <TableHead>Statut</TableHead>
-              <TableHead>Mis en avant</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead>Images</TableHead>
+              <TableHead className="text-right">Voir</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -59,20 +59,11 @@ export default async function AdminProductsPage() {
                     {PRODUCT_STATUS_LABELS[p.status]}
                   </Badge>
                 </TableCell>
-                <TableCell>{p.is_featured ? "Oui" : "Non"}</TableCell>
+                <TableCell>{p.images?.length ?? 0}</TableCell>
                 <TableCell className="text-right">
-                  <div className="flex justify-end gap-2">
-                    <Button asChild variant="outline" size="sm">
-                      <Link href={`/admin/produits/${p.id}/edit`}>
-                        <Pencil className="h-3 w-3" />
-                      </Link>
-                    </Button>
-                    <form action={async () => { "use server"; await deleteProduct(p.id); }}>
-                      <Button type="submit" variant="destructive" size="sm">
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
-                    </form>
-                  </div>
+                  <Button asChild variant="outline" size="sm">
+                    <Link href={`/admin/produits/${p.id}/edit`}>Fiche</Link>
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

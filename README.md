@@ -1,160 +1,76 @@
 # MUSE — Site catalogue e-commerce
 
-Site premium pour la marque **MUSE**, objets personnalisables conçus en impression 3D (Bambu Lab H2S).
+Site premium pour la marque **MUSE**, objets personnalisables conçus en impression 3D.
+
+**Aucune base de données requise** — le catalogue vit dans des fichiers JSON sur GitHub, les visuels dans `public/`.
 
 ## Stack
 
-- **Next.js 16** (App Router) + TypeScript
-- **Tailwind CSS** + shadcn/ui
-- **Supabase** (Auth + PostgreSQL uniquement — pas de Storage requis)
+- **Next.js 16** + TypeScript + Tailwind + shadcn/ui
+- **Catalogue JSON** (`data/`) — pas de Supabase
+- **Visuels GitHub** (`public/products/`)
 
-## Installation
+## Installation locale
 
 ```bash
-# 1. Cloner le dépôt
-git clone <votre-repo>
+git clone https://github.com/PENDATHIAW/muse.git
 cd muse
-
-# 2. Installer les dépendances
 npm install
-
-# 3. Configurer les variables d'environnement
 cp .env.example .env.local
-# Éditez .env.local avec vos clés Supabase
-
-# 4. Appliquer le schéma Supabase
-# Dans le SQL Editor Supabase, exécutez dans l'ordre :
-#   - supabase/migrations/20240704000000_initial_schema.sql
-#   - supabase/seed.sql
-#
-# Note plan Free : si vous avez déjà 2 projets Supabase, réutilisez
-# un projet existant (ajoutez les tables MUSE dedans) — pas besoin d'en créer un 3e.
-
-# 5. Lancer le projet
 npm run dev
 ```
 
-Ouvrez [http://localhost:3000](http://localhost:3000).
+Site : http://localhost:3000  
+Admin : http://localhost:3000/admin/login (mot de passe : `muse2026`)
 
-## Variables Supabase (.env.local)
+## Modifier le catalogue (sans coder)
 
-| Variable | Description |
-|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | URL du projet Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé publique (anon) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Clé service (optionnelle, server-only) |
-| `NEXT_PUBLIC_SITE_URL` | URL du site (ex: `https://muse.sn`) |
+| Action | Fichier GitHub |
+|--------|----------------|
+| Textes accueil, WhatsApp, contact | `data/settings.json` |
+| Univers | `data/universes.json` |
+| Produits (prix, descriptions…) | `data/products.json` |
+| Photos produits | `public/products/[slug]/main.jpg` |
+| Logo | `public/logo-muse.png` |
+| Catalogue PDF | `public/catalogue_muse_2026.pdf` |
 
-## Créer le premier compte admin
-
-1. Allez dans **Supabase Dashboard → Authentication → Users**
-2. Cliquez **Add user → Create new user**
-3. Entrez email + mot de passe
-4. Connectez-vous sur `/admin/login`
-
-> Seul un utilisateur authentifié Supabase peut accéder à l'admin (RLS activé).
-
-## Structure du projet
-
-```
-app/
-  (site)/          # Pages client (accueil, catalogue, produit...)
-  admin/           # Interface administrateur
-components/        # Composants UI MUSE
-lib/               # Supabase, queries, actions
-types/             # Types TypeScript
-supabase/          # Migrations SQL + seed
-public/            # Assets statiques (logo-muse.png)
-```
-
-## Pages client
-
-- `/` — Accueil
-- `/catalogue` — Catalogue avec filtres
-- `/univers/[slug]` — Page univers
-- `/produit/[slug]` — Fiche produit
-- `/personnalisation` — Options de personnalisation
-- `/contact` — Formulaire de commande
-- `/a-propos` — À propos de MUSE
-
-## Interface admin (`/admin`)
-
-- Dashboard, Univers, Produits, Images, Demandes, Réglages
-- CRUD complet sans toucher au code
-- CRUD complet sans toucher au code
-- **Visuels via GitHub** (`public/products/`) — voir ci-dessous
-
-## Visuels produits (GitHub — recommandé)
-
-Pas besoin de Supabase Storage ni de plan payant.
-
-1. Ajoutez vos photos dans `public/products/[slug-du-produit]/main.jpg`
-2. **Commit + push** sur GitHub
-3. Admin → Produit → **Images** → liez le chemin : `/products/[slug]/main.jpg`
-4. Cochez « image principale »
-
-Détail : `public/products/README.md`
+Guide détaillé : `data/README.md`
 
 ## Ajouter un produit
 
-1. Connectez-vous à `/admin`
-2. **Produits → Ajouter**
-3. Remplissez les champs et choisissez **Publié** ou **Brouillon**
-4. Ajoutez les images (GitHub + liaison dans l'admin)
-5. Définissez l'image principale
+1. Éditez `data/products.json` sur GitHub (dupliquez un produit existant)
+2. Uploadez la photo : `public/products/mon-slug/main.jpg`
+3. Commit + push → Vercel redéploie → produit visible
 
-## Lier une image produit
+## Ajouter une photo plus tard
 
-1. Placez le fichier : `public/products/mon-produit/main.jpg`
-2. Poussez sur GitHub
-3. Admin → **Produits → [produit] → Images**
-4. Chemin : `/products/mon-produit/main.jpg` → **Lier cette image**
+1. Uploadez `public/products/[slug]/main.jpg`
+2. Vérifiez le chemin dans `products.json` → `"images"`
+3. Push GitHub
 
-## Logo
+## Admin web (`/admin`)
 
-Remplacez facilement le logo en ajoutant :
+- Consultation du catalogue
+- Liens directs pour éditer sur GitHub
+- Mot de passe : variable `ADMIN_PASSWORD` sur Vercel
 
-`public/logo-muse.png`
+## Déployer sur Vercel
 
-Sans ce fichier, le texte **MUSE** s'affiche automatiquement.
+1. Importez le repo GitHub
+2. Variable optionnelle : `ADMIN_PASSWORD` (votre mot de passe admin)
+3. Déployez — **aucune variable Supabase nécessaire**
 
-## Publier le site (Vercel)
+## Commandes clients
 
-### Variables obligatoires sur Vercel
+Pas de paiement en ligne. Les clients commandent via :
+- Formulaire de contact (message prérempli WhatsApp)
+- Bouton WhatsApp direct
 
-Dans **Vercel → Project → Settings → Environment Variables**, ajoutez :
+## Structure
 
-| Variable | Valeur |
-|----------|--------|
-| `NEXT_PUBLIC_SUPABASE_URL` | URL de votre projet Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé anon Supabase |
-
-Sans ces variables, le site s'affiche mais le catalogue reste vide.
-
-### Déploiement
-
-1. Poussez le code sur GitHub (`main`)
-2. Importez le repo sur [vercel.com](https://vercel.com)
-3. Ajoutez les variables ci-dessus
-4. Redéployez si besoin
-
-Le build utilise **webpack** (stable sur Vercel) via `npm run build`.
-
-### Build local
-
-```bash
-npm run build
-npm start
 ```
-
-## Sécurité
-
-- RLS activé sur toutes les tables
-- Visiteurs : lecture produits publiés + création de demandes
-- Admin authentifié : accès complet CRUD
-
-## Seed inclus
-
-- 17 univers produits
-- 4 produits exemples (Kitchen, Tech, Plaques de porte)
-- Réglages par défaut (WhatsApp, textes accueil...)
+data/           → catalogue JSON
+public/         → images, logo, PDF
+app/            → pages Next.js
+components/     → UI MUSE
+```

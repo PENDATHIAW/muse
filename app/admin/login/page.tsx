@@ -19,23 +19,23 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
           <div className="mb-4 flex justify-center">
             <MuseLogo size="md" href="/" />
           </div>
-          <CardTitle>Connexion administrateur</CardTitle>
+          <CardTitle>Administration MUSE</CardTitle>
+          <p className="text-sm text-muted-foreground">
+            Consultation du catalogue · modifications via GitHub
+          </p>
         </CardHeader>
         <CardContent>
           <form action={signIn} className="space-y-4">
             <input type="hidden" name="redirect" value={params.redirect || "/admin"} />
             <div>
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" type="email" required autoComplete="email" />
-            </div>
-            <div>
-              <Label htmlFor="password">Mot de passe</Label>
+              <Label htmlFor="password">Mot de passe admin</Label>
               <Input
                 id="password"
                 name="password"
                 type="password"
                 required
                 autoComplete="current-password"
+                placeholder="Mot de passe"
               />
             </div>
             {params.error && (
@@ -45,6 +45,11 @@ export default async function AdminLoginPage({ searchParams }: AdminLoginPagePro
               Se connecter
             </Button>
           </form>
+          <p className="mt-4 text-center text-xs text-muted-foreground">
+            Mot de passe par défaut en local : <code>muse2026</code>
+            <br />
+            Sur Vercel : variable <code>ADMIN_PASSWORD</code>
+          </p>
         </CardContent>
       </Card>
     </div>

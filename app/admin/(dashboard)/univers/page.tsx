@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { Plus, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -10,25 +10,25 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { GithubEditBanner } from "@/components/admin/github-edit-banner";
-import { getAllUniversesAdmin, githubEditUrl } from "@/lib/catalog";
+import { getAllUniversesAdmin } from "@/lib/queries";
+import { deleteUniverse } from "@/lib/actions/admin";
 
-export default function AdminUniversPage() {
-  const universes = getAllUniversesAdmin();
+export const dynamic = "force-dynamic";
+
+export default async function AdminUniversPage() {
+  const universes = await getAllUniversesAdmin();
 
   return (
     <div>
-      <GithubEditBanner filePath="data/universes.json" />
-
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold">Univers</h1>
           <p className="text-sm text-muted-foreground">{universes.length} univers</p>
         </div>
         <Button asChild>
-          <Link href={githubEditUrl("data/universes.json")} target="_blank">
-            <ExternalLink className="mr-2 h-4 w-4" />
-            Modifier sur GitHub
+          <Link href="/admin/univers/nouveau">
+            <Plus className="mr-2 h-4 w-4" />
+            Ajouter
           </Link>
         </Button>
       </div>
@@ -41,6 +41,7 @@ export default function AdminUniversPage() {
               <TableHead>Slug</TableHead>
               <TableHead>Ordre</TableHead>
               <TableHead>Statut</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -53,6 +54,20 @@ export default function AdminUniversPage() {
                   <Badge variant={u.is_active ? "default" : "secondary"}>
                     {u.is_active ? "Actif" : "Inactif"}
                   </Badge>
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex justify-end gap-2">
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={`/admin/univers/${u.id}/edit`}>
+                        <Pencil className="h-3 w-3" />
+                      </Link>
+                    </Button>
+                    <form action={async () => { "use server"; await deleteUniverse(u.id); }}>
+                      <Button type="submit" variant="destructive" size="sm">
+                        <Trash2 className="h-3 w-3" />
+                      </Button>
+                    </form>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

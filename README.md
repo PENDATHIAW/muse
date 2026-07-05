@@ -2,13 +2,11 @@
 
 Site premium pour la marque **MUSE**, objets personnalisables conçus en impression 3D.
 
-**Aucune base de données requise** — le catalogue vit dans des fichiers JSON sur GitHub, les visuels dans `public/`.
-
 ## Stack
 
 - **Next.js 16** + TypeScript + Tailwind + shadcn/ui
-- **Catalogue JSON** (`data/`) — pas de Supabase
-- **Visuels GitHub** (`public/products/`)
+- **Supabase** (Auth, PostgreSQL, Storage)
+- **Visuels** : Supabase Storage ou fichiers dans `public/products/`
 
 ## Installation locale
 
@@ -17,60 +15,48 @@ git clone https://github.com/PENDATHIAW/muse.git
 cd muse
 npm install
 cp .env.example .env.local
+# Renseignez vos clés Supabase dans .env.local
 npm run dev
 ```
 
 Site : http://localhost:3000  
-Admin : http://localhost:3000/admin/login (mot de passe : `muse2026`)
+Admin : http://localhost:3000/admin/login (compte Supabase Auth)
 
-## Modifier le catalogue (sans coder)
+## Variables d'environnement (Vercel)
 
-| Action | Fichier GitHub |
-|--------|----------------|
-| Textes accueil, WhatsApp, contact | `data/settings.json` |
-| Univers | `data/universes.json` |
-| Produits (prix, descriptions…) | `data/products.json` |
-| Photos produits | `public/products/[slug]/main.jpg` |
-| Logo | `public/logo-muse.png` |
-| Catalogue PDF | `public/catalogue_muse_2026.pdf` |
+| Variable | Description |
+|----------|-------------|
+| `NEXT_PUBLIC_SUPABASE_URL` | URL du projet Supabase |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé publique anon |
+| `SUPABASE_SERVICE_ROLE_KEY` | Clé secrète service_role |
+| `NEXT_PUBLIC_SITE_URL` | URL du site (ex. `https://muse-git-main-....vercel.app`) |
 
-Guide détaillé : `data/README.md`
+## Supabase — première configuration
 
-## Ajouter un produit
-
-1. Éditez `data/products.json` sur GitHub (dupliquez un produit existant)
-2. Uploadez la photo : `public/products/mon-slug/main.jpg`
-3. Commit + push → Vercel redéploie → produit visible
-
-## Ajouter une photo plus tard
-
-1. Uploadez `public/products/[slug]/main.jpg`
-2. Vérifiez le chemin dans `products.json` → `"images"`
-3. Push GitHub
+1. Créez un projet sur [supabase.com](https://supabase.com)
+2. **SQL Editor** → exécutez `supabase/migrations/20240704000000_initial_schema.sql`
+3. **SQL Editor** → exécutez `supabase/seed.sql`
+4. **Authentication → Users** → créez un utilisateur admin
+5. Copiez les clés API dans Vercel → **Redeploy**
 
 ## Admin web (`/admin`)
 
-- Consultation du catalogue
-- Liens directs pour éditer sur GitHub
-- Mot de passe : variable `ADMIN_PASSWORD` sur Vercel
-
-## Déployer sur Vercel
-
-1. Importez le repo GitHub
-2. Variable optionnelle : `ADMIN_PASSWORD` (votre mot de passe admin)
-3. Déployez — **aucune variable Supabase nécessaire**
+- CRUD univers, produits, images, demandes, réglages
+- Connexion avec email + mot de passe Supabase Auth
 
 ## Commandes clients
 
 Pas de paiement en ligne. Les clients commandent via :
-- Formulaire de contact (message prérempli WhatsApp)
+- Formulaire de contact (enregistré dans Supabase)
 - Bouton WhatsApp direct
 
 ## Structure
 
 ```
-data/           → catalogue JSON
-public/         → images, logo, PDF
+supabase/       → migrations SQL + seed
+data/           → catalogue JSON (secours / référence)
+public/         → images statiques, logo, PDF
 app/            → pages Next.js
 components/     → UI MUSE
+lib/            → Supabase, queries, actions
 ```

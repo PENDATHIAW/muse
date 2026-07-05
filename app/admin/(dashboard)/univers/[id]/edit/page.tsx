@@ -1,42 +1,72 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GithubEditBanner } from "@/components/admin/github-edit-banner";
-import { getUniverseByIdAdmin, githubEditUrl } from "@/lib/catalog";
+import { getUniverseByIdAdmin } from "@/lib/queries";
+import { updateUniverse } from "@/lib/actions/admin";
 
-interface UniverseDetailProps {
+export const dynamic = "force-dynamic";
+
+interface EditUniversePageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function AdminUniverseDetailPage({ params }: UniverseDetailProps) {
+export default async function EditUniversePage({ params }: EditUniversePageProps) {
   const { id } = await params;
-  const universe = getUniverseByIdAdmin(id);
+  const universe = await getUniverseByIdAdmin(id);
   if (!universe) notFound();
+
+  const updateAction = updateUniverse.bind(null, id);
 
   return (
     <div>
-      <GithubEditBanner filePath="data/universes.json" />
-      <h1 className="text-2xl font-semibold">{universe.name}</h1>
-      <Card className="mt-6 max-w-xl">
+      <h1 className="text-2xl font-semibold">Modifier l&apos;univers</h1>
+      <Card className="mt-6 max-w-2xl">
         <CardHeader>
-          <CardTitle>Détails</CardTitle>
+          <CardTitle>{universe.name}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2 text-sm">
-          <p><strong>Slug :</strong> {universe.slug}</p>
-          <p><strong>Description :</strong> {universe.description}</p>
-          <p><strong>Couverture :</strong> {universe.cover_image_url ?? "—"}</p>
-          <Badge variant={universe.is_active ? "default" : "secondary"}>
-            {universe.is_active ? "Actif" : "Inactif"}
-          </Badge>
-          <Button asChild className="mt-4">
-            <Link href={githubEditUrl("data/universes.json")} target="_blank">
-              <ExternalLink className="mr-2 h-4 w-4" />
-              Modifier sur GitHub
-            </Link>
-          </Button>
+        <CardContent>
+          <form action={updateAction} className="space-y-4">
+            <div>
+              <Label htmlFor="name">Nom *</Label>
+              <Input id="name" name="name" defaultValue={universe.name} required />
+            </div>
+            <div>
+              <Label htmlFor="slug">Slug</Label>
+              <Input id="slug" name="slug" defaultValue={universe.slug} />
+            </div>
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <Textarea id="description" name="description" rows={4} defaultValue={universe.description} />
+            </div>
+            <div>
+              <Label htmlFor="cover_image_url">URL image de couverture</Label>
+              <Input id="cover_image_url" name="cover_image_url" type="url" defaultValue={universe.cover_image_url ?? ""} />
+            </div>
+            <div>
+              <Label htmlFor="display_order">Ordre d&apos;affichage</Label>
+              <Input id="display_order" name="display_order" type="number" defaultValue={universe.display_order} />
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="is_active"
+                name="is_active"
+                defaultChecked={universe.is_active}
+                className="h-4 w-4 rounded border-input"
+              />
+              <Label htmlFor="is_active">Univers actif</Label>
+            </div>
+            <div className="flex gap-3">
+              <Button type="submit">Enregistrer</Button>
+              <Button asChild variant="outline">
+                <Link href="/admin/univers">Retour</Link>
+              </Button>
+            </div>
+          </form>
         </CardContent>
       </Card>
     </div>

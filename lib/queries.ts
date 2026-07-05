@@ -24,6 +24,15 @@ function mapProduct(row: Record<string, unknown>): Product {
   };
 }
 
+/** Supabase can be connected but still empty — fall back to bundled JSON catalog. */
+function withCatalogFallback<T>(
+  data: T[] | null | undefined,
+  fallback: () => T[]
+): T[] {
+  if (!data?.length) return fallback();
+  return data;
+}
+
 export async function getActiveUniverses(): Promise<Universe[]> {
   if (!isSupabaseConfigured()) return catalog.getActiveUniverses();
   try {
@@ -35,7 +44,7 @@ export async function getActiveUniverses(): Promise<Universe[]> {
       .order("display_order", { ascending: true });
 
     if (error) throw error;
-    return data ?? [];
+    return withCatalogFallback(data, catalog.getActiveUniverses);
   } catch {
     return catalog.getActiveUniverses();
   }
@@ -53,7 +62,7 @@ export async function getUniverseBySlug(slug: string): Promise<Universe | null> 
       .single();
 
     if (error) throw error;
-    return data;
+    return data ?? catalog.getUniverseBySlug(slug);
   } catch {
     return catalog.getUniverseBySlug(slug);
   }
@@ -130,7 +139,9 @@ export async function getPublishedProducts(
       );
     }
 
-    return products;
+    return withCatalogFallback(products, () =>
+      catalog.getPublishedProducts(filters)
+    );
   } catch {
     return catalog.getPublishedProducts(filters);
   }
@@ -149,7 +160,12 @@ export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
       .limit(limit);
 
     if (error) throw error;
-    return (data ?? []).map((row) => mapProduct(row as Record<string, unknown>));
+    const products = (data ?? []).map((row) =>
+      mapProduct(row as Record<string, unknown>)
+    );
+    return withCatalogFallback(products, () =>
+      catalog.getFeaturedProducts(limit)
+    );
   } catch {
     return catalog.getFeaturedProducts(limit);
   }
@@ -167,7 +183,10 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       .single();
 
     if (error) throw error;
-    return mapProduct(data as Record<string, unknown>);
+    return (
+      mapProduct(data as Record<string, unknown>) ??
+      catalog.getProductBySlug(slug)
+    );
   } catch {
     return catalog.getProductBySlug(slug);
   }
@@ -190,7 +209,12 @@ export async function getSimilarProducts(
       .limit(limit);
 
     if (error) throw error;
-    return (data ?? []).map((row) => mapProduct(row as Record<string, unknown>));
+    const products = (data ?? []).map((row) =>
+      mapProduct(row as Record<string, unknown>)
+    );
+    return withCatalogFallback(products, () =>
+      catalog.getSimilarProducts(product, limit)
+    );
   } catch {
     return catalog.getSimilarProducts(product, limit);
   }
@@ -277,10 +301,14 @@ export async function getSettings(): Promise<SettingsMap> {
 
     if (error) throw error;
 
-    return (data ?? []).reduce<SettingsMap>((acc, item) => {
+    const settings = (data ?? []).reduce<SettingsMap>((acc, item) => {
       acc[item.key] = item.value;
       return acc;
     }, {});
+
+    return Object.keys(settings).length
+      ? settings
+      : catalog.getSettings();
   } catch {
     return catalog.getSettings();
   }

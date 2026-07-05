@@ -33,6 +33,15 @@ function withCatalogFallback<T>(
   return data;
 }
 
+/** Prefer the richer bundled catalog until Supabase is fully imported. */
+function preferCatalogWhenIncomplete<T>(
+  remote: T[],
+  fallback: () => T[]
+): T[] {
+  const local = fallback();
+  return remote.length >= local.length ? remote : local;
+}
+
 export async function getActiveUniverses(): Promise<Universe[]> {
   if (!isSupabaseConfigured()) return catalog.getActiveUniverses();
   try {
@@ -44,7 +53,7 @@ export async function getActiveUniverses(): Promise<Universe[]> {
       .order("display_order", { ascending: true });
 
     if (error) throw error;
-    return withCatalogFallback(data, catalog.getActiveUniverses);
+    return preferCatalogWhenIncomplete(data ?? [], catalog.getActiveUniverses);
   } catch {
     return catalog.getActiveUniverses();
   }
@@ -139,7 +148,7 @@ export async function getPublishedProducts(
       );
     }
 
-    return withCatalogFallback(products, () =>
+    return preferCatalogWhenIncomplete(products, () =>
       catalog.getPublishedProducts(filters)
     );
   } catch {
@@ -163,7 +172,7 @@ export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
     const products = (data ?? []).map((row) =>
       mapProduct(row as Record<string, unknown>)
     );
-    return withCatalogFallback(products, () =>
+    return preferCatalogWhenIncomplete(products, () =>
       catalog.getFeaturedProducts(limit)
     );
   } catch {
@@ -183,10 +192,13 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       .single();
 
     if (error) throw error;
-    return (
-      mapProduct(data as Record<string, unknown>) ??
-      catalog.getProductBySlug(slug)
-    );
+    const remote = mapProduct(data as Record<string, unknown>);
+    const local = catalog.getProductBySlug(slug);
+    if (!remote) return local;
+    if (local && (local.images?.length ?? 0) > (remote.images?.length ?? 0)) {
+      return local;
+    }
+    return remote;
   } catch {
     return catalog.getProductBySlug(slug);
   }

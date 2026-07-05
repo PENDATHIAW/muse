@@ -32,6 +32,12 @@ export function getMainImage(
   return main?.image_url ?? sorted[0]?.image_url ?? null;
 }
 
+/** True when the image path points to a flat file under /products/ (not a missing demo folder). */
+export function hasValidProductImage(url: string | null | undefined): boolean {
+  if (!url) return false;
+  return /\/products\/[^/]+\.(png|jpe?g|webp|gif)$/i.test(url);
+}
+
 export function buildWhatsAppUrl(
   phone: string,
   message: string

@@ -35,6 +35,12 @@ export interface Product {
   display_order: number;
   tags: string[];
   internal_note: string;
+  /** Comment utiliser l'objet au quotidien */
+  usage?: string;
+  /** Ce qui a inspiré ce modèle */
+  inspiration?: string;
+  /** Où installer / poser l'objet */
+  placement?: string;
   created_at: string;
   updated_at: string;
   universe?: Universe;

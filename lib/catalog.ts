@@ -9,6 +9,7 @@ import type {
   SettingsMap,
   Universe,
 } from "@/types/database";
+import { getMainImage, hasValidProductImage } from "@/lib/utils-muse";
 
 const NOW = "2026-01-01T00:00:00.000Z";
 
@@ -128,9 +129,12 @@ export function getPublishedProducts(filters: ProductFilters = {}): Product[] {
 }
 
 export function getFeaturedProducts(limit = 6): Product[] {
-  return getPublishedProducts({ sort: "popular" })
-    .filter((p) => p.is_featured)
-    .slice(0, limit);
+  const withImages = getPublishedProducts({ sort: "popular" }).filter((p) =>
+    hasValidProductImage(getMainImage(p.images))
+  );
+  const featured = withImages.filter((p) => p.is_featured);
+  const pool = featured.length >= limit ? featured : withImages;
+  return pool.slice(0, limit);
 }
 
 export function getProductBySlug(slug: string): Product | null {

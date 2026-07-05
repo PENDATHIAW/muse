@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ProductGallery } from "@/components/products/product-gallery";
 import { ProductGrid } from "@/components/products/product-grid";
+import { ProductStory } from "@/components/products/product-story";
 import { InquiryForm } from "@/components/forms/inquiry-form";
 import { AddToSelectionButton } from "@/components/products/add-to-selection-button";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
@@ -165,6 +166,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
         </section>
       )}
+
+      <ProductStory product={product} />
 
       <section id="demande" className="mt-16 rounded-2xl border border-border bg-card p-6 sm:p-8">
         <h2 className="font-serif text-2xl text-muse-charcoal">Demander ce modèle</h2>

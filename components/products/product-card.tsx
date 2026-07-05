@@ -3,15 +3,17 @@ import Image from "next/image";
 import { Sparkles, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatPrice, getMainImage } from "@/lib/utils-muse";
+import { formatPrice, getMainImage, hasValidProductImage } from "@/lib/utils-muse";
 import type { Product } from "@/types/database";
 
 interface ProductCardProps {
   product: Product;
+  priority?: boolean;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, priority = false }: ProductCardProps) {
   const imageUrl = getMainImage(product.images);
+  const showImage = hasValidProductImage(imageUrl);
   const isNew = product.tags.includes("nouveauté");
   const isBestseller = product.tags.includes("bestseller");
   const isCustomizable = product.tags.includes("personnalisable") || product.personalization_options.length > 0;
@@ -20,11 +22,13 @@ export function ProductCard({ product }: ProductCardProps) {
     <Card className="group overflow-hidden border-border/80 bg-card muse-card-hover">
       <Link href={`/produit/${product.slug}`}>
         <div className="relative aspect-[4/5] overflow-hidden bg-muse-beige/40">
-          {imageUrl ? (
+          {showImage && imageUrl ? (
             <Image
               src={imageUrl}
               alt={product.name}
               fill
+              priority={priority}
+              loading={priority ? "eager" : "lazy"}
               className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

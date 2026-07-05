@@ -180,6 +180,145 @@ const UNIVERSE_DEFAULTS = {
   },
 };
 
+const UNIVERSE_CONTENT = {
+  "plaques-de-porte-chez-nous": {
+    inspiration:
+      "Inspirées des plaques de porte artisanales et de l'identité familiale sénégalaise — accueillir chez soi avec fierté.",
+    usage:
+      "Fixez la plaque sur votre porte d'entrée ou de chambre. Personnalisez avec le nom de famille, un prénom ou une courte phrase d'accueil.",
+    placement:
+      "Porte d'entrée principale, chambre d'amis, porte de bureau ou entrée de boutique.",
+  },
+  "boite-a-cles-murale": {
+    inspiration:
+      "Née du besoin de ne plus chercher ses clés en sortant — une entrée organisée, esthétique et fonctionnelle.",
+    usage:
+      "Accrochez la boîte près de la porte. Déposez clés, badges et petits objets en arrivant. Certains modèles incluent un crochet ou un vide-poche intégré.",
+    placement:
+      "Entrée, couloir, prise murale à hauteur de main (1,40 m environ).",
+  },
+  "vide-poche-teranga": {
+    inspiration:
+      "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    usage:
+      "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    placement:
+      "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique.",
+  },
+  "support-telephone-vide-poche": {
+    inspiration:
+      "Allier charge du téléphone et rangement du quotidien — un seul objet, deux fonctions.",
+    usage:
+      "Posez le téléphone en charge dans le support. Utilisez le vide-poche pour clés, écouteurs ou montre pendant la nuit.",
+    placement:
+      "Table de nuit, bureau, table de chevet, plan de travail cuisine ou entrée.",
+  },
+  "porte-moussor-foulards": {
+    inspiration:
+      "Inspiré des porte-foulards muraux discrets pour mettre en valeur moussors, écharpes et accessoires textiles.",
+    usage:
+      "Accrochez moussor, foulard ou petit sac. Garde les tissus visibles, ordonnés et à portée de main.",
+    placement:
+      "Chambre, dressing, entrée ou mur près du miroir.",
+  },
+  "support-bijoux-coiffeuse": {
+    inspiration:
+      "Pensé pour la coiffeuse : ranger bagues, colliers et boucles d'oreilles sans les mélanger.",
+    usage:
+      "Disposez bijoux par type sur les supports. Idéal pour préparer une tenue ou offrir un cadeau personnalisé.",
+    placement:
+      "Coiffeuse, salle de bain, table de chevet ou vitrine de boutique.",
+  },
+  "boite-a-bijoux": {
+    inspiration:
+      "Inspirée des boîtes à bijoux traditionnelles, réinterprétée en impression 3D avec finitions premium.",
+    usage:
+      "Rangez bijoux précieux ou du quotidien. Peut être personnalisée avec prénom, initiales ou couleur.",
+    placement:
+      "Coiffeuse, armoire, étagère chambre ou coffret cadeau.",
+  },
+  "support-tasbih-chapelet": {
+    inspiration:
+      "Respect et sobriété — un support dédié pour poser tasbih ou chapelet entre les moments de recueillement.",
+    usage:
+      "Posez le chapelet sur le support entre les prières ou séances de méditation. Protège des nœuds et de la poussière.",
+    placement:
+      "Bureau de prière, table de chevet, étagère discrète ou coin méditation.",
+  },
+  "plaques-naissance-bapteme": {
+    inspiration:
+      "Célébrer une naissance ou un baptême avec une pièce unique, personnalisée et durable.",
+    usage:
+      "Offrez ou exposez la plaque avec prénom, date et message. Peut compléter une chambre d'enfant ou un album de souvenirs.",
+    placement:
+      "Chambre bébé, mur du salon, étagère ou cadre sur commode.",
+  },
+  "supports-qr-paiement": {
+    inspiration:
+      "Faciliter les paiements Wave, Orange Money ou QR en boutique — visible, propre et professionnel.",
+    usage:
+      "Insérez ou affichez votre QR code. Placez le support sur le comptoir pour que le client scanne facilement.",
+    placement:
+      "Comptoir caisse, vitrine, table de marché ou réception.",
+  },
+  "etiquettes-prix-boutiques": {
+    inspiration:
+      "Des étiquettes lisibles et cohérentes avec l'identité visuelle de votre boutique.",
+    usage:
+      "Glissez ou fixez l'étiquette sur l'étagère ou le produit. Indiquez prix, taille ou promotion.",
+    placement:
+      "Étagères, présentoirs, comptoir ou vitrine.",
+  },
+  "porte-cartes-flyers": {
+    inspiration:
+      "Mettre en avant cartes de visite, flyers ou menus de façon ordonnée et élégante.",
+    usage:
+      "Insérez cartes ou flyers dans les fentes. Renouvelez le contenu selon vos campagnes ou événements.",
+    placement:
+      "Comptoir d'accueil, bureau, salon professionnel ou stand événementiel.",
+  },
+  "supports-parfum-thiouraye": {
+    inspiration:
+      "Inspiré des rituels de parfumage et de thiouraye — un support décoratif et pratique.",
+    usage:
+      "Posez le brûleur ou le flacon sur le support. Protège les surfaces et structure votre espace parfumé.",
+    placement:
+      "Salon, entrée, chambre ou espace d'accueil.",
+  },
+  "cache-pot-decoratif": {
+    inspiration:
+      "Allier plantes et décoration intérieure avec un cache-pot aux lignes modernes.",
+    usage:
+      "Placez votre pot ou plante directement dans le cache-pot. Facilite l'arrosage et habille la plante.",
+    placement:
+      "Salon, balcon, bureau, rebord de fenêtre ou terrasse.",
+  },
+  "mini-deco-murale-senegal": {
+    inspiration:
+      "Hommage aux symboles, couleurs et motifs du Sénégal — une touche culturelle et chaleureuse.",
+    usage:
+      "Accrochez ou posez la pièce comme élément décoratif. Peut être offerte en souvenir ou cadeau.",
+    placement:
+      "Mur du salon, entrée, chambre ou espace bureau.",
+  },
+  "muse-tech-charge-guard": {
+    inspiration:
+      "Née d'un besoin quotidien : ranger chargeur et câble proprement, sans nœuds ni chute.",
+    usage:
+      "Glissez le bloc chargeur dans le support, enroulez le câble. Garde la table de nuit ou le bureau ordonnés.",
+    placement:
+      "Table de chevet, bureau, table de salon ou plan de travail.",
+  },
+  "muse-kitchen": {
+    inspiration:
+      "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    usage:
+      "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    placement:
+      "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation.",
+  },
+};
+
 function slugify(text) {
   return text
     .normalize("NFD")
@@ -276,6 +415,14 @@ function buildProduct(image, universe, displayOrder) {
     print_time: "4-6 heures",
     personalization: ["couleur", "personnalisation"],
   };
+  const content = UNIVERSE_CONTENT[image.universeSlug] ?? {
+    inspiration:
+      "Conçu par MUSE pour allier utilité, esthétique et personnalisation au quotidien.",
+    usage:
+      "Utilisez cet objet selon vos besoins. Contactez-nous pour une variante sur mesure (couleur, texte, taille).",
+    placement:
+      "Entrée, salon, chambre, bureau ou espace commercial selon votre projet.",
+  };
 
   const name = humanName(image.filename);
   const slug = slugify(path.basename(image.filename, path.extname(image.filename)));
@@ -286,11 +433,14 @@ function buildProduct(image, universe, displayOrder) {
     universe_id: image.universeSlug,
     name,
     slug,
-    short_description: `${name} — collection MUSE, univers ${universeName}.`,
-    long_description: `${name} conçu et imprimé en 3D par MUSE. Pièce personnalisable (couleur, finition, texte) de l'univers « ${universeName} ». Qualité premium, finitions soignées.`,
+    short_description: `${name} — objet personnalisable MUSE, univers « ${universeName} ».`,
+    long_description: `${name} est conçu et imprimé en 3D par MUSE dans l'univers « ${universeName} ». Finitions soignées, matériaux adaptés à l'usage, personnalisation possible (couleur, texte, initiales).`,
+    usage: content.usage,
+    inspiration: content.inspiration,
+    placement: content.placement,
     price: defaults.price,
     old_price: null,
-    dimensions: "Sur mesure",
+    dimensions: "Sur mesure — indiquez vos contraintes lors de la commande",
     print_time: defaults.print_time,
     material: defaults.material,
     colors: ["ivoire", "sage", "terracotta", "moka", "noir mat"],
@@ -312,6 +462,40 @@ function buildProduct(image, universe, displayOrder) {
       },
     ],
   };
+}
+
+function isValidProductImage(url) {
+  return Boolean(url && /\/products\/[^/]+\.(png|jpe?g|webp|gif)$/i.test(url));
+}
+
+function updateUniverseCovers(products, universes) {
+  const coverByUniverse = {};
+  for (const product of products) {
+    const img = product.images?.[0]?.image_url;
+    if (!coverByUniverse[product.universe_id] && isValidProductImage(img)) {
+      coverByUniverse[product.universe_id] = img;
+    }
+  }
+  return universes.map((universe) => ({
+    ...universe,
+    cover_image_url: coverByUniverse[universe.slug] ?? null,
+  }));
+}
+
+function cleanupProducts(products) {
+  return products.map((product) => {
+    const img = product.images?.[0]?.image_url ?? "";
+    const hasBrokenDemoImage = img.includes("/main.jpg");
+    const content = UNIVERSE_CONTENT[product.universe_id];
+
+    return {
+      ...product,
+      is_featured: hasBrokenDemoImage ? false : product.is_featured,
+      usage: product.usage ?? content?.usage,
+      inspiration: product.inspiration ?? content?.inspiration,
+      placement: product.placement ?? content?.placement,
+    };
+  });
 }
 
 function escapeSql(str) {
@@ -421,11 +605,16 @@ function main() {
     importedProducts.push(product);
   }
 
-  fs.writeFileSync(PRODUCTS_JSON, JSON.stringify(existing, null, 2) + "\n");
+  fs.writeFileSync(PRODUCTS_JSON, JSON.stringify(cleanupProducts(existing), null, 2) + "\n");
+  fs.writeFileSync(
+    UNIVERSES_JSON,
+    JSON.stringify(updateUniverseCovers(existing, universes), null, 2) + "\n"
+  );
   fs.writeFileSync(SQL_OUT, generateSql(importedProducts));
 
   console.log(`\n✓ ${images.length} photo(s) scannée(s), ${importedProducts.length} produit(s) généré(s)`);
   console.log(`✓ data/products.json mis à jour`);
+  console.log(`✓ data/universes.json — couvertures mises à jour`);
   console.log(`✓ supabase/import-from-photos.sql → exécutez dans Supabase SQL Editor`);
 }
 

@@ -44,3 +44,9 @@ Après modification → **Deployments → Redeploy** (sans cache).
 ## Admin
 
 `/admin/login` — email + mot de passe Supabase Auth.
+
+---
+
+## Ajouter de nouveaux modèles
+
+Voir **[AJOUTER-PRODUITS.md](./AJOUTER-PRODUITS.md)** — déposer les photos dans `public/products/`, lancer `npm run import-photos`, pousser sur GitHub.

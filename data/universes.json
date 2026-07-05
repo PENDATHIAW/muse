@@ -4,7 +4,7 @@
     "name": "Plaques de porte « Chez nous »",
     "slug": "plaques-de-porte-chez-nous",
     "description": "Plaques de porte personnalisées avec nom de famille et finitions premium.",
-    "cover_image_url": "/univers/plaques-de-porte-chez-nous/cover.jpg",
+    "cover_image_url": null,
     "display_order": 1,
     "is_active": true
   },
@@ -13,7 +13,7 @@
     "name": "Boîte à clés murale",
     "slug": "boite-a-cles-murale",
     "description": "Organisez votre entrée avec élégance.",
-    "cover_image_url": null,
+    "cover_image_url": "/products/4090092d-f3f8-4db9-aa23-97f6c0106bac.png",
     "display_order": 2,
     "is_active": true
   },
@@ -22,7 +22,7 @@
     "name": "Vide-poche d'entrée « Teranga »",
     "slug": "vide-poche-teranga",
     "description": "Accueillez vos clés, montres et petits objets du quotidien.",
-    "cover_image_url": null,
+    "cover_image_url": "/products/041e83b9-7b28-443f-b28e-4f601b679fcb.png",
     "display_order": 3,
     "is_active": true
   },
@@ -40,7 +40,7 @@
     "name": "Porte-moussor / porte-foulards mural",
     "slug": "porte-moussor-foulards",
     "description": "Organisation murale élégante pour vos accessoires.",
-    "cover_image_url": null,
+    "cover_image_url": "/products/935c622f-5ccd-4154-bb16-c13d3297da03.png",
     "display_order": 5,
     "is_active": true
   },
@@ -49,7 +49,7 @@
     "name": "Support bijoux de coiffeuse",
     "slug": "support-bijoux-coiffeuse",
     "description": "Rangez vos bijoux avec style sur votre coiffeuse.",
-    "cover_image_url": null,
+    "cover_image_url": "/products/1a007e80-9d3d-4751-b882-6b5b63dcb733.png",
     "display_order": 6,
     "is_active": true
   },
@@ -85,7 +85,7 @@
     "name": "Supports QR boutique / Wave / Orange Money",
     "slug": "supports-qr-paiement",
     "description": "Présentez vos moyens de paiement avec élégance.",
-    "cover_image_url": null,
+    "cover_image_url": "/products/1e140b2e-5656-4675-b52e-6de9d718a50c.png",
     "display_order": 10,
     "is_active": true
   },
@@ -130,7 +130,7 @@
     "name": "Mini déco murale Sénégal",
     "slug": "mini-deco-murale-senegal",
     "description": "Décoration murale inspirée de l'art et de la culture sénégalaise.",
-    "cover_image_url": null,
+    "cover_image_url": "/products/242765f9-fc7d-4909-aa0b-b67c66dc9a04.png",
     "display_order": 15,
     "is_active": true
   },
@@ -139,7 +139,7 @@
     "name": "MUSE Tech / Charge Guard",
     "slug": "muse-tech-charge-guard",
     "description": "Accessoires tech élégants pour organiser vos chargeurs.",
-    "cover_image_url": "/univers/muse-tech-charge-guard/cover.jpg",
+    "cover_image_url": null,
     "display_order": 16,
     "is_active": true
   },
@@ -148,7 +148,7 @@
     "name": "MUSE Kitchen / Organisateurs cuisine",
     "slug": "muse-kitchen",
     "description": "Organiseurs muraux et accessoires pour une cuisine ordonnée.",
-    "cover_image_url": "/univers/muse-kitchen/cover.jpg",
+    "cover_image_url": "/products/111bd4c1-55de-4e6b-9938-602cec04cd00.png",
     "display_order": 17,
     "is_active": true
   }

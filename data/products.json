@@ -30,7 +30,7 @@
     ],
     "stock_status": "available",
     "status": "published",
-    "is_featured": true,
+    "is_featured": false,
     "display_order": 1,
     "tags": [
       "bestseller",
@@ -45,7 +45,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "pot-a-couverts-drainant",
@@ -73,7 +76,7 @@
     ],
     "stock_status": "available",
     "status": "published",
-    "is_featured": true,
+    "is_featured": false,
     "display_order": 2,
     "tags": [
       "nouveauté",
@@ -88,7 +91,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "charge-guard-2-en-1",
@@ -117,7 +123,7 @@
     ],
     "stock_status": "available",
     "status": "published",
-    "is_featured": true,
+    "is_featured": false,
     "display_order": 1,
     "tags": [
       "bestseller",
@@ -132,7 +138,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Glissez le bloc chargeur dans le support, enroulez le câble. Garde la table de nuit ou le bureau ordonnés.",
+    "inspiration": "Née d'un besoin quotidien : ranger chargeur et câble proprement, sans nœuds ni chute.",
+    "placement": "Table de chevet, bureau, table de salon ou plan de travail."
   },
   {
     "id": "plaque-chez-les-diagne",
@@ -165,7 +174,7 @@
     ],
     "stock_status": "available",
     "status": "published",
-    "is_featured": true,
+    "is_featured": false,
     "display_order": 1,
     "tags": [
       "personnalisable"
@@ -179,7 +188,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez la plaque sur votre porte d'entrée ou de chambre. Personnalisez avec le nom de famille, un prénom ou une courte phrase d'accueil.",
+    "inspiration": "Inspirées des plaques de porte artisanales et de l'identité familiale sénégalaise — accueillir chez soi avec fierté.",
+    "placement": "Porte d'entrée principale, chambre d'amis, porte de bureau ou entrée de boutique."
   },
   {
     "id": "041e83b9-7b28-443f-b28e-4f601b679fcb",
@@ -225,7 +237,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "073c62dd-6152-42ca-ae44-3126f844d0ed",
@@ -271,7 +286,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "0acd14a7-edee-4835-91b9-827940eee419",
@@ -317,7 +335,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "0ddcd20a-32eb-494d-818b-740331ae89a0",
@@ -363,7 +384,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "0e45841b-c406-46ff-b016-2082d57770d4",
@@ -409,7 +433,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "0fba0202-0653-45eb-8c1d-974b08274d53",
@@ -455,7 +482,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "111bd4c1-55de-4e6b-9938-602cec04cd00",
@@ -501,7 +531,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "1346f3bb-2b57-4d9f-9e2d-51797e11bb78",
@@ -547,7 +580,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "15a0820e-e669-4c4d-9c84-51cd133a0c0f",
@@ -593,7 +629,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "1a007e80-9d3d-4751-b882-6b5b63dcb733",
@@ -638,7 +677,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Disposez bijoux par type sur les supports. Idéal pour préparer une tenue ou offrir un cadeau personnalisé.",
+    "inspiration": "Pensé pour la coiffeuse : ranger bagues, colliers et boucles d'oreilles sans les mélanger.",
+    "placement": "Coiffeuse, salle de bain, table de chevet ou vitrine de boutique."
   },
   {
     "id": "1a4cd869-5e17-4689-bb01-fd44d50bc2b8",
@@ -684,7 +726,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "1bedd536-5f6d-4786-b101-056f1571cab7",
@@ -730,7 +775,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "1cfb5cb4-db54-4739-8f2f-3a6aabfcc4cd",
@@ -776,7 +824,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "1e140b2e-5656-4675-b52e-6de9d718a50c",
@@ -821,7 +872,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Insérez ou affichez votre QR code. Placez le support sur le comptoir pour que le client scanne facilement.",
+    "inspiration": "Faciliter les paiements Wave, Orange Money ou QR en boutique — visible, propre et professionnel.",
+    "placement": "Comptoir caisse, vitrine, table de marché ou réception."
   },
   {
     "id": "1f0b23e7-9f05-4bc7-a95c-3e5d3963cf06",
@@ -867,7 +921,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "2075d708-8839-4081-9b32-a1e9c3e9700b",
@@ -913,7 +970,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "21e37ce8-6c82-4b14-b1e9-8509eaec8bdc",
@@ -959,7 +1019,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "242765f9-fc7d-4909-aa0b-b67c66dc9a04",
@@ -1005,7 +1068,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez ou posez la pièce comme élément décoratif. Peut être offerte en souvenir ou cadeau.",
+    "inspiration": "Hommage aux symboles, couleurs et motifs du Sénégal — une touche culturelle et chaleureuse.",
+    "placement": "Mur du salon, entrée, chambre ou espace bureau."
   },
   {
     "id": "25dee405-6dd3-4154-bdc9-aa16247dfb98",
@@ -1051,7 +1117,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "268f1631-fd4c-4012-8451-1d4f3e2a21e7",
@@ -1097,7 +1166,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "290b28bd-a15b-4b72-8b28-299f3de8abb2",
@@ -1143,7 +1215,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "2988ba56-051a-4276-adeb-9162b85b36a5",
@@ -1189,7 +1264,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "2a676412-2db1-4b8e-8efe-b0da9d1f8bac",
@@ -1235,7 +1313,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "2bb50489-f1a2-4793-af05-9979caffb5c3",
@@ -1281,7 +1362,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "2ea6406a-793d-494f-9420-588a4b90bf0c",
@@ -1327,7 +1411,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "319774fd-d4a4-40d1-8c8f-792dd7a826e5",
@@ -1373,7 +1460,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3261cbd8-830f-4d86-ae61-9dd27b0a79dc",
@@ -1419,7 +1509,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3409794b-a37b-46ba-9309-c976278d45bd",
@@ -1464,7 +1557,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Disposez bijoux par type sur les supports. Idéal pour préparer une tenue ou offrir un cadeau personnalisé.",
+    "inspiration": "Pensé pour la coiffeuse : ranger bagues, colliers et boucles d'oreilles sans les mélanger.",
+    "placement": "Coiffeuse, salle de bain, table de chevet ou vitrine de boutique."
   },
   {
     "id": "34ce5036-160d-41f1-88e7-14cc0e8738fb",
@@ -1510,7 +1606,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3754cc1b-e544-42c5-991c-675b4054a3b4",
@@ -1556,7 +1655,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3805ca06-c788-4f55-8c28-f6732a6b18af",
@@ -1602,7 +1704,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "393bb64e-cc7f-4b79-b9aa-69174ef68399",
@@ -1648,7 +1753,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3a974963-994b-49e0-a453-ea3017c8e88e",
@@ -1694,7 +1802,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3aa7ce75-1e08-46d8-8135-1bbf1c3f4bac",
@@ -1740,7 +1851,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "3fd6c3cb-893d-44d3-b208-cc599ce892e0",
@@ -1786,7 +1900,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "406bb427-b3cc-428d-8bfb-b59023cdf558",
@@ -1832,7 +1949,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "4090092d-f3f8-4db9-aa23-97f6c0106bac",
@@ -1878,7 +1998,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez la boîte près de la porte. Déposez clés, badges et petits objets en arrivant. Certains modèles incluent un crochet ou un vide-poche intégré.",
+    "inspiration": "Née du besoin de ne plus chercher ses clés en sortant — une entrée organisée, esthétique et fonctionnelle.",
+    "placement": "Entrée, couloir, prise murale à hauteur de main (1,40 m environ)."
   },
   {
     "id": "40958511-78ef-43fc-82eb-c4439842555f",
@@ -1924,7 +2047,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "4226855b-a2d2-435d-8ee8-264de9ec5922",
@@ -1970,7 +2096,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "425af7e7-44d1-45eb-9af1-8dbf9fc32a15",
@@ -2016,7 +2145,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "465828cf-14a0-4e8d-ac97-926050d5160e",
@@ -2062,7 +2194,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "46f996d7-9a09-4d08-8f3d-91d08b737ceb",
@@ -2108,7 +2243,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "477d3822-29e0-4a19-aeec-30a57991cddd",
@@ -2154,7 +2292,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "4865d9ef-d2a4-4a8b-b73f-1781076c768f",
@@ -2200,7 +2341,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "49106b4d-cd4b-4caf-ba3c-1adfc7cb2442",
@@ -2246,7 +2390,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "492429f0-a42c-4511-990c-932e60e86757",
@@ -2292,7 +2439,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "4a0acf3a-74aa-498d-b195-a1525acc8826",
@@ -2338,7 +2488,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez ou posez la pièce comme élément décoratif. Peut être offerte en souvenir ou cadeau.",
+    "inspiration": "Hommage aux symboles, couleurs et motifs du Sénégal — une touche culturelle et chaleureuse.",
+    "placement": "Mur du salon, entrée, chambre ou espace bureau."
   },
   {
     "id": "4ea5518b-d972-4636-9a7c-112582388c9d",
@@ -2384,7 +2537,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "53fb0795-f056-4c7a-bfc3-e3edcaff2280",
@@ -2430,7 +2586,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "54951c40-33a0-4590-b396-d4d8782263c6",
@@ -2476,7 +2635,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "56e9be07-a72c-4871-9ed8-0cae3fe65781",
@@ -2522,7 +2684,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "56f0e63c-6934-4d52-af16-91d8d73ef32b",
@@ -2568,7 +2733,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "58f189c9-3f6f-456b-8344-f8ecf25dc5bd",
@@ -2614,7 +2782,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "5a9726f6-1a57-4eb8-a0ba-f706e4964ebe",
@@ -2660,7 +2831,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "5b3df704-1e48-4ec1-be11-950eab7ad873",
@@ -2706,7 +2880,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "5b9ce444-17e8-4d0a-90a3-277a85b48b2f",
@@ -2752,7 +2929,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "5bf061a9-000d-425e-83f1-9f6cef4af25a",
@@ -2798,7 +2978,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "5c4cef1e-ac79-4e10-9226-0199b9b90b55",
@@ -2844,7 +3027,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "5fe2299c-2058-45f1-953b-a5188cc3cbde",
@@ -2890,7 +3076,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "60160835-9fbe-4e59-a713-d919c6bd5c41",
@@ -2936,7 +3125,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "638565cc-3fbe-4742-8025-2168256555d5",
@@ -2982,7 +3174,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "649f2ced-ce67-4d02-bbdb-2122c77ae275",
@@ -3028,7 +3223,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "653c4bf4-7d0a-4d45-9676-4c8a37d75a0e",
@@ -3073,7 +3271,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Insérez ou affichez votre QR code. Placez le support sur le comptoir pour que le client scanne facilement.",
+    "inspiration": "Faciliter les paiements Wave, Orange Money ou QR en boutique — visible, propre et professionnel.",
+    "placement": "Comptoir caisse, vitrine, table de marché ou réception."
   },
   {
     "id": "66b26fe6-ccf5-460b-8902-44d9bd58c5f6",
@@ -3119,7 +3320,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "670436f4-e5dc-41ee-a12c-0f5037cdf17b",
@@ -3165,7 +3369,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "684045cb-cf90-4edf-9481-71fc5158ef56",
@@ -3211,7 +3418,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "6c385814-fd15-4826-89d5-663de9c1a679",
@@ -3257,7 +3467,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "6d63f9fe-4ec4-48e7-90fe-7996cadfc587",
@@ -3303,7 +3516,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez ou posez la pièce comme élément décoratif. Peut être offerte en souvenir ou cadeau.",
+    "inspiration": "Hommage aux symboles, couleurs et motifs du Sénégal — une touche culturelle et chaleureuse.",
+    "placement": "Mur du salon, entrée, chambre ou espace bureau."
   },
   {
     "id": "6e3b7dad-3db1-448c-b3df-d2eb565f3041",
@@ -3349,7 +3565,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "6f81e766-2c98-42eb-9963-914a452ba95e",
@@ -3395,7 +3614,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "701e7cad-2e6f-4adb-8782-031d68758ec0",
@@ -3441,7 +3663,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "71b28e42-aaf9-4014-8309-f33ab41826a9",
@@ -3487,7 +3712,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "71c76ed6-42d8-44c7-8f23-de6c8ad51861",
@@ -3533,7 +3761,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "724c4222-7896-40ad-a6b8-dc042cfbf636",
@@ -3579,7 +3810,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "72e33712-6df9-4227-9143-416e82e126cb",
@@ -3625,7 +3859,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "72fc7323-8a59-4003-a325-3bef4a09107c",
@@ -3671,7 +3908,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "737e1d1d-c32f-4daa-b007-a6a3d933ef29",
@@ -3717,7 +3957,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "7411cb82-60c5-4e0a-86f7-5dee795a9150",
@@ -3763,7 +4006,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "7610c090-6736-443b-9936-68fbb7cac601",
@@ -3809,7 +4055,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "76ac758b-74a5-45d8-b764-2e97b0d1d74d",
@@ -3855,7 +4104,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "772df2fc-0358-4d6f-abb6-c9d64c003421",
@@ -3901,7 +4153,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "79679bd7-d285-4eb2-9815-7d4716c494d4",
@@ -3947,7 +4202,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "797055d8-1423-4406-9e0b-b5b0e895a600",
@@ -3993,7 +4251,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "7b7133f7-1fea-4ff0-a513-250c2b96ec00",
@@ -4039,7 +4300,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "7c7a5280-5662-43e9-b1c9-e37a9c986183",
@@ -4085,7 +4349,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "7ce97648-f8c0-4e23-aa3a-8aded94732bc",
@@ -4131,7 +4398,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez la boîte près de la porte. Déposez clés, badges et petits objets en arrivant. Certains modèles incluent un crochet ou un vide-poche intégré.",
+    "inspiration": "Née du besoin de ne plus chercher ses clés en sortant — une entrée organisée, esthétique et fonctionnelle.",
+    "placement": "Entrée, couloir, prise murale à hauteur de main (1,40 m environ)."
   },
   {
     "id": "7db3328e-e1de-4918-be3b-0449e053d25c",
@@ -4177,7 +4447,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "7ec427f0-9563-485d-aaa9-0d83640e2352",
@@ -4223,7 +4496,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "808ac9ed-e725-430b-ac6e-af6b42a3a054",
@@ -4269,7 +4545,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "84bda87e-9dac-4f7a-b39b-aa812d52fa3f",
@@ -4315,7 +4594,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "85819db2-7dcc-463d-b7e1-1e499b07003f",
@@ -4361,7 +4643,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez ou posez la pièce comme élément décoratif. Peut être offerte en souvenir ou cadeau.",
+    "inspiration": "Hommage aux symboles, couleurs et motifs du Sénégal — une touche culturelle et chaleureuse.",
+    "placement": "Mur du salon, entrée, chambre ou espace bureau."
   },
   {
     "id": "8591e1a1-052c-4691-a119-87a051468180",
@@ -4407,7 +4692,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "867e9ed3-19fc-4035-aa1e-a20639f744d3",
@@ -4453,7 +4741,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "87a930a8-ed5f-4690-960a-2675996ad22a",
@@ -4499,7 +4790,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "897f4b4b-5cb5-4f65-b960-166aab3a8747",
@@ -4545,7 +4839,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "89f83c9e-97fb-4f65-b8b4-367c4621449d",
@@ -4591,7 +4888,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "8d2a271c-66b9-4b1e-b95f-f4c20dd0e216",
@@ -4637,7 +4937,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "8de3a8ee-a533-49c3-b8fb-f74e29289d90",
@@ -4683,7 +4986,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez ou posez la pièce comme élément décoratif. Peut être offerte en souvenir ou cadeau.",
+    "inspiration": "Hommage aux symboles, couleurs et motifs du Sénégal — une touche culturelle et chaleureuse.",
+    "placement": "Mur du salon, entrée, chambre ou espace bureau."
   },
   {
     "id": "8e184616-6c41-40ac-b01c-62e6b7a71b4a",
@@ -4729,7 +5035,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "8e606702-c3b2-4b1f-bf04-38bc9bdfd24d",
@@ -4775,7 +5084,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "8e9df991-5404-4c6a-ade9-cb19e259bb94",
@@ -4821,7 +5133,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "8f2dd6ab-ce35-499a-8593-2fc9cb4cda5c",
@@ -4867,7 +5182,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "8fb8ee7d-87ea-460f-9f38-56c9da4e58ee",
@@ -4913,7 +5231,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "8fc36753-9cc5-4a4f-8dda-dc4851d93479",
@@ -4959,7 +5280,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "900bbe02-30cd-463b-ab6e-2d65075b5110",
@@ -5005,7 +5329,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "91c140fc-9200-44bb-9b14-63e1b0f221e4",
@@ -5051,7 +5378,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "91eadfe6-5112-498d-a845-dbd1a042e2c6",
@@ -5097,7 +5427,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "92169e75-5489-48c8-a122-afc85d748406",
@@ -5143,7 +5476,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "935c622f-5ccd-4154-bb16-c13d3297da03",
@@ -5188,7 +5524,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez moussor, foulard ou petit sac. Garde les tissus visibles, ordonnés et à portée de main.",
+    "inspiration": "Inspiré des porte-foulards muraux discrets pour mettre en valeur moussors, écharpes et accessoires textiles.",
+    "placement": "Chambre, dressing, entrée ou mur près du miroir."
   },
   {
     "id": "95e4bc36-204f-4be5-81b9-d00f62356092",
@@ -5234,7 +5573,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "9605307e-6dcd-4ff8-a852-9e55ca04d5ce",
@@ -5280,7 +5622,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "98bb90d8-7c18-41a3-994d-8f82b58b5adb",
@@ -5326,7 +5671,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "9b333ee9-7dfc-4b8e-9852-0e513852d9cc",
@@ -5372,7 +5720,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "9b836607-44a1-46a3-baf4-c4bd214485bf",
@@ -5418,7 +5769,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "9de9b67f-e0f4-457b-91dc-303ad11cfc3e",
@@ -5464,7 +5818,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "9f7145eb-8c11-419b-8403-ae42d7517231",
@@ -5510,7 +5867,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a0088906-05b5-49b5-9882-dc3e456d3948",
@@ -5556,7 +5916,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a011018a-c171-440d-8482-14b7a91ef168",
@@ -5602,7 +5965,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a184538c-9616-4bee-8c4c-efdb07a12a54",
@@ -5648,7 +6014,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a19fa959-fb26-4cf9-946f-c8ba57aa2045",
@@ -5694,7 +6063,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a2a80360-15fb-47b2-b332-05f8c6e1940a",
@@ -5740,7 +6112,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a2b9112b-761b-4b67-8fec-b84df880d028",
@@ -5786,7 +6161,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a305ce2a-a358-4bd8-b0b3-686784c36006",
@@ -5832,7 +6210,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "a366d601-9ec9-41a1-8212-6f69c382a39e",
@@ -5878,7 +6259,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a3c526c3-ac31-47cc-aa77-fa767aceef73",
@@ -5924,7 +6308,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a4a9b546-0014-4dc7-a98c-c15cdec1e597",
@@ -5970,7 +6357,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a5512a9e-4845-47e1-993f-843eec3df7af",
@@ -6016,7 +6406,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "a55ac68b-d034-451f-997b-04b1ee2e6ecd",
@@ -6062,7 +6455,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Accrochez la boîte près de la porte. Déposez clés, badges et petits objets en arrivant. Certains modèles incluent un crochet ou un vide-poche intégré.",
+    "inspiration": "Née du besoin de ne plus chercher ses clés en sortant — une entrée organisée, esthétique et fonctionnelle.",
+    "placement": "Entrée, couloir, prise murale à hauteur de main (1,40 m environ)."
   },
   {
     "id": "aa7c6b02-b712-4c8b-b677-a2ade3da33f6",
@@ -6108,7 +6504,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "ab1d4e83-2811-436b-a80f-bf74280a5e11",
@@ -6154,7 +6553,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "ab9e2db7-a338-4bfd-9e8e-114d8d95aa11",
@@ -6200,7 +6602,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "ac15af47-9483-4245-be1a-e7b81639cf3c",
@@ -6246,7 +6651,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "ae78975c-5146-40a5-be16-957a616ebe85",
@@ -6292,7 +6700,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "aeac0923-8444-4a9b-ba94-5089e2662a47",
@@ -6338,7 +6749,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "af63541c-e6eb-41c4-9634-d727f0726fce",
@@ -6384,7 +6798,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "afbc33c6-bb54-41c1-8ca5-d6003c5cd4ab",
@@ -6430,7 +6847,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "b0d30119-41fe-490a-8738-88ae86c20ca7",
@@ -6476,7 +6896,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "b1c39a0a-01e0-409c-b560-080e12953a42",
@@ -6522,7 +6945,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "b2dd3074-9c51-4ad7-aac8-5f78977697a3",
@@ -6568,7 +6994,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "b34f15dd-a5e1-4995-9d99-491095db3553",
@@ -6614,7 +7043,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "b38e82f6-233f-4ed6-81f9-8f3c0bb2c679",
@@ -6660,7 +7092,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "babf43a8-fd2a-4b46-b6da-d41720c83698",
@@ -6706,7 +7141,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "bcafd4d0-104b-434e-881c-062a741e8ec7",
@@ -6752,7 +7190,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "bd82a04f-c4ad-499d-abcb-9aaf5d0cd43c",
@@ -6798,7 +7239,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "bf0fe373-435d-4101-bda3-b5e28e74770e",
@@ -6844,7 +7288,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "bf9ca937-ccf7-4002-8172-25a2f07f21c3",
@@ -6890,7 +7337,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c366a081-8156-4759-bb7d-1ceba6114f80",
@@ -6936,7 +7386,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c37d55f1-434d-4af5-bb9f-ca04d9953359",
@@ -6982,7 +7435,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c3f0d579-c06c-41e2-a1b7-1d020ea8c4f9",
@@ -7028,7 +7484,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c703c001-df0e-41ec-b0c4-b5915972d50f",
@@ -7074,7 +7533,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c77bc1fb-9aca-4e66-aa37-476088afbd3e",
@@ -7120,7 +7582,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c850853b-9f49-47f2-9cf1-913aa40f7238",
@@ -7166,7 +7631,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "c98d8d49-f055-49f6-bb2e-d1227b98534a",
@@ -7212,7 +7680,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.",
+    "inspiration": "Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation."
   },
   {
     "id": "cc059606-76f0-449d-bc8c-1adfb240fdd1",
@@ -7258,7 +7729,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "cc4ca1dc-3230-4ba5-9dff-8e12ef359d36",
@@ -7304,7 +7778,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "cdf4ec48-990d-44c5-89ed-477374f1ad18",
@@ -7350,7 +7827,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "cee234a2-2627-4147-b51b-b24501d312a9",
@@ -7396,7 +7876,10 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d'accueil ou de table.",
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
   },
   {
     "id": "cfac250a-62fa-4b8d-b9ad-b1381f9e1ba9",
@@ -7441,6 +7924,9 @@
         "is_main": true,
         "display_order": 0
       }
-    ]
+    ],
+    "usage": "Insérez ou affichez votre QR code. Placez le support sur le comptoir pour que le client scanne facilement.",
+    "inspiration": "Faciliter les paiements Wave, Orange Money ou QR en boutique — visible, propre et professionnel.",
+    "placement": "Comptoir caisse, vitrine, table de marché ou réception."
   }
 ]

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { hasValidProductImage } from "@/lib/utils-muse";
 import type { Universe } from "@/types/database";
 
 interface UniversesSectionProps {
@@ -26,9 +27,9 @@ export function UniversesSection({ universes }: UniversesSectionProps) {
             className="group overflow-hidden rounded-2xl border border-border bg-card muse-card-hover"
           >
             <div className="relative aspect-[3/2] bg-gradient-to-br from-muse-sand/40 to-muse-beige">
-              {universe.cover_image_url ? (
+              {hasValidProductImage(universe.cover_image_url) ? (
                 <Image
-                  src={universe.cover_image_url}
+                  src={universe.cover_image_url!}
                   alt={universe.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

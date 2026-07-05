@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Upload, Trash2, Star } from "lucide-react";
 import Image from "next/image";
 import { toast } from "sonner";
@@ -21,6 +22,7 @@ interface ImageManagerProps {
 }
 
 export function ImageManager({ productId, images }: ImageManagerProps) {
+  const router = useRouter();
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [pending, startTransition] = useTransition();
@@ -54,6 +56,7 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
       if (result?.error) throw new Error(result.error);
 
       toast.success("Image uploadée avec succès.");
+      router.refresh();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Erreur d'upload");
     } finally {
@@ -67,6 +70,7 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
       const result = await setMainProductImage(imageId, productId);
       if (result?.error) toast.error(result.error);
       else toast.success("Image principale définie.");
+      router.refresh();
     });
   }
 
@@ -75,6 +79,7 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
       const result = await deleteProductImage(imageId, productId);
       if (result?.error) toast.error(result.error);
       else toast.success("Image supprimée.");
+      router.refresh();
     });
   }
 
@@ -88,6 +93,7 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
       else {
         toast.success("Image liée au produit.");
         form.reset();
+        router.refresh();
       }
     });
   }

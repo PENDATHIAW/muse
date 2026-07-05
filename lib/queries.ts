@@ -33,13 +33,12 @@ function withCatalogFallback<T>(
   return data;
 }
 
-/** Prefer the richer bundled catalog until Supabase is fully imported. */
-function preferCatalogWhenIncomplete<T>(
-  remote: T[],
-  fallback: () => T[]
-): T[] {
-  const local = fallback();
-  return remote.length >= local.length ? remote : local;
+/** Show Supabase products + JSON products not yet synced to Supabase. */
+function mergeProductCatalogs(remote: Product[], local: Product[]): Product[] {
+  if (!remote.length) return local;
+  const remoteSlugs = new Set(remote.map((p) => p.slug));
+  const extras = local.filter((p) => !remoteSlugs.has(p.slug));
+  return [...remote, ...extras];
 }
 
 export async function getActiveUniverses(): Promise<Universe[]> {
@@ -53,7 +52,7 @@ export async function getActiveUniverses(): Promise<Universe[]> {
       .order("display_order", { ascending: true });
 
     if (error) throw error;
-    return preferCatalogWhenIncomplete(data ?? [], catalog.getActiveUniverses);
+    return withCatalogFallback(data, catalog.getActiveUniverses);
   } catch {
     return catalog.getActiveUniverses();
   }
@@ -148,7 +147,8 @@ export async function getPublishedProducts(
       );
     }
 
-    return preferCatalogWhenIncomplete(products, () =>
+    return mergeProductCatalogs(
+      products,
       catalog.getPublishedProducts(filters)
     );
   } catch {
@@ -172,8 +172,9 @@ export async function getFeaturedProducts(limit = 6): Promise<Product[]> {
     const products = (data ?? []).map((row) =>
       mapProduct(row as Record<string, unknown>)
     );
-    return preferCatalogWhenIncomplete(products, () =>
-      catalog.getFeaturedProducts(limit)
+    return mergeProductCatalogs(products, catalog.getFeaturedProducts(limit)).slice(
+      0,
+      limit
     );
   } catch {
     return catalog.getFeaturedProducts(limit);
@@ -192,13 +193,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       .single();
 
     if (error) throw error;
-    const remote = mapProduct(data as Record<string, unknown>);
-    const local = catalog.getProductBySlug(slug);
-    if (!remote) return local;
-    if (local && (local.images?.length ?? 0) > (remote.images?.length ?? 0)) {
-      return local;
-    }
-    return remote;
+    return mapProduct(data as Record<string, unknown>);
   } catch {
     return catalog.getProductBySlug(slug);
   }

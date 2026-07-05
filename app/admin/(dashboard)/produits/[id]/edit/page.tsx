@@ -68,6 +68,18 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
               <Label htmlFor="long_description">Description détaillée</Label>
               <Textarea id="long_description" name="long_description" rows={5} defaultValue={product.long_description} />
             </div>
+            <div>
+              <Label htmlFor="usage">Comment l&apos;utiliser</Label>
+              <Textarea id="usage" name="usage" rows={3} defaultValue={product.usage ?? ""} />
+            </div>
+            <div>
+              <Label htmlFor="inspiration">Ce qui nous a inspirés</Label>
+              <Textarea id="inspiration" name="inspiration" rows={3} defaultValue={product.inspiration ?? ""} />
+            </div>
+            <div>
+              <Label htmlFor="placement">Où le poser</Label>
+              <Textarea id="placement" name="placement" rows={3} defaultValue={product.placement ?? ""} />
+            </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <Label htmlFor="price">Prix (FCFA)</Label>

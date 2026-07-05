@@ -1,0 +1,155 @@
+{
+  "plaques-de-porte-chez-nous": {
+    "price": 12000,
+    "material": "PLA mat, effet bois ou effet pierre",
+    "print_time": "4-5 heures",
+    "personalization": ["nom de famille", "prénom", "couleur", "finition"],
+    "inspiration": "Inspirées des plaques de porte artisanales et de l'identité familiale sénégalaise — accueillir chez soi avec fierté.",
+    "usage": "Fixez la plaque sur votre porte d'entrée ou de chambre. Personnalisez avec le nom de famille, un prénom ou une courte phrase d'accueil.",
+    "placement": "Porte d'entrée principale, chambre d'amis, porte de bureau ou entrée de boutique."
+  },
+  "boite-a-cles-murale": {
+    "price": 10000,
+    "material": "PLA+ ou PETG",
+    "print_time": "4-6 heures",
+    "personalization": ["nom", "couleur", "logo discret"],
+    "inspiration": "Née du besoin de ne plus chercher ses clés en sortant — une entrée organisée, esthétique et fonctionnelle.",
+    "usage": "Accrochez la boîte près de la porte. Déposez clés, badges et petits objets en arrivant.",
+    "placement": "Entrée, couloir, prise murale à hauteur de main (1,40 m environ)."
+  },
+  "vide-poche-teranga": {
+    "price": 9000,
+    "material": "PLA mat ou effet pierre",
+    "print_time": "3-5 heures",
+    "personalization": ["mot Teranga", "couleur", "initiales"],
+    "inspiration": "Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l'entrée de la maison.",
+    "usage": "Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison.",
+    "placement": "Console d'entrée, table de chevet, bureau, réception d'hôtel ou comptoir de boutique."
+  },
+  "support-telephone-vide-poche": {
+    "price": 11000,
+    "material": "PLA+ recommandé",
+    "print_time": "5-7 heures",
+    "personalization": ["couleur", "nom", "logo"],
+    "inspiration": "Allier charge du téléphone et rangement du quotidien — un seul objet, deux fonctions.",
+    "usage": "Posez le téléphone en charge dans le support. Utilisez le vide-poche pour clés ou montre.",
+    "placement": "Table de nuit, bureau, table de chevet ou entrée."
+  },
+  "porte-moussor-foulards": {
+    "price": 10000,
+    "material": "PLA mat",
+    "print_time": "4-6 heures",
+    "personalization": ["couleur", "motif"],
+    "inspiration": "Inspiré des porte-foulards muraux discrets pour mettre en valeur moussors et écharpes.",
+    "usage": "Accrochez moussor, foulard ou petit sac. Garde les tissus visibles et ordonnés.",
+    "placement": "Chambre, dressing, entrée ou mur près du miroir."
+  },
+  "support-bijoux-coiffeuse": {
+    "price": 12000,
+    "material": "PLA mat ou effet bois",
+    "print_time": "5-8 heures",
+    "personalization": ["initiales", "couleur"],
+    "inspiration": "Pensé pour la coiffeuse : ranger bagues, colliers et boucles d'oreilles sans les mélanger.",
+    "usage": "Disposez bijoux par type sur les supports.",
+    "placement": "Coiffeuse, salle de bain, table de chevet ou vitrine de boutique."
+  },
+  "boite-a-bijoux": {
+    "price": 15000,
+    "material": "PLA mat, effet bois",
+    "print_time": "6-10 heures",
+    "personalization": ["prénom", "couleur", "finition premium"],
+    "inspiration": "Inspirée des boîtes à bijoux traditionnelles, réinterprétée en impression 3D.",
+    "usage": "Rangez bijoux précieux ou du quotidien. Personnalisable avec prénom ou initiales.",
+    "placement": "Coiffeuse, armoire, étagère chambre ou coffret cadeau."
+  },
+  "support-tasbih-chapelet": {
+    "price": 8000,
+    "material": "PLA mat ou effet bois",
+    "print_time": "3-5 heures",
+    "personalization": ["couleur", "motif discret"],
+    "inspiration": "Un support dédié pour poser tasbih ou chapelet entre les moments de recueillement.",
+    "usage": "Posez le chapelet sur le support entre les prières ou séances de méditation.",
+    "placement": "Bureau de prière, table de chevet ou coin méditation."
+  },
+  "plaques-naissance-bapteme": {
+    "price": 10000,
+    "material": "PLA mat, effet bois",
+    "print_time": "4-6 heures",
+    "personalization": ["prénom", "date", "couleur"],
+    "inspiration": "Célébrer une naissance ou un baptême avec une pièce unique et personnalisée.",
+    "usage": "Offrez ou exposez la plaque avec prénom, date et message.",
+    "placement": "Chambre bébé, mur du salon, étagère ou cadre sur commode."
+  },
+  "supports-qr-paiement": {
+    "price": 7000,
+    "material": "PLA+ ou PETG",
+    "print_time": "2-4 heures",
+    "personalization": ["logo boutique", "couleur Wave/OM"],
+    "inspiration": "Faciliter les paiements Wave, Orange Money ou QR en boutique.",
+    "usage": "Insérez ou affichez votre QR code sur le comptoir.",
+    "placement": "Comptoir caisse, vitrine, table de marché ou réception."
+  },
+  "etiquettes-prix-boutiques": {
+    "price": 5000,
+    "material": "PLA mat",
+    "print_time": "1-2 heures",
+    "personalization": ["nom boutique", "couleur"],
+    "inspiration": "Des étiquettes lisibles et cohérentes avec l'identité visuelle de votre boutique.",
+    "usage": "Fixez l'étiquette sur l'étagère ou le produit. Indiquez prix ou promotion.",
+    "placement": "Étagères, présentoirs, comptoir ou vitrine."
+  },
+  "porte-cartes-flyers": {
+    "price": 8000,
+    "material": "PLA mat",
+    "print_time": "3-5 heures",
+    "personalization": ["logo", "couleur"],
+    "inspiration": "Mettre en avant cartes de visite, flyers ou menus de façon ordonnée.",
+    "usage": "Insérez cartes ou flyers dans les fentes.",
+    "placement": "Comptoir d'accueil, bureau, salon professionnel ou stand."
+  },
+  "supports-parfum-thiouraye": {
+    "price": 9000,
+    "material": "PLA mat, finition décorative",
+    "print_time": "4-6 heures",
+    "personalization": ["couleur", "motif"],
+    "inspiration": "Inspiré des rituels de parfumage et de thiouraye.",
+    "usage": "Posez le brûleur ou le flacon sur le support.",
+    "placement": "Salon, entrée, chambre ou espace d'accueil."
+  },
+  "cache-pot-decoratif": {
+    "price": 11000,
+    "material": "PLA mat, effet terracotta",
+    "print_time": "6-8 heures",
+    "personalization": ["couleur", "motif", "taille"],
+    "inspiration": "Allier plantes et décoration intérieure avec un cache-pot aux lignes modernes.",
+    "usage": "Placez votre pot ou plante directement dans le cache-pot.",
+    "placement": "Salon, balcon, bureau, rebord de fenêtre ou terrasse."
+  },
+  "mini-deco-murale-senegal": {
+    "price": 10000,
+    "material": "PLA mat multicolore",
+    "print_time": "4-7 heures",
+    "personalization": ["symbole", "couleur", "taille"],
+    "inspiration": "Hommage aux symboles, couleurs et motifs du Sénégal.",
+    "usage": "Accrochez ou posez la pièce comme élément décoratif.",
+    "placement": "Mur du salon, entrée, chambre ou espace bureau."
+  },
+  "muse-tech-charge-guard": {
+    "price": 5000,
+    "material": "PLA+, PETG ou TPU",
+    "print_time": "2-3 heures",
+    "personalization": ["initiales", "couleur", "logo discret"],
+    "inspiration": "Ranger chargeur et câble proprement, sans nœuds ni chute.",
+    "usage": "Glissez le bloc chargeur dans le support, enroulez le câble.",
+    "placement": "Table de chevet, bureau, table de salon ou plan de travail."
+  },
+  "muse-kitchen": {
+    "price": 12000,
+    "material": "PETG ou ASA recommandé",
+    "print_time": "5-8 heures",
+    "personalization": ["couleur", "logo MUSE", "configuration"],
+    "inspiration": "Libérer le plan de travail tout en gardant ustensiles à portée de main.",
+    "usage": "Fixez au mur ou posez sur le plan de travail selon le modèle.",
+    "placement": "Cuisine, crédence murale, plan de travail près de l'évier."
+  }
+}

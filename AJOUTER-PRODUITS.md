@@ -1,122 +1,88 @@
-# Ajouter de nouveaux modèles MUSE
+# Ajouter un modèle MUSE — workflow simple
 
-## Méthode simple (recommandée)
+## La bonne méthode (admin, sans SQL ni Git)
 
-### 1. Déposer vos photos
+### 1. Connexion admin
 
-Copiez vos fichiers image (`.png`, `.jpg`, `.webp`) dans :
+Ouvrez **https://muse-pendathiaws-projects.vercel.app/admin/login**
 
-```
-public/products/
-```
+Connectez-vous avec votre compte Supabase.
 
-**Exemple :** `public/products/mon-nouveau-vide-poche.png`
+### 2. Ajouter un modèle
 
-### 2. Lancer l'import automatique
+1. **Produits → Ajouter un modèle**
+2. Saisissez le **nom** (ex. « Vide-poche Teranga — modèle 12 »)
+3. Choisissez l'**univers** (Teranga, cuisine, bijoux, etc.)
+4. Optionnel : chemin photo `/products/mon-fichier.png`
+5. Cliquez **Publier sur le site**
 
-Dans le terminal, à la racine du projet :
+**Automatique :**
+- Prix de l'univers
+- Description courte et longue
+- Comment l'utiliser
+- Ce qui nous a inspirés
+- Où le poser
+- Couleurs et options de personnalisation
 
-```bash
-npm run import-photos
-```
+Le produit apparaît **immédiatement** sur le site public.
 
-Le script va :
-- scanner `public/products/` et `public/catalogue-a-traiter/`
-- deviner l'univers (cuisine, Teranga, bijoux, etc.)
-- créer ou mettre à jour `data/products.json`
-- générer `supabase/import-from-photos.sql`
-- mettre à jour les couvertures des univers
+### 3. Ajouter / modifier la photo
 
-### 3. Pousser sur GitHub
-
-```bash
-git add public/products/ data/products.json data/universes.json supabase/import-from-photos.sql
-git commit -m "catalogue: ajout de nouveaux modèles"
-git push
-```
-
-Vercel redéploie automatiquement — les produits apparaissent en ligne en quelques minutes.
+Sur la page d'édition du produit :
+- **Uploader** une image (Supabase Storage), ou
+- **Lier** un chemin déjà sur le site : `/products/mon-fichier.png`
 
 ---
 
-## Forcer l'univers d'une photo
+## Première synchronisation (une seule fois)
 
-Si une photo est classée dans le mauvais univers, éditez `data/photo-universe-map.json` :
+Si le catalogue JSON (162 produits) n'est pas encore dans Supabase :
 
-```json
-{
-  "mon-fichier.png": "vide-poche-teranga"
-}
+1. Supabase → **SQL Editor** → exécutez d'abord :
+
+```sql
+ALTER TABLE public.products
+  ADD COLUMN IF NOT EXISTS usage TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS inspiration TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS placement TEXT NOT NULL DEFAULT '';
 ```
 
-Puis relancez `npm run import-photos`.
+2. Admin → **Produits → Synchroniser le catalogue JSON**
+
+Tous les produits du fichier `data/products.json` sont copiés dans Supabase.
 
 ---
 
-## Classer par dossier
+## Ajouter une photo au projet (optionnel)
 
-Vous pouvez aussi organiser ainsi :
+Si vous voulez héberger la photo sur le site Vercel :
 
-```
-public/catalogue-a-traiter/vide-poche-teranga/photo1.png
-public/catalogue-a-traiter/muse-kitchen/photo2.png
-```
+1. Déposez le fichier dans `public/products/` (via GitHub ou votre ordinateur)
+2. Dans l'admin, utilisez le chemin `/products/nom-du-fichier.png`
 
----
-
-## Enrichir les textes (description, usage, inspiration)
-
-Les textes par univers sont dans :
-
-```
-scripts/import-catalogue-photos.mjs  →  UNIVERSE_CONTENT
-```
-
-Chaque produit reçoit automatiquement :
-- **Comment l'utiliser**
-- **Ce qui nous a inspirés**
-- **Où le poser**
-
-Pour un modèle spécifique, éditez directement `data/products.json` :
-
-```json
-{
-  "slug": "mon-produit",
-  "usage": "Déposez vos clés en rentrant...",
-  "inspiration": "Inspiré par...",
-  "placement": "Entrée, console..."
-}
-```
+Ou uploadez directement dans l'admin (plus simple).
 
 ---
 
-## Via l'admin (Supabase)
+## Modifier les textes par univers
 
-1. Connectez-vous : `/admin/login`
-2. **Produits → Nouveau produit** pour ajouter manuellement
-3. **Images** pour lier une photo à un produit
+Les textes automatiques (prix, usage, inspiration…) sont dans :
 
-Pour synchroniser la base Supabase avec le catalogue JSON :
+```
+data/universe-catalog.json
+```
 
-1. Supabase → **SQL Editor**
-2. Exécutez d'abord `supabase/seed.sql` si les univers n'existent pas encore
-3. Collez et exécutez **une partie à la fois** (recommandé) :
-   - `supabase/import-from-photos-part-1.sql`
-   - `supabase/import-from-photos-part-2.sql`
-   - `supabase/import-from-photos-part-3.sql`
-   - `supabase/import-from-photos-part-4.sql`
-
-> Ne pas utiliser le fichier complet (5400 lignes) : Supabase peut tronquer le collage et provoquer l'erreur `INSERT has more target columns than expressions`.
+Chaque univers a son prix et ses 3 paragraphes. Après modification, les **nouveaux** produits utiliseront les textes mis à jour.
 
 ---
 
-## Résumé rapide
+## Résumé
 
 | Action | Où |
 |--------|-----|
-| Ajouter une photo | `public/products/` |
-| Regénérer le catalogue | `npm run import-photos` |
-| Forcer un univers | `data/photo-universe-map.json` |
-| Textes par univers | `scripts/import-catalogue-photos.mjs` |
-| Texte d'un produit | `data/products.json` |
-| Admin en ligne | `/admin/produits` |
+| Ajouter un modèle | `/admin/produits/nouveau` |
+| Modifier prix / textes | `/admin/produits/{id}/edit` |
+| Importer les 162 produits existants | Admin → Synchroniser le catalogue JSON |
+| Textes automatiques par univers | `data/universe-catalog.json` |
+
+**Plus besoin de** `import-from-photos.sql` pour le quotidien — réservé à l'import initial massif si besoin.

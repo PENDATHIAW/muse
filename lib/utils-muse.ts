@@ -32,9 +32,10 @@ export function getMainImage(
   return main?.image_url ?? sorted[0]?.image_url ?? null;
 }
 
-/** True when the image path points to a flat file under /products/ (not a missing demo folder). */
+/** True when the image URL can be rendered in product cards. */
 export function hasValidProductImage(url: string | null | undefined): boolean {
   if (!url) return false;
+  if (/^https?:\/\//i.test(url)) return true;
   return /\/products\/[^/]+\.(png|jpe?g|webp|gif)$/i.test(url);
 }
 

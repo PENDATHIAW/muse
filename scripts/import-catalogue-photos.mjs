@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Scanne public/catalogue-a-traiter/ et génère :
- * - data/products.json (nouveaux produits)
- * - supabase/import-from-photos.sql (à exécuter dans Supabase SQL Editor)
+ * Scanne public/catalogue-a-traiter/ ET public/products/
+ * Génère data/products.json + supabase/import-from-photos.sql
  *
- * Usage: node scripts/import-catalogue-photos.mjs
+ * Optionnel : data/photo-universe-map.json pour forcer l'univers par fichier
+ * Usage: npm run import-photos
  */
 
 import fs from "fs";
@@ -13,12 +13,67 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
-const UPLOAD_DIR = path.join(ROOT, "public/catalogue-a-traiter");
+const CATALOGUE_DIR = path.join(ROOT, "public/catalogue-a-traiter");
+const PRODUCTS_DIR = path.join(ROOT, "public/products");
+const MAP_FILE = path.join(ROOT, "data/photo-universe-map.json");
 const PRODUCTS_JSON = path.join(ROOT, "data/products.json");
 const UNIVERSES_JSON = path.join(ROOT, "data/universes.json");
 const SQL_OUT = path.join(ROOT, "supabase/import-from-photos.sql");
 
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
+
+/** Dossier produit existant → univers */
+const PRODUCT_FOLDER_UNIVERSE = {
+  "organisateur-mural-cuisine-drainage": "muse-kitchen",
+  "pot-a-couverts-drainant": "muse-kitchen",
+  "charge-guard-2-en-1": "muse-tech-charge-guard",
+  "plaque-chez-les-diagne": "plaques-de-porte-chez-nous",
+};
+
+/** Mots-clés dans le nom de fichier → univers */
+const KEYWORD_UNIVERSE = [
+  ["muse-kitchen", "muse-kitchen"],
+  ["kitchen", "muse-kitchen"],
+  ["cuisine", "muse-kitchen"],
+  ["organisateur", "muse-kitchen"],
+  ["couverts", "muse-kitchen"],
+  ["drain", "muse-kitchen"],
+  ["charge-guard", "muse-tech-charge-guard"],
+  ["charge", "muse-tech-charge-guard"],
+  ["chargeur", "muse-tech-charge-guard"],
+  ["tech", "muse-tech-charge-guard"],
+  ["plaque", "plaques-de-porte-chez-nous"],
+  ["chez", "plaques-de-porte-chez-nous"],
+  ["porte", "plaques-de-porte-chez-nous"],
+  ["cles", "boite-a-cles-murale"],
+  ["cle", "boite-a-cles-murale"],
+  ["key", "boite-a-cles-murale"],
+  ["teranga", "vide-poche-teranga"],
+  ["vide-poche", "vide-poche-teranga"],
+  ["moussor", "porte-moussor-foulards"],
+  ["foulard", "porte-moussor-foulards"],
+  ["bijoux", "boite-a-bijoux"],
+  ["bijou", "support-bijoux-coiffeuse"],
+  ["coiffeuse", "support-bijoux-coiffeuse"],
+  ["tasbih", "support-tasbih-chapelet"],
+  ["chapelet", "support-tasbih-chapelet"],
+  ["naissance", "plaques-naissance-bapteme"],
+  ["bapteme", "plaques-naissance-bapteme"],
+  ["baptême", "plaques-naissance-bapteme"],
+  ["qr", "supports-qr-paiement"],
+  ["wave", "supports-qr-paiement"],
+  ["orange-money", "supports-qr-paiement"],
+  ["etiquette", "etiquettes-prix-boutiques"],
+  ["flyer", "porte-cartes-flyers"],
+  ["carte", "porte-cartes-flyers"],
+  ["thiouraye", "supports-parfum-thiouraye"],
+  ["parfum", "supports-parfum-thiouraye"],
+  ["cache-pot", "cache-pot-decoratif"],
+  ["plante", "cache-pot-decoratif"],
+  ["senegal", "mini-deco-murale-senegal"],
+  ["deco", "mini-deco-murale-senegal"],
+  ["telephone", "support-telephone-vide-poche"],
+];
 
 const UNIVERSE_DEFAULTS = {
   "plaques-de-porte-chez-nous": {
@@ -143,27 +198,75 @@ function humanName(filename) {
     .trim();
 }
 
-function scanImages() {
+function loadUniverseMap() {
+  if (!fs.existsSync(MAP_FILE)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(MAP_FILE, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+function guessUniverse(relativePath, filename) {
+  const manual = loadUniverseMap();
+  const key = relativePath.replace(/\\/g, "/");
+  if (manual[key]) return manual[key];
+  if (manual[filename]) return manual[filename];
+
+  const parts = key.split("/").filter(Boolean);
+  const folder = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
+  if (PRODUCT_FOLDER_UNIVERSE[folder]) return PRODUCT_FOLDER_UNIVERSE[folder];
+  if (UNIVERSE_DEFAULTS[folder]) return folder;
+
+  const haystack = key.toLowerCase();
+  for (const [keyword, universe] of KEYWORD_UNIVERSE) {
+    if (haystack.includes(keyword)) return universe;
+  }
+
+  return "a-classer";
+}
+
+function walkImages(baseDir, urlPrefix) {
   const results = [];
-  if (!fs.existsSync(UPLOAD_DIR)) return results;
+  if (!fs.existsSync(baseDir)) return results;
 
-  for (const entry of fs.readdirSync(UPLOAD_DIR, { withFileTypes: true })) {
-    if (!entry.isDirectory() || entry.name.startsWith(".")) continue;
-
-    const universeSlug = entry.name;
-    const dir = path.join(UPLOAD_DIR, universeSlug);
-
-    for (const file of fs.readdirSync(dir)) {
-      const ext = path.extname(file).toLowerCase();
+  function walk(currentDir) {
+    for (const entry of fs.readdirSync(currentDir, { withFileTypes: true })) {
+      if (entry.name.startsWith(".") || entry.name === "README.md") continue;
+      const full = path.join(currentDir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+        continue;
+      }
+      const ext = path.extname(entry.name).toLowerCase();
       if (!IMAGE_EXT.has(ext)) continue;
+
+      const rel = path.relative(baseDir, full).replace(/\\/g, "/");
+      const universeSlug =
+        urlPrefix === "/catalogue-a-traiter"
+          ? rel.includes("/")
+            ? rel.split("/")[0]
+            : "a-classer"
+          : guessUniverse(rel, entry.name);
+
       results.push({
         universeSlug,
-        filename: file,
-        imagePath: `/catalogue-a-traiter/${universeSlug}/${file}`,
+        filename: entry.name,
+        imagePath: `${urlPrefix}/${rel}`,
+        relativePath: rel,
       });
     }
   }
+
+  walk(baseDir);
   return results;
+}
+
+function scanImages() {
+  return [
+    ...walkImages(CATALOGUE_DIR, "/catalogue-a-traiter"),
+    ...walkImages(PRODUCTS_DIR, "/products"),
+  ];
 }
 
 function buildProduct(image, universe, displayOrder) {
@@ -215,9 +318,9 @@ function escapeSql(str) {
   return String(str).replace(/'/g, "''");
 }
 
-function generateSql(products, universesBySlug) {
+function generateSql(products) {
   const lines = [
-    "-- Import automatique depuis public/catalogue-a-traiter/",
+    "-- Import automatique photos MUSE",
     "-- Exécutez dans Supabase → SQL Editor",
     "",
     "DO $$",
@@ -256,7 +359,8 @@ function generateSql(products, universesBySlug) {
     lines.push(`      name = EXCLUDED.name,`);
     lines.push(`      short_description = EXCLUDED.short_description,`);
     lines.push(`      long_description = EXCLUDED.long_description,`);
-    lines.push(`      price = EXCLUDED.price`);
+    lines.push(`      price = EXCLUDED.price,`);
+    lines.push(`      universe_id = EXCLUDED.universe_id`);
     lines.push(`    RETURNING id INTO v_product_id;`);
     lines.push(`    DELETE FROM public.product_images WHERE product_id = v_product_id;`);
     lines.push(`    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)`);
@@ -273,8 +377,10 @@ function main() {
   const images = scanImages();
 
   if (images.length === 0) {
-    console.log("Aucune photo trouvée dans public/catalogue-a-traiter/");
-    console.log("Uploadez vos .jpg/.png dans un dossier univers, puis relancez.");
+    console.log("Aucune photo trouvée.");
+    console.log("Déposez vos images dans :");
+    console.log("  public/products/           (n'importe où)");
+    console.log("  public/catalogue-a-traiter/[univers]/");
     process.exit(0);
   }
 
@@ -284,15 +390,15 @@ function main() {
   const existingSlugs = new Set(existing.map((p) => p.slug));
 
   const orderByUniverse = {};
-  const newProducts = [];
+  const importedProducts = [];
 
   for (const image of images) {
     if (image.universeSlug === "a-classer") {
-      console.warn(`⚠ À classer manuellement : ${image.filename}`);
+      console.warn(`⚠ À classer : ${image.imagePath}`);
       continue;
     }
     if (!universesBySlug[image.universeSlug]) {
-      console.warn(`⚠ Univers inconnu : ${image.universeSlug}/${image.filename}`);
+      console.warn(`⚠ Univers inconnu pour ${image.imagePath}`);
       continue;
     }
 
@@ -306,24 +412,21 @@ function main() {
     if (existingSlugs.has(product.slug)) {
       const idx = existing.findIndex((p) => p.slug === product.slug);
       existing[idx] = { ...existing[idx], ...product, id: existing[idx].id };
-      console.log(`↻ Mis à jour : ${product.name}`);
+      console.log(`↻ ${product.name} → ${image.universeSlug}`);
     } else {
-      newProducts.push(product);
       existing.push(product);
-      console.log(`+ Ajouté : ${product.name} → ${image.universeSlug}`);
+      existingSlugs.add(product.slug);
+      console.log(`+ ${product.name} → ${image.universeSlug}`);
     }
+    importedProducts.push(product);
   }
 
   fs.writeFileSync(PRODUCTS_JSON, JSON.stringify(existing, null, 2) + "\n");
+  fs.writeFileSync(SQL_OUT, generateSql(importedProducts));
 
-  const allImported = existing.filter((p) =>
-    p.images?.some((img) => img.image_url?.startsWith("/catalogue-a-traiter/"))
-  );
-  fs.writeFileSync(SQL_OUT, generateSql(allImported, universesBySlug));
-
-  console.log(`\n✓ ${images.length} photo(s) traitée(s)`);
+  console.log(`\n✓ ${images.length} photo(s) scannée(s), ${importedProducts.length} produit(s) généré(s)`);
   console.log(`✓ data/products.json mis à jour`);
-  console.log(`✓ supabase/import-from-photos.sql généré → exécutez dans Supabase`);
+  console.log(`✓ supabase/import-from-photos.sql → exécutez dans Supabase SQL Editor`);
 }
 
 main();

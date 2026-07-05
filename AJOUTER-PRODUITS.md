@@ -99,8 +99,14 @@ Pour un modèle spécifique, éditez directement `data/products.json` :
 Pour synchroniser la base Supabase avec le catalogue JSON :
 
 1. Supabase → **SQL Editor**
-2. Collez le contenu de `supabase/import-from-photos.sql`
-3. **Run**
+2. Exécutez d'abord `supabase/seed.sql` si les univers n'existent pas encore
+3. Collez et exécutez **une partie à la fois** (recommandé) :
+   - `supabase/import-from-photos-part-1.sql`
+   - `supabase/import-from-photos-part-2.sql`
+   - `supabase/import-from-photos-part-3.sql`
+   - `supabase/import-from-photos-part-4.sql`
+
+> Ne pas utiliser le fichier complet (5400 lignes) : Supabase peut tronquer le collage et provoquer l'erreur `INSERT has more target columns than expressions`.
 
 ---
 

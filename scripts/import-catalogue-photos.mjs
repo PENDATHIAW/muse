@@ -565,6 +565,34 @@ function generateSql(products) {
   return lines.join("\n");
 }
 
+function writeSqlParts(products, chunkSize = 40) {
+  const full = generateSql(products);
+  const blocks = full.match(/  -- [^\n]+\n[\s\S]*?  END IF;\n/g) ?? [];
+  const parts = Math.ceil(blocks.length / chunkSize) || 1;
+
+  for (let i = 0; i < parts; i++) {
+    const chunk = blocks.slice(i * chunkSize, (i + 1) * chunkSize).join("\n");
+    const count = Math.min(chunkSize, blocks.length - i * chunkSize);
+    const body =
+      "DO $$\nDECLARE\n  v_universe_id UUID;\n  v_product_id UUID;\nBEGIN\n" +
+      chunk +
+      "END $$;\n";
+    const partPath = path.join(ROOT, `supabase/import-from-photos-part-${i + 1}.sql`);
+    fs.writeFileSync(
+      partPath,
+      [
+        "-- Import automatique photos MUSE (partie)",
+        "-- Exécutez dans Supabase → SQL Editor, une partie à la fois",
+        `-- Partie ${i + 1}/${parts} (${count} produits)`,
+        "",
+        body,
+      ].join("\n")
+    );
+  }
+
+  return parts;
+}
+
 function main() {
   const images = scanImages();
 

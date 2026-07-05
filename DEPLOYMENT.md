@@ -1,41 +1,46 @@
 # Déploiement Vercel — site inaccessible ?
 
-## Erreur « This page couldn't load »
+## URL officielle (Production)
 
-Si vous voyez ce message, c'est souvent parce que **Vercel bloque l'accès public** au site (protection activée).
+**https://muse-git-main-pendathiaws-projects.vercel.app**
 
-### Solution (2 minutes)
+Test sans JavaScript :
 
-1. Allez sur **https://vercel.com** → projet **muse**
-2. **Settings** → **Deployment Protection**
-3. Section **Vercel Authentication** ou **Password Protection**
-4. Désactivez la protection pour **Production** (ou mettez « Only Preview Deployments »)
-5. **Save**
-6. **Deployments** → **Redeploy** le dernier déploiement
+**https://muse-git-main-pendathiaws-projects.vercel.app/health.html**
 
-Le site doit alors être accessible publiquement sans connexion Vercel.
+Si `/health.html` s'ouvre mais pas `/` → cache navigateur ou extension. Essayez navigation privée.
 
-### URL à utiliser pour `NEXT_PUBLIC_SITE_URL`
+---
 
-Préférez l'URL stable de production :
+## « This page couldn't load » (Reload / Back)
+
+Ce message **n'est pas** une page MUSE — c'est le navigateur (Safari, app Vercel, Cursor…) qui échoue.
+
+| Cause | Solution |
+|-------|----------|
+| Mauvaise URL | N'utilisez **pas** `muse.vercel.app` (désactivé). Utilisez l'URL ci-dessus. |
+| Lien « Visit » sur un déploiement | Ouvrez le domaine **Production** : Vercel → Settings → Domains |
+| Protection Vercel | Settings → Deployment Protection → off pour Production |
+| Cache | Navigation privée ou vider le cache |
+| Réseau | Testez en 4G (partage connexion) |
+
+---
+
+## Variables d'environnement
+
+Récupérez les clés dans **Supabase → Settings → API** :
 
 ```
-https://muse-git-main-pendathiaws-projects.vercel.app
+NEXT_PUBLIC_SUPABASE_URL=https://zboduyqtfhzlrfiqymju.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ... (clé anon complète)
+SUPABASE_SERVICE_ROLE_KEY=eyJ... (clé service_role)
+NEXT_PUBLIC_SITE_URL=https://muse-git-main-pendathiaws-projects.vercel.app
 ```
 
-Ou le domaine personnalisé si vous en avez un.
+Après modification → **Deployments → Redeploy** (sans cache).
 
-## Variables d'environnement requises
-
-```
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY
-NEXT_PUBLIC_SITE_URL
-```
-
-Après modification des variables → **Redeploy** obligatoire.
+---
 
 ## Admin
 
-Connexion : `/admin/login` avec **email + mot de passe Supabase Auth** (pas ADMIN_PASSWORD).
+`/admin/login` — email + mot de passe Supabase Auth.

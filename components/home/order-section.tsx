@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MessageCircle, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 

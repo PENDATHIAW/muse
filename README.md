@@ -118,14 +118,27 @@ Remplacez facilement le logo en ajoutant :
 
 Sans ce fichier, le texte **MUSE** s'affiche automatiquement.
 
-## Publier le site
+## Publier le site (Vercel)
 
-### Vercel (recommandé)
+### Variables obligatoires sur Vercel
 
-1. Poussez le code sur GitHub
-2. Importez le projet sur [vercel.com](https://vercel.com)
-3. Ajoutez les variables d'environnement Supabase
-4. Déployez
+Dans **Vercel → Project → Settings → Environment Variables**, ajoutez :
+
+| Variable | Valeur |
+|----------|--------|
+| `NEXT_PUBLIC_SUPABASE_URL` | URL de votre projet Supabase |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé anon Supabase |
+
+Sans ces variables, le site s'affiche mais le catalogue reste vide.
+
+### Déploiement
+
+1. Poussez le code sur GitHub (`main`)
+2. Importez le repo sur [vercel.com](https://vercel.com)
+3. Ajoutez les variables ci-dessus
+4. Redéployez si besoin
+
+Le build utilise **webpack** (stable sur Vercel) via `npm run build`.
 
 ### Build local
 

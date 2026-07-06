@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -65,6 +66,15 @@ export default async function AdminInquiriesPage() {
               <p className="mt-3 whitespace-pre-line text-sm text-muted-foreground">
                 {inq.message}
               </p>
+
+              <div className="mt-4">
+                <Link
+                  href={`/admin/demandes/${inq.id}/devis`}
+                  className="inline-flex h-9 items-center justify-center rounded-md border border-border px-4 text-sm font-medium hover:bg-muted"
+                >
+                  Créer une fiche de commande
+                </Link>
+              </div>
 
               <form
                 action={async (formData) => {

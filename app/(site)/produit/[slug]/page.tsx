@@ -12,6 +12,7 @@ import { AddToSelectionButton } from "@/components/products/add-to-selection-but
 import { WhatsAppButton } from "@/components/ui/whatsapp-button";
 import {
   formatPrice,
+  formatConceptionDays,
   STOCK_STATUS_LABELS,
 } from "@/lib/utils-muse";
 import {
@@ -98,16 +99,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <dd>{product.dimensions}</dd>
               </>
             )}
-            {product.print_time && (
+            {product.conception_days != null && product.conception_days > 0 && (
               <>
-                <dt className="text-muted-foreground">Temps d&apos;impression</dt>
-                <dd>{product.print_time}</dd>
-              </>
-            )}
-            {product.material && (
-              <>
-                <dt className="text-muted-foreground">Matière</dt>
-                <dd>{product.material}</dd>
+                <dt className="text-muted-foreground">Délai de conception</dt>
+                <dd>{formatConceptionDays(product.conception_days)}</dd>
               </>
             )}
           </dl>

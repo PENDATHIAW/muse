@@ -96,13 +96,19 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
                 <Input id="dimensions" name="dimensions" defaultValue={product.dimensions} />
               </div>
               <div>
-                <Label htmlFor="print_time">Temps d&apos;impression</Label>
-                <Input id="print_time" name="print_time" defaultValue={product.print_time} />
+                <Label htmlFor="conception_days">Délai de conception (jours)</Label>
+                <Input
+                  id="conception_days"
+                  name="conception_days"
+                  type="number"
+                  min={1}
+                  placeholder="Ex. 5"
+                  defaultValue={product.conception_days ?? ""}
+                />
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Affiché au client sur la fiche produit. Laissez vide si non défini.
+                </p>
               </div>
-            </div>
-            <div>
-              <Label htmlFor="material">Matière</Label>
-              <Input id="material" name="material" defaultValue={product.material} />
             </div>
             <div>
               <Label htmlFor="colors">Couleurs</Label>

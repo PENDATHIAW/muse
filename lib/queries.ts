@@ -21,6 +21,8 @@ function mapProduct(row: Record<string, unknown>): Product {
     tags: parseJsonArray(row.tags),
     price: Number(row.price),
     old_price: row.old_price != null ? Number(row.old_price) : null,
+    conception_days:
+      row.conception_days != null ? Number(row.conception_days) : null,
   };
 }
 

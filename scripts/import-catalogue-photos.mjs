@@ -10,6 +10,10 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import {
+  buildProductCopy,
+  buildProductName,
+} from "./muse-catalog-copy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -329,14 +333,6 @@ function slugify(text) {
     .replace(/^-+|-+$/g, "");
 }
 
-function humanName(filename) {
-  const base = path.basename(filename, path.extname(filename));
-  return base
-    .replace(/[-_]+/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .trim();
-}
-
 function loadUniverseMap() {
   if (!fs.existsSync(MAP_FILE)) return {};
   try {
@@ -346,7 +342,7 @@ function loadUniverseMap() {
   }
 }
 
-function guessUniverse(relativePath, filename) {
+function resolveUniverseFromMap(relativePath, filename) {
   const manual = loadUniverseMap();
   const key = relativePath.replace(/\\/g, "/");
   const candidates = [
@@ -359,6 +355,12 @@ function guessUniverse(relativePath, filename) {
   for (const candidate of candidates) {
     if (manual[candidate]) return manual[candidate];
   }
+  return null;
+}
+
+function guessUniverse(relativePath, filename) {
+  const mapped = resolveUniverseFromMap(relativePath, filename);
+  if (mapped) return mapped;
 
   const parts = key.split("/").filter(Boolean);
   const folder = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
@@ -416,7 +418,7 @@ function scanImages() {
   ];
 }
 
-function buildProduct(image, universe, displayOrder) {
+function buildProduct(image, universe, refNum, displayOrder) {
   const defaults = UNIVERSE_DEFAULTS[image.universeSlug] ?? {
     price: 10000,
     material: "PLA mat ou PETG",
@@ -432,17 +434,17 @@ function buildProduct(image, universe, displayOrder) {
       "Entrée, salon, chambre, bureau ou espace commercial selon votre projet.",
   };
 
-  const name = humanName(image.filename);
+  const name = buildProductName(image.universeSlug, refNum);
   const slug = slugify(path.basename(image.filename, path.extname(image.filename)));
-  const universeName = universe?.name ?? image.universeSlug;
+  const copy = buildProductCopy(image.universeSlug, refNum, name);
 
   return {
     id: slug,
     universe_id: image.universeSlug,
     name,
     slug,
-    short_description: `${name} — objet personnalisable MUSE, univers « ${universeName} ».`,
-    long_description: `${name} est conçu et imprimé en 3D par MUSE dans l'univers « ${universeName} ». Finitions soignées, matériaux adaptés à l'usage, personnalisation possible (couleur, texte, initiales).`,
+    short_description: copy.short_description,
+    long_description: copy.long_description,
     usage: content.usage,
     inspiration: content.inspiration,
     placement: content.placement,
@@ -458,8 +460,8 @@ function buildProduct(image, universe, displayOrder) {
     status: "published",
     is_featured: displayOrder <= 2,
     display_order: displayOrder,
-    tags: ["nouveauté", "personnalisable"],
-    internal_note: `Import auto depuis ${image.imagePath}`,
+    tags: ["nouveauté", "personnalisable", image.universeSlug.replace(/-/g, " ")],
+    internal_note: `Import auto depuis ${image.imagePath} — ${name}`,
     images: [
       {
         id: `${slug}-main`,
@@ -492,13 +494,9 @@ function updateUniverseCovers(products, universes) {
 
 function cleanupProducts(products) {
   return products.map((product) => {
-    const img = product.images?.[0]?.image_url ?? "";
-    const hasBrokenDemoImage = img.includes("/main.jpg");
     const content = UNIVERSE_CONTENT[product.universe_id];
-
     return {
       ...product,
-      is_featured: hasBrokenDemoImage ? false : product.is_featured,
       usage: product.usage ?? content?.usage,
       inspiration: product.inspiration ?? content?.inspiration,
       placement: product.placement ?? content?.placement,
@@ -530,6 +528,7 @@ function generateSql(products) {
     lines.push(`  IF v_universe_id IS NOT NULL THEN`);
     lines.push(`    INSERT INTO public.products (`);
     lines.push(`      universe_id, name, slug, short_description, long_description,`);
+    lines.push(`      usage, inspiration, placement,`);
     lines.push(`      price, dimensions, print_time, material, colors, finishes,`);
     lines.push(`      personalization_options, stock_status, status, is_featured, display_order, tags`);
     lines.push(`    ) VALUES (`);
@@ -538,6 +537,9 @@ function generateSql(products) {
     lines.push(`      '${escapeSql(p.slug)}',`);
     lines.push(`      '${escapeSql(p.short_description)}',`);
     lines.push(`      '${escapeSql(p.long_description)}',`);
+    lines.push(`      '${escapeSql(p.usage ?? "")}',`);
+    lines.push(`      '${escapeSql(p.inspiration ?? "")}',`);
+    lines.push(`      '${escapeSql(p.placement ?? "")}',`);
     lines.push(`      ${p.price},`);
     lines.push(`      '${escapeSql(p.dimensions)}',`);
     lines.push(`      '${escapeSql(p.print_time)}',`);
@@ -551,6 +553,9 @@ function generateSql(products) {
     lines.push(`      name = EXCLUDED.name,`);
     lines.push(`      short_description = EXCLUDED.short_description,`);
     lines.push(`      long_description = EXCLUDED.long_description,`);
+    lines.push(`      usage = EXCLUDED.usage,`);
+    lines.push(`      inspiration = EXCLUDED.inspiration,`);
+    lines.push(`      placement = EXCLUDED.placement,`);
     lines.push(`      price = EXCLUDED.price,`);
     lines.push(`      universe_id = EXCLUDED.universe_id`);
     lines.push(`    RETURNING id INTO v_product_id;`);
@@ -593,8 +598,14 @@ function writeSqlParts(products, chunkSize = 40) {
   return parts;
 }
 
+function shouldSkipImage(image) {
+  const mapped = resolveUniverseFromMap(image.relativePath, image.filename);
+  if (mapped === "_exclude") return true;
+  return false;
+}
+
 function main() {
-  const images = scanImages();
+  const images = scanImages().filter((image) => !shouldSkipImage(image));
 
   if (images.length === 0) {
     console.log("Aucune photo trouvée.");
@@ -606,52 +617,51 @@ function main() {
 
   const universes = JSON.parse(fs.readFileSync(UNIVERSES_JSON, "utf8"));
   const universesBySlug = Object.fromEntries(universes.map((u) => [u.slug, u]));
-  const existing = JSON.parse(fs.readFileSync(PRODUCTS_JSON, "utf8"));
-  const existingSlugs = new Set(existing.map((p) => p.slug));
 
-  const orderByUniverse = {};
+  const refByUniverse = {};
   const importedProducts = [];
+  let skipped = 0;
 
   for (const image of images) {
     if (image.universeSlug === "a-classer") {
       console.warn(`⚠ À classer : ${image.imagePath}`);
+      skipped++;
       continue;
     }
     if (!universesBySlug[image.universeSlug]) {
       console.warn(`⚠ Univers inconnu pour ${image.imagePath}`);
+      skipped++;
       continue;
     }
 
-    orderByUniverse[image.universeSlug] = (orderByUniverse[image.universeSlug] ?? 0) + 1;
+    refByUniverse[image.universeSlug] = (refByUniverse[image.universeSlug] ?? 0) + 1;
+    const refNum = refByUniverse[image.universeSlug];
     const product = buildProduct(
       image,
       universesBySlug[image.universeSlug],
-      orderByUniverse[image.universeSlug]
+      refNum,
+      refNum
     );
 
-    if (existingSlugs.has(product.slug)) {
-      const idx = existing.findIndex((p) => p.slug === product.slug);
-      existing[idx] = { ...existing[idx], ...product, id: existing[idx].id };
-      console.log(`↻ ${product.name} → ${image.universeSlug}`);
-    } else {
-      existing.push(product);
-      existingSlugs.add(product.slug);
-      console.log(`+ ${product.name} → ${image.universeSlug}`);
-    }
     importedProducts.push(product);
+    console.log(`✓ ${product.name} → ${image.universeSlug}`);
   }
 
-  fs.writeFileSync(PRODUCTS_JSON, JSON.stringify(cleanupProducts(existing), null, 2) + "\n");
+  const products = cleanupProducts(importedProducts);
+
+  fs.writeFileSync(PRODUCTS_JSON, JSON.stringify(products, null, 2) + "\n");
   fs.writeFileSync(
     UNIVERSES_JSON,
-    JSON.stringify(updateUniverseCovers(existing, universes), null, 2) + "\n"
+    JSON.stringify(updateUniverseCovers(products, universes), null, 2) + "\n"
   );
-  fs.writeFileSync(SQL_OUT, generateSql(cleanupProducts(existing)));
+  fs.writeFileSync(SQL_OUT, generateSql(products));
+  const parts = writeSqlParts(products);
 
-  console.log(`\n✓ ${images.length} photo(s) scannée(s), ${importedProducts.length} produit(s) généré(s)`);
-  console.log(`✓ data/products.json mis à jour`);
+  console.log(`\n✓ ${images.length} photo(s) scannée(s)`);
+  console.log(`✓ ${products.length} produit(s) publié(s) (${skipped} ignoré(s))`);
+  console.log(`✓ data/products.json reconstruit depuis public/products/`);
   console.log(`✓ data/universes.json — couvertures mises à jour`);
-  console.log(`✓ supabase/import-from-photos.sql → exécutez dans Supabase SQL Editor`);
+  console.log(`✓ supabase/import-from-photos.sql + ${parts} partie(s) SQL`);
 }
 
 main();

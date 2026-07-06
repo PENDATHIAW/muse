@@ -58,13 +58,20 @@ function clearTargetImages() {
   return removed;
 }
 
-function copyFromSource() {
-  if (!fs.existsSync(SOURCE)) {
-    console.error("Dossier introuvable : public/assets/products/");
-    console.error("Créez-le et mettez vos visuels dedans, puis relancez.");
-    process.exit(1);
-  }
+function countSourceImages() {
+  if (!fs.existsSync(SOURCE)) return -1;
 
+  let count = 0;
+  for (const entry of fs.readdirSync(SOURCE, { withFileTypes: true })) {
+    if (entry.name.startsWith(".") || entry.name === "README.md") continue;
+    if (!entry.isFile() || !isImage(entry.name)) continue;
+    if (shouldSkip(entry.name)) continue;
+    count++;
+  }
+  return count;
+}
+
+function copyFromSource() {
   let copied = 0;
   let skipped = 0;
 
@@ -81,6 +88,20 @@ function copyFromSource() {
   }
 
   return { copied, skipped };
+}
+
+const sourceCount = countSourceImages();
+if (sourceCount < 0) {
+  console.error("Dossier introuvable : public/assets/products/");
+  console.error("Créez-le et mettez vos visuels dedans, puis relancez.");
+  process.exit(1);
+}
+if (sourceCount === 0) {
+  console.error("Aucune photo dans public/assets/products/ — rien n'a été modifié.");
+  console.error(
+    "Copiez vos visuels dedans (ex. depuis ~/Downloads/bovinia/public/assets/products/) puis relancez."
+  );
+  process.exit(1);
 }
 
 const removed = clearTargetImages();

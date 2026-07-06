@@ -14,13 +14,23 @@ export default async function NewProductPage() {
     <div>
       <h1 className="text-2xl font-semibold">Ajouter un modèle</h1>
       <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-        Uploadez vos photos, indiquez le prix, cliquez sur Ajouter. MUSE détecte
-        l&apos;univers, génère les textes et publie le produit sur le site.
+        Méthode recommandée : déposez vos photos dans{" "}
+        <code>public/products/</code>, poussez sur GitHub, puis sur la page{" "}
+        <Link href="/admin/produits" className="text-primary hover:underline">
+          Produits
+        </Link>{" "}
+        cliquez sur <strong>Ajouter au catalogue</strong>.
       </p>
+
+      <div className="mt-4 max-w-3xl rounded-lg border border-dashed border-muted-foreground/30 bg-muted/20 p-4 text-sm text-muted-foreground">
+        L&apos;upload direct ci-dessous est réservé aux cas exceptionnels. Pour
+        ajouter plusieurs visuels, utilisez le workflow Git (plus simple, sans
+        Supabase Storage).
+      </div>
 
       <Card className="mt-6 max-w-3xl">
         <CardHeader>
-          <CardTitle>Nouveau produit</CardTitle>
+          <CardTitle>Upload manuel (exceptionnel)</CardTitle>
         </CardHeader>
         <CardContent>
           <ProductCreateForm universes={universes} />

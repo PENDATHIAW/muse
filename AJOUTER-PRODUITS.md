@@ -1,91 +1,63 @@
 # Ajouter un modèle MUSE — workflow simple
 
-## La bonne méthode (admin, sans SQL ni Git)
+## La bonne méthode (Git + admin, sans Supabase Storage)
 
-### 1. Connexion admin
+### 1. Ajoutez vos photos
 
-Ouvrez **https://muse-pendathiaws-projects.vercel.app/admin/login**
+Déposez vos fichiers `.png` / `.jpg` **à la racine** de :
 
-Connectez-vous avec votre compte Supabase.
+```
+public/products/
+```
 
-### 2. Ajouter un modèle
+Pas de sous-dossier. Poussez sur GitHub (token ou upload web).
 
-1. **Produits → Ajouter un modèle**
-2. Saisissez le **nom** (ex. « Vide-poche Teranga — modèle 12 »)
-3. Choisissez l'**univers** (Teranga, cuisine, bijoux, etc.)
-4. Optionnel : chemin photo `/products/mon-fichier.png`
-5. Cliquez **Publier sur le site**
+### 2. Attendez le déploiement (~1–2 min)
 
-**Automatique :**
+Vercel redéploie automatiquement après votre push GitHub.
+
+### 3. Ouvrez l'admin
+
+**https://muse-pendathiaws-projects.vercel.app/admin/produits**
+
+Si de nouvelles images sont détectées, un bandeau s'affiche :
+
+> **X nouvelles images détectées** — Voulez-vous les ajouter au catalogue ?
+
+Cliquez **Tout ajouter au catalogue** (ou **Ajouter** image par image).
+
+**Automatique pour chaque photo :**
+- Univers détecté (Teranga, Salaah, cuisine…)
+- Nom avec référence **REF M01**, **REF M02**…
 - Prix de l'univers
-- Description courte et longue
-- Comment l'utiliser
-- Ce qui nous a inspirés
-- Où le poser
-- Couleurs et options de personnalisation
+- Descriptions courtes et longues
+- Textes usage / inspiration / placement
 
-Le produit apparaît **immédiatement** sur le site public.
+### 4. Modifiez si besoin
 
-### 3. Ajouter / modifier la photo
-
-Sur la page d'édition du produit :
-- **Uploader** une image (Supabase Storage), ou
-- **Lier** un chemin déjà sur le site : `/products/mon-fichier.png`
+Sur chaque produit → **Modifier** pour ajuster prix, nom ou textes.
 
 ---
 
-## Première synchronisation (une seule fois)
+## Configuration Vercel (une seule fois)
 
-Si le catalogue JSON (162 produits) n'est pas encore dans Supabase :
+Pour que le bouton **Ajouter au catalogue** enregistre le catalogue sur GitHub :
 
-1. Supabase → **SQL Editor** → exécutez d'abord :
+| Variable | Valeur |
+|----------|--------|
+| `GITHUB_TOKEN` | Token GitHub (classic) avec scope `repo` |
 
-```sql
-ALTER TABLE public.products
-  ADD COLUMN IF NOT EXISTS usage TEXT NOT NULL DEFAULT '',
-  ADD COLUMN IF NOT EXISTS inspiration TEXT NOT NULL DEFAULT '',
-  ADD COLUMN IF NOT EXISTS placement TEXT NOT NULL DEFAULT '';
-```
-
-2. Admin → **Produits → Synchroniser le catalogue JSON**
-
-Tous les produits du fichier `data/products.json` sont copiés dans Supabase.
-
----
-
-## Ajouter des photos depuis votre ordinateur (recommandé pour beaucoup d'images)
-
-**Pas de sous-dossier** : mettez toutes les photos directement dans `public/products/` à la racine.
-
-### Étapes
-
-1. Copiez vos fichiers `.png` / `.jpg` dans `public/products/`
-2. Poussez vers GitHub (voir section « GitHub demande un mot de passe » ci-dessous)
-3. Le site se met à jour automatiquement sur Vercel
-
-Pour classer automatiquement un visuel Salaah (tasbih, natte, coin prière), ajoutez une ligne dans `data/product-type-map.json` :
-
-```json
-"/products/mon-fichier.png": "RANGE NATTE"
-```
-
-Types possibles : `SUPPORT TASBIH`, `RANGE NATTE`, `COIN PRIÈRE`, `NATTE DE PRIÈRE`.
-
-Puis lancez `npm run import-photos` (ou demandez à l'agent de le faire) pour régénérer le catalogue.
+Sans ce token, l'admin détecte les images mais ne peut pas sauvegarder en production. En local (`npm run dev`), l'enregistrement se fait directement dans `data/products.json`.
 
 ---
 
 ## GitHub demande un mot de passe ?
 
-GitHub **n'accepte plus** le mot de passe du compte pour `git push`. Utilisez un **token** (PAT) ou **SSH**.
-
-### Option A — Token (le plus simple)
+GitHub **n'accepte plus** le mot de passe du compte pour `git push`. Utilisez un **token** (PAT).
 
 1. GitHub → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
-2. **Generate new token (classic)** — cochez au minimum `repo`
-3. Copiez le token (il ne s'affiche qu'une fois)
-
-Sur votre Mac/PC, dans le dossier du projet :
+2. **Generate new token** — cochez `repo`
+3. Copiez le token
 
 ```bash
 git add public/products/
@@ -93,77 +65,36 @@ git commit -m "Ajout photos produits"
 git push origin main
 ```
 
-Quand Git demande :
-- **Username** : votre identifiant GitHub (ex. `PENDATHIAW`)
-- **Password** : collez le **token**, pas votre mot de passe GitHub
+- **Username** : `PENDATHIAW`
+- **Password** : collez le **token**
 
-Pour ne pas retaper le token à chaque fois (macOS) :
+### Alternative : upload direct sur GitHub
 
-```bash
-git config --global credential.helper osxkeychain
-```
-
-### Option B — SSH
-
-1. Générez une clé : `ssh-keygen -t ed25519 -C "votre@email.com"`
-2. Ajoutez la clé publique (`~/.ssh/id_ed25519.pub`) dans GitHub → **Settings** → **SSH keys**
-3. Changez l'URL du dépôt :
-
-```bash
-git remote set-url origin git@github.com:PENDATHIAW/muse.git
-git push origin main
-```
-
-### Alternative sans Git : upload GitHub web
-
-1. Ouvrez https://github.com/PENDATHIAW/muse/tree/main/public/products
-2. **Add file** → **Upload files**
-3. Glissez vos photos → **Commit changes**
-
-Vercel redéploie le site en quelques minutes.
+https://github.com/PENDATHIAW/muse/tree/main/public/products → **Add file** → **Upload files**
 
 ---
 
-## Upload admin ne fonctionne pas ?
+## Classer un visuel Salaah manuellement
 
-L'upload dans `/admin/produits/nouveau` envoie les images vers **Supabase Storage** (pas vers `public/products/` sur Vercel).
+Si l'univers n'est pas détecté, ajoutez une ligne dans `data/product-type-map.json` :
 
-Vérifiez sur [Supabase Dashboard](https://supabase.com/dashboard) :
-
-1. **Storage** → bucket `product-images` doit exister (public)
-2. **Project Settings** → **API** → copiez la clé **service_role** (secrète)
-
-Sur [Vercel](https://vercel.com) → projet **muse** → **Settings** → **Environment Variables** :
-
-| Variable | Valeur |
-|----------|--------|
-| `SUPABASE_SERVICE_ROLE_KEY` | clé service_role Supabase |
-
-Redéployez après avoir ajouté la variable.
-
-**En attendant** : ajoutez les photos via GitHub (`public/products/`) — c'est la méthode la plus fiable pour un lot d'images.
-
----
-
-## Modifier les textes par univers
-
-Les textes automatiques (prix, usage, inspiration…) sont dans :
-
-```
-data/universe-catalog.json
+```json
+"/products/mon-fichier.png": "RANGE NATTE"
 ```
 
-Chaque univers a son prix et ses 3 paragraphes. Après modification, les **nouveaux** produits utiliseront les textes mis à jour.
+Types : `SUPPORT TASBIH`, `RANGE NATTE`, `COIN PRIÈRE`, `NATTE DE PRIÈRE`.
+
+Poussez le fichier, attendez le déploiement, puis **Ajouter au catalogue** dans l'admin.
 
 ---
 
 ## Résumé
 
-| Action | Où |
-|--------|-----|
-| Ajouter un modèle | `/admin/produits/nouveau` |
-| Modifier prix / textes | `/admin/produits/{id}/edit` |
-| Importer les 162 produits existants | Admin → Synchroniser le catalogue JSON |
-| Textes automatiques par univers | `data/universe-catalog.json` |
+| Étape | Action |
+|-------|--------|
+| 1 | Photos dans `public/products/` |
+| 2 | `git push` ou upload GitHub |
+| 3 | Admin → **Ajouter au catalogue** |
+| 4 | Modifier prix/textes si besoin |
 
-**Plus besoin de** `import-from-photos.sql` pour le quotidien — réservé à l'import initial massif si besoin.
+**Plus besoin de** Supabase Storage, SQL manuel, ni `npm run import-photos` au quotidien.

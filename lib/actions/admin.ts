@@ -5,6 +5,12 @@ import { redirect } from "next/navigation";
 import productsJson from "@/data/products.json";
 import universesJson from "@/data/universes.json";
 import { analyzeProductPhoto } from "@/lib/photo-analysis";
+import {
+  buildProductsFromImages,
+  persistNewCatalogProducts,
+} from "@/lib/catalog-persist";
+import { getUndiscoveredImages } from "@/lib/scan-public-products";
+import type { CatalogProduct } from "@/lib/scan-public-products";
 import { buildProductFieldsFromUniverse } from "@/lib/universe-catalog";
 import { createClient } from "@/lib/supabase/server";
 import { createServiceClient } from "@/lib/supabase/service";
@@ -679,4 +685,143 @@ export async function reorderProductImages(
 
   revalidatePath("/admin/images");
   return { success: true };
+}
+
+export async function getNewProductImages() {
+  try {
+    const images = getUndiscoveredImages();
+    return { images, count: images.length };
+  } catch (error) {
+    return {
+      images: [],
+      count: 0,
+      error: error instanceof Error ? error.message : "Scan impossible",
+    };
+  }
+}
+
+async function syncProductsToSupabase(products: CatalogProduct[]) {
+  const supabase = await createClient();
+  let synced = 0;
+
+  const { data: universes } = await supabase.from("universes").select("id, slug, name");
+  const universeBySlug = new Map(
+    (universes ?? []).map((u) => [u.slug, u as Universe])
+  );
+
+  for (const product of products) {
+    let universe =
+      universeBySlug.get(product.universe_id) ??
+      (await ensureUniverseInSupabase(supabase, product.universe_id));
+
+    if (!universe) continue;
+
+    const defaults = buildProductFieldsFromUniverse(
+      product.name,
+      universe.slug,
+      universe.name
+    );
+
+    const payload = {
+      universe_id: universe.id,
+      name: product.name,
+      slug: product.slug,
+      short_description: product.short_description || defaults.short_description,
+      long_description: product.long_description || defaults.long_description,
+      price: product.price ?? defaults.price,
+      old_price: product.old_price,
+      dimensions: product.dimensions || defaults.dimensions,
+      conception_days: null,
+      print_time: product.print_time || defaults.print_time,
+      material: product.material || defaults.material,
+      colors: product.colors?.length ? product.colors : defaults.colors,
+      finishes: product.finishes?.length ? product.finishes : defaults.finishes,
+      personalization_options: product.personalization_options?.length
+        ? product.personalization_options
+        : defaults.personalization_options,
+      usage: product.usage || defaults.usage,
+      inspiration: product.inspiration || defaults.inspiration,
+      placement: product.placement || defaults.placement,
+      stock_status: product.stock_status || "available",
+      status: product.status || "published",
+      is_featured: product.is_featured ?? false,
+      display_order: product.display_order ?? 0,
+      tags: product.tags?.length ? product.tags : defaults.tags,
+      internal_note: product.internal_note || "",
+    };
+
+    const { data: saved, error } = await supabase
+      .from("products")
+      .upsert(payload, { onConflict: "slug" })
+      .select("id")
+      .single();
+
+    if (error || !saved) continue;
+
+    const imageUrl = product.images?.[0]?.image_url;
+    if (imageUrl) {
+      await supabase.from("product_images").delete().eq("product_id", saved.id);
+      await supabase.from("product_images").insert({
+        product_id: saved.id,
+        image_url: imageUrl,
+        alt_text: product.images?.[0]?.alt_text || product.name,
+        is_main: true,
+        display_order: 0,
+      });
+    }
+
+    synced += 1;
+  }
+
+  return synced;
+}
+
+export async function addNewImagesToCatalog(imagePaths?: string[]) {
+  try {
+    const allNew = getUndiscoveredImages();
+    if (allNew.length === 0) {
+      return { error: "Aucune nouvelle image à ajouter." };
+    }
+
+    const selected = imagePaths?.length
+      ? allNew.filter((img) => imagePaths.includes(img.imagePath))
+      : allNew;
+
+    if (selected.length === 0) {
+      return { error: "Images sélectionnées introuvables ou déjà cataloguées." };
+    }
+
+    const startOrder = (productsJson as RawProduct[]).length;
+    const { products, photoMapUpdates } = buildProductsFromImages(
+      selected,
+      startOrder
+    );
+
+    const result = await persistNewCatalogProducts(products, photoMapUpdates);
+
+    let supabaseSynced = 0;
+    try {
+      supabaseSynced = await syncProductsToSupabase(products);
+    } catch {
+      // Catalogue Git enregistré — sync Supabase optionnelle
+    }
+
+    revalidatePath("/admin/produits");
+    revalidatePublicCatalog();
+
+    return {
+      success: true,
+      added: result.added,
+      committed: result.committed,
+      supabaseSynced,
+      message:
+        result.committed && result.added > 0
+          ? `${result.added} produit(s) ajouté(s). Le site se met à jour en 1–2 minutes après le déploiement Vercel.`
+          : "Aucun produit ajouté.",
+    };
+  } catch (error) {
+    return {
+      error: error instanceof Error ? error.message : "Ajout au catalogue impossible",
+    };
+  }
 }

@@ -284,8 +284,9 @@ export async function getAllProductsAdmin(): Promise<Product[]> {
     .select("*, universe:universes(*), images:product_images(*)")
     .order("display_order", { ascending: true });
 
-  if (error) throw error;
-  return (data ?? []).map((row) => mapProduct(row as Record<string, unknown>));
+  if (error) return catalog.getAllProductsAdmin();
+  const remote = (data ?? []).map((row) => mapProduct(row as Record<string, unknown>));
+  return mergeProductCatalogs(remote, catalog.getAllProductsAdmin());
 }
 
 export async function getProductByIdAdmin(id: string): Promise<Product | null> {

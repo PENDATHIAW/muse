@@ -20,6 +20,7 @@ const ROOT = path.join(__dirname, "..");
 const CATALOGUE_DIR = path.join(ROOT, "public/catalogue-a-traiter");
 const PRODUCTS_DIR = path.join(ROOT, "public/products");
 const MAP_FILE = path.join(ROOT, "data/photo-universe-map.json");
+const TYPE_MAP_FILE = path.join(ROOT, "data/product-type-map.json");
 const PRODUCTS_JSON = path.join(ROOT, "data/products.json");
 const UNIVERSES_JSON = path.join(ROOT, "data/universes.json");
 const SQL_OUT = path.join(ROOT, "supabase/import-from-photos.sql");
@@ -32,6 +33,10 @@ const PRODUCT_FOLDER_UNIVERSE = {
   "pot-a-couverts-drainant": "muse-kitchen",
   "charge-guard-2-en-1": "muse-tech-charge-guard",
   "plaque-chez-les-diagne": "plaques-de-porte-chez-nous",
+  salaah: "salaah",
+  salaat: "salaah",
+  priere: "salaah",
+  "prière": "salaah",
 };
 
 /** Mots-clés dans le nom de fichier → univers */
@@ -59,8 +64,14 @@ const KEYWORD_UNIVERSE = [
   ["bijoux", "boite-a-bijoux"],
   ["bijou", "support-bijoux-coiffeuse"],
   ["coiffeuse", "support-bijoux-coiffeuse"],
-  ["tasbih", "support-tasbih-chapelet"],
-  ["chapelet", "support-tasbih-chapelet"],
+  ["tasbih", "salaah"],
+  ["chapelet", "salaah"],
+  ["salaah", "salaah"],
+  ["salah", "salaah"],
+  ["priere", "salaah"],
+  ["prière", "salaah"],
+  ["natte", "salaah"],
+  ["mihrab", "salaah"],
   ["naissance", "plaques-naissance-bapteme"],
   ["bapteme", "plaques-naissance-bapteme"],
   ["baptême", "plaques-naissance-bapteme"],
@@ -181,6 +192,12 @@ const UNIVERSE_DEFAULTS = {
     material: "PETG ou ASA recommandé",
     print_time: "5-8 heures",
     personalization: ["couleur", "logo MUSE", "configuration"],
+  },
+  salaah: {
+    price: 10000,
+    material: "PLA mat ou effet bois",
+    print_time: "4-6 heures",
+    personalization: ["couleur", "motif discret", "initiales"],
   },
 };
 
@@ -321,6 +338,14 @@ const UNIVERSE_CONTENT = {
     placement:
       "Cuisine, crédence murale, plan de travail près de l'évier ou coin préparation.",
   },
+  salaah: {
+    inspiration:
+      "Inspiré des rituels de prière et de recueillement — des objets beaux, sobres et fonctionnels pour votre espace Salaah.",
+    usage:
+      "Posez tasbih, natte ou accessoires de prière sur le support. Organisez votre coin prière avec élégance et pudeur.",
+    placement:
+      "Coin prière, chambre, salon discret, bureau de prière ou espace méditation.",
+  },
 };
 
 function slugify(text) {
@@ -372,7 +397,7 @@ function guessUniverse(relativePath, filename) {
     if (haystack.includes(keyword)) return universe;
   }
 
-  return "a-classer";
+  return "vide-poche-teranga";
 }
 
 function walkImages(baseDir, urlPrefix) {
@@ -418,7 +443,21 @@ function scanImages() {
   ];
 }
 
-function buildProduct(image, universe, refNum, displayOrder) {
+function loadTypeMap() {
+  if (!fs.existsSync(TYPE_MAP_FILE)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(TYPE_MAP_FILE, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+function getProductTypeLabel(imagePath, universeSlug) {
+  const typeMap = loadTypeMap();
+  return typeMap[imagePath] ?? null;
+}
+
+function buildProduct(image, universe, refNum, displayOrder, typeLabel = null) {
   const defaults = UNIVERSE_DEFAULTS[image.universeSlug] ?? {
     price: 10000,
     material: "PLA mat ou PETG",
@@ -434,7 +473,7 @@ function buildProduct(image, universe, refNum, displayOrder) {
       "Entrée, salon, chambre, bureau ou espace commercial selon votre projet.",
   };
 
-  const name = buildProductName(image.universeSlug, refNum);
+  const name = buildProductName(image.universeSlug, refNum, typeLabel);
   const slug = slugify(path.basename(image.filename, path.extname(image.filename)));
   const copy = buildProductCopy(image.universeSlug, refNum, name);
 
@@ -606,6 +645,7 @@ function shouldSkipImage(image) {
 
 function main() {
   const images = scanImages().filter((image) => !shouldSkipImage(image));
+  const updatedMap = loadUniverseMap();
 
   if (images.length === 0) {
     console.log("Aucune photo trouvée.");
@@ -623,6 +663,11 @@ function main() {
   let skipped = 0;
 
   for (const image of images) {
+    const typeLabel = getProductTypeLabel(image.imagePath, image.universeSlug);
+    if (typeLabel) {
+      image.universeSlug = "salaah";
+    }
+
     if (image.universeSlug === "a-classer") {
       console.warn(`⚠ À classer : ${image.imagePath}`);
       skipped++;
@@ -636,11 +681,13 @@ function main() {
 
     refByUniverse[image.universeSlug] = (refByUniverse[image.universeSlug] ?? 0) + 1;
     const refNum = refByUniverse[image.universeSlug];
+    updatedMap[image.imagePath] = image.universeSlug;
     const product = buildProduct(
       image,
       universesBySlug[image.universeSlug],
       refNum,
-      refNum
+      refNum,
+      typeLabel
     );
 
     importedProducts.push(product);
@@ -649,6 +696,7 @@ function main() {
 
   const products = cleanupProducts(importedProducts);
 
+  fs.writeFileSync(MAP_FILE, JSON.stringify(updatedMap, null, 2) + "\n");
   fs.writeFileSync(PRODUCTS_JSON, JSON.stringify(products, null, 2) + "\n");
   fs.writeFileSync(
     UNIVERSES_JSON,
@@ -659,6 +707,7 @@ function main() {
 
   console.log(`\n✓ ${images.length} photo(s) scannée(s)`);
   console.log(`✓ ${products.length} produit(s) publié(s) (${skipped} ignoré(s))`);
+  console.log(`✓ data/photo-universe-map.json mis à jour (${Object.keys(updatedMap).length} entrées)`);
   console.log(`✓ data/products.json reconstruit depuis public/products/`);
   console.log(`✓ data/universes.json — couvertures mises à jour`);
   console.log(`✓ supabase/import-from-photos.sql + ${parts} partie(s) SQL`);

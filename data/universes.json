@@ -69,6 +69,15 @@
     "description": "Supports décoratifs pour vos moments de recueillement.",
     "cover_image_url": null,
     "display_order": 8,
+    "is_active": false
+  },
+  {
+    "id": "salaah",
+    "name": "Salaah",
+    "slug": "salaah",
+    "description": "Supports tasbih, nattes de prière, ranges et coins prière — sobres, beaux et personnalisables.",
+    "cover_image_url": "/products/0e45841b-c406-46ff-b016-2082d57770d4.png",
+    "display_order": 8,
     "is_active": true
   },
   {

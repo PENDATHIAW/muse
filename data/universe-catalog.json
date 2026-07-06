@@ -151,5 +151,14 @@
     "inspiration": "Libérer le plan de travail tout en gardant ustensiles à portée de main.",
     "usage": "Fixez au mur ou posez sur le plan de travail selon le modèle.",
     "placement": "Cuisine, crédence murale, plan de travail près de l'évier."
+  },
+  "salaah": {
+    "price": 10000,
+    "material": "PLA mat ou effet bois",
+    "print_time": "4-6 heures",
+    "personalization": ["couleur", "motif discret", "initiales"],
+    "inspiration": "Des objets sobres et beaux pour votre espace de prière et de recueillement.",
+    "usage": "Posez tasbih, natte ou accessoires de prière. Organisez votre coin Salaah avec pudeur.",
+    "placement": "Coin prière, chambre, salon discret ou bureau de prière."
   }
 }

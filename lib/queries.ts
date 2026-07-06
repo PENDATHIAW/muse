@@ -35,12 +35,34 @@ function withCatalogFallback<T>(
   return data;
 }
 
-/** Show Supabase products + JSON products not yet synced to Supabase. */
+/** Bundled JSON catalog is the source of truth for names, copy and images. */
 function mergeProductCatalogs(remote: Product[], local: Product[]): Product[] {
   if (!remote.length) return local;
+  const localBySlug = new Map(local.map((p) => [p.slug, p]));
+  const merged = remote.map((remoteProduct) => {
+    const localProduct = localBySlug.get(remoteProduct.slug);
+    if (!localProduct) return remoteProduct;
+
+    return {
+      ...remoteProduct,
+      name: localProduct.name,
+      short_description: localProduct.short_description,
+      long_description: localProduct.long_description,
+      usage: localProduct.usage || remoteProduct.usage,
+      inspiration: localProduct.inspiration || remoteProduct.inspiration,
+      placement: localProduct.placement || remoteProduct.placement,
+      price: localProduct.price ?? remoteProduct.price,
+      dimensions: localProduct.dimensions || remoteProduct.dimensions,
+      conception_days: localProduct.conception_days ?? remoteProduct.conception_days,
+      images: localProduct.images?.length ? localProduct.images : remoteProduct.images,
+      tags: localProduct.tags?.length ? localProduct.tags : remoteProduct.tags,
+      universe: localProduct.universe ?? remoteProduct.universe,
+    };
+  });
+
   const remoteSlugs = new Set(remote.map((p) => p.slug));
   const extras = local.filter((p) => !remoteSlugs.has(p.slug));
-  return [...remote, ...extras];
+  return [...merged, ...extras];
 }
 
 export async function getActiveUniverses(): Promise<Universe[]> {

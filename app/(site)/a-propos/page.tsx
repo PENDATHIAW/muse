@@ -21,7 +21,7 @@ export default async function AboutPage() {
     <div className="muse-section">
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-col items-center text-center">
-          <MuseLogo size="lg" framed showTagline tagline={settings.brand_tagline || "Shaping your ideas"} />
+          <MuseLogo size="lg" showTagline tagline={settings.brand_tagline || "Shaping your ideas"} />
         </div>
 
         <h1 className="muse-heading mt-10 text-center">À propos de MUSE</h1>

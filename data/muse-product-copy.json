@@ -16,7 +16,8 @@
     "cache-pot-decoratif": "CACHE-POT",
     "mini-deco-murale-senegal": "DÉCO MURALE",
     "muse-tech-charge-guard": "CHARGE GUARD",
-    "muse-kitchen": "ORGANISATEUR CUISINE"
+    "muse-kitchen": "ORGANISATEUR CUISINE",
+    "salaah": "OBJET SALAAH"
   },
   "copy": {
     "vide-poche-teranga": {
@@ -199,6 +200,20 @@
         "Un objet de foi mérite un support à sa hauteur. {ref} pose le chapelet avec respect — bureau de prière, table de chevet ou étagère discrète. Finition sobre, impression durable.",
         "{ref} crée un geste de pause : poser, respirer, reprendre. Design épuré, matériaux soignés, personnalisation MUSE discrète.",
         "Sobriété, élégance, durabilité : {ref} accompagne vos rituels sans les ostentation. Impression 3D artisanale, finitions multiples."
+      ]
+    },
+    "salaah": {
+      "shorts": [
+        "Votre coin prière mérite autant de soin que votre salon. {ref} — sobriété, beauté, recueillement.",
+        "{ref} : l'objet Salaah qui structure votre rituel avec élégance et pudeur.",
+        "Tasbih, natte ou accessoires — {ref} leur offre enfin une place digne.",
+        "Entre deux prières, {ref} vous attend — beau, stable, personnalisable."
+      ],
+      "longs": [
+        "{ref} est pensé pour accompagner vos moments de Salaah avec respect et esthétique. Imprimé en 3D par MUSE, il accueille tasbih, natte ou petits accessoires de prière avec une finition sobre et durable. Couleur, motif discret ou initiales : personnalisation MUSE incluse.",
+        "Un espace de prière harmonieux change la qualité du recueillement. {ref} structure votre coin Salaah sans ostentation — lignes épurées, matériaux soignés, usage quotidien. Bureau de prière, chambre ou salon discret.",
+        "{ref} transforme un geste simple en rituel soigné. Posez, respirez, reprenez : chaque détail est pensé pour durer et embellir votre pratique. Signé MUSE, imprimé sur commande.",
+        "Sobriété ne veut pas dire tristesse. {ref} apporte chaleur et ordre à votre Salaah — support tasbih, range natte ou coin prière selon le modèle. Finition premium, personnalisation facile."
       ]
     },
     "plaques-naissance-bapteme": {

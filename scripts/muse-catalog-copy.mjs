@@ -13,8 +13,8 @@ export function formatRef(num) {
   return `M${String(num).padStart(2, "0")}`;
 }
 
-export function buildProductName(universeSlug, refNum) {
-  const type = TYPE_LABELS[universeSlug] ?? "OBJET MUSE";
+export function buildProductName(universeSlug, refNum, typeLabel = null) {
+  const type = typeLabel ?? TYPE_LABELS[universeSlug] ?? "OBJET MUSE";
   return `${type} REF ${formatRef(refNum)}`;
 }
 

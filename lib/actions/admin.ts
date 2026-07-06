@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import productsJson from "@/data/products.json";
+import { analyzeProductPhoto } from "@/lib/photo-analysis";
 import { buildProductFieldsFromUniverse } from "@/lib/universe-catalog";
 import { createClient } from "@/lib/supabase/server";
 import { slugify } from "@/lib/utils-muse";
@@ -191,6 +192,127 @@ export async function deleteUniverse(id: string) {
   revalidatePath("/admin/univers");
   revalidatePublicCatalog();
   return { success: true };
+}
+
+export async function analyzePhotoPreview(filename: string) {
+  const supabase = await createClient();
+  const { data: universes } = await supabase.from("universes").select("slug, name");
+  const universeNames = Object.fromEntries(
+    (universes ?? []).map((u) => [u.slug, u.name])
+  );
+  return analyzeProductPhoto(filename, universeNames);
+}
+
+async function uploadProductImages(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  productId: string,
+  productName: string,
+  files: File[]
+) {
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    const ext = file.name.split(".").pop() ?? "jpg";
+    const path = `${productId}/${Date.now()}-${i}.${ext}`;
+    const buffer = await file.arrayBuffer();
+
+    const { error: uploadError } = await supabase.storage
+      .from("product-images")
+      .upload(path, buffer, { contentType: file.type || "image/jpeg" });
+
+    if (uploadError) {
+      throw new Error(`Upload image : ${uploadError.message}`);
+    }
+
+    const { data: urlData } = supabase.storage
+      .from("product-images")
+      .getPublicUrl(path);
+
+    await supabase.from("product_images").insert({
+      product_id: productId,
+      image_url: urlData.publicUrl,
+      alt_text: productName,
+      is_main: i === 0,
+      display_order: i,
+    });
+  }
+}
+
+export async function createProductWithPhotos(formData: FormData) {
+  const supabase = await createClient();
+  const price = Number(formData.get("price"));
+
+  if (!price || price <= 0) {
+    return { error: "Le prix est obligatoire." };
+  }
+
+  const files = formData
+    .getAll("photos")
+    .filter((entry): entry is File => entry instanceof File && entry.size > 0);
+
+  if (files.length === 0) {
+    return { error: "Ajoutez au moins une photo." };
+  }
+
+  const { data: allUniverses } = await supabase.from("universes").select("*");
+  const universeNames = Object.fromEntries(
+    (allUniverses ?? []).map((u) => [u.slug, u.name])
+  );
+
+  const analysis = analyzeProductPhoto(files[0].name, universeNames);
+  const universeIdInput = String(formData.get("universe_id") ?? "").trim();
+
+  let universe: Universe | null = null;
+  if (universeIdInput) {
+    universe = await getUniverseById(supabase, universeIdInput);
+  } else if (analysis.universeSlug) {
+    universe =
+      (allUniverses ?? []).find((u) => u.slug === analysis.universeSlug) ?? null;
+  }
+
+  if (!universe) {
+    return {
+      error:
+        "Univers introuvable. Choisissez l'univers manuellement ou utilisez une photo déjà classée.",
+    };
+  }
+
+  const syntheticForm = new FormData();
+  const nameInput = String(formData.get("name") ?? "").trim();
+  syntheticForm.set("name", nameInput || analysis.suggestedName);
+  syntheticForm.set("price", String(price));
+  syntheticForm.set("universe_id", universe.id);
+  syntheticForm.set("status", "published");
+  syntheticForm.set("stock_status", "available");
+  if (formData.get("is_featured") === "on") {
+    syntheticForm.set("is_featured", "on");
+  }
+
+  const payload = buildProductPayload(syntheticForm, universe, { autoFill: true });
+  payload.price = price;
+
+  const { data: product, error } = await supabase
+    .from("products")
+    .insert(payload)
+    .select("id, slug")
+    .single();
+
+  if (error || !product) {
+    return { error: error?.message ?? "Création impossible." };
+  }
+
+  try {
+    await uploadProductImages(supabase, product.id, payload.name, files);
+  } catch (uploadError) {
+    await supabase.from("products").delete().eq("id", product.id);
+    return {
+      error:
+        uploadError instanceof Error ? uploadError.message : "Erreur upload photo.",
+    };
+  }
+
+  revalidatePath("/admin/produits");
+  revalidatePublicCatalog(payload.slug);
+  redirect(`/admin/produits/${product.id}/edit`);
 }
 
 export async function createProduct(formData: FormData) {

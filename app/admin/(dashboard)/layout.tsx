@@ -1,4 +1,5 @@
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
+import { ToasterRoot } from "@/components/toaster-root";
 
 export default function AdminDashboardLayout({
   children,

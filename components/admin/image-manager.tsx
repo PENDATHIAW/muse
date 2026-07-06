@@ -28,34 +28,42 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
   const [pending, startTransition] = useTransition();
 
   async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const selected = e.target.files;
+    if (!selected?.length) return;
 
     setUploading(true);
     try {
       const supabase = createClient();
-      const ext = file.name.split(".").pop();
-      const path = `${productId}/${Date.now()}.${ext}`;
 
-      const { error: uploadError } = await supabase.storage
-        .from("product-images")
-        .upload(path, file);
+      for (let index = 0; index < selected.length; index++) {
+        const file = selected[index];
+        const ext = file.name.split(".").pop();
+        const path = `${productId}/${Date.now()}-${index}.${ext}`;
 
-      if (uploadError) throw uploadError;
+        const { error: uploadError } = await supabase.storage
+          .from("product-images")
+          .upload(path, file);
 
-      const { data } = supabase.storage.from("product-images").getPublicUrl(path);
+        if (uploadError) throw uploadError;
 
-      const formData = new FormData();
-      formData.set("product_id", productId);
-      formData.set("image_url", data.publicUrl);
-      formData.set("alt_text", file.name.replace(/\.[^.]+$/, ""));
-      formData.set("display_order", String(images.length));
-      if (images.length === 0) formData.set("is_main", "on");
+        const { data } = supabase.storage.from("product-images").getPublicUrl(path);
 
-      const result = await addProductImage(formData);
-      if (result?.error) throw new Error(result.error);
+        const formData = new FormData();
+        formData.set("product_id", productId);
+        formData.set("image_url", data.publicUrl);
+        formData.set("alt_text", file.name.replace(/\.[^.]+$/, ""));
+        formData.set("display_order", String(images.length + index));
+        if (images.length === 0 && index === 0) formData.set("is_main", "on");
 
-      toast.success("Image uploadée avec succès.");
+        const result = await addProductImage(formData);
+        if (result?.error) throw new Error(result.error);
+      }
+
+      toast.success(
+        selected.length > 1
+          ? `${selected.length} images uploadées.`
+          : "Image uploadée avec succès."
+      );
       router.refresh();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Erreur d'upload");
@@ -101,13 +109,14 @@ export function ImageManager({ productId, images }: ImageManagerProps) {
   return (
     <div className="space-y-4">
       <div>
-        <Label htmlFor={`upload-${productId}`}>Uploader une image (Supabase Storage)</Label>
+        <Label htmlFor={`upload-${productId}`}>Uploader des images</Label>
         <div className="mt-2">
           <Input
             id={`upload-${productId}`}
             ref={fileRef}
             type="file"
             accept="image/*"
+            multiple
             onChange={handleUpload}
             disabled={uploading || pending}
           />

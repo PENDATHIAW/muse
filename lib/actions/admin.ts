@@ -3,9 +3,11 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import productsJson from "@/data/products.json";
+import universesJson from "@/data/universes.json";
 import { analyzeProductPhoto } from "@/lib/photo-analysis";
 import { buildProductFieldsFromUniverse } from "@/lib/universe-catalog";
 import { createClient } from "@/lib/supabase/server";
+import { createServiceClient } from "@/lib/supabase/service";
 import { slugify } from "@/lib/utils-muse";
 import type { Product, Universe } from "@/types/database";
 
@@ -43,6 +45,54 @@ async function getUniverseById(
     .eq("id", universeId)
     .single();
   return data;
+}
+
+async function ensureUniverseInSupabase(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  slug: string
+): Promise<Universe | null> {
+  const { data: existing } = await supabase
+    .from("universes")
+    .select("*")
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (existing) return existing;
+
+  const fromJson = (universesJson as Universe[]).find((u) => u.slug === slug);
+  if (!fromJson) return null;
+
+  const { data: inserted, error } = await supabase
+    .from("universes")
+    .upsert(
+      {
+        name: fromJson.name,
+        slug: fromJson.slug,
+        description: fromJson.description,
+        cover_image_url: fromJson.cover_image_url,
+        display_order: fromJson.display_order,
+        is_active: fromJson.is_active,
+      },
+      { onConflict: "slug" }
+    )
+    .select("*")
+    .single();
+
+  if (error) return null;
+  return inserted;
+}
+
+async function getAdminUniverses(
+  supabase: Awaited<ReturnType<typeof createClient>>
+): Promise<Universe[]> {
+  const { data } = await supabase.from("universes").select("*");
+  if (data?.length) return data;
+
+  return (universesJson as Universe[]).map((u) => ({
+    ...u,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }));
 }
 
 function buildProductPayload(
@@ -202,10 +252,8 @@ export async function deleteUniverse(id: string) {
 
 export async function analyzePhotoPreview(filename: string) {
   const supabase = await createClient();
-  const { data: universes } = await supabase.from("universes").select("slug, name");
-  const universeNames = Object.fromEntries(
-    (universes ?? []).map((u) => [u.slug, u.name])
-  );
+  const universes = await getAdminUniverses(supabase);
+  const universeNames = Object.fromEntries(universes.map((u) => [u.slug, u.name]));
   return analyzeProductPhoto(filename, universeNames);
 }
 
@@ -215,23 +263,36 @@ async function uploadProductImages(
   productName: string,
   files: File[]
 ) {
+  const service = createServiceClient();
+  const storage = service?.storage ?? supabase.storage;
+
+  if (!service) {
+    console.warn(
+      "SUPABASE_SERVICE_ROLE_KEY manquant — l'upload utilise la session admin (peut échouer si le bucket n'est pas configuré)."
+    );
+  }
+
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
-    const ext = file.name.split(".").pop() ?? "jpg";
-    const path = `${productId}/${Date.now()}-${i}.${ext}`;
+    const ext = file.name.split(".").pop()?.toLowerCase() ?? "jpg";
+    const safeExt = ["jpg", "jpeg", "png", "webp", "gif"].includes(ext) ? ext : "jpg";
+    const path = `${productId}/${Date.now()}-${i}.${safeExt}`;
     const buffer = await file.arrayBuffer();
 
-    const { error: uploadError } = await supabase.storage
+    const { error: uploadError } = await storage
       .from("product-images")
-      .upload(path, buffer, { contentType: file.type || "image/jpeg" });
+      .upload(path, buffer, {
+        contentType: file.type || `image/${safeExt === "jpg" ? "jpeg" : safeExt}`,
+        upsert: true,
+      });
 
     if (uploadError) {
-      throw new Error(`Upload image : ${uploadError.message}`);
+      throw new Error(
+        `Upload impossible : ${uploadError.message}. Vérifiez que le bucket « product-images » existe dans Supabase (Storage) et que SUPABASE_SERVICE_ROLE_KEY est configuré sur Vercel.`
+      );
     }
 
-    const { data: urlData } = supabase.storage
-      .from("product-images")
-      .getPublicUrl(path);
+    const { data: urlData } = storage.from("product-images").getPublicUrl(path);
 
     await supabase.from("product_images").insert({
       product_id: productId,
@@ -260,8 +321,9 @@ export async function createProductWithPhotos(formData: FormData) {
   }
 
   const { data: allUniverses } = await supabase.from("universes").select("*");
+  const catalogUniverses = await getAdminUniverses(supabase);
   const universeNames = Object.fromEntries(
-    (allUniverses ?? []).map((u) => [u.slug, u.name])
+    catalogUniverses.map((u) => [u.slug, u.name])
   );
 
   const analysis = analyzeProductPhoto(files[0].name, universeNames);
@@ -270,9 +332,16 @@ export async function createProductWithPhotos(formData: FormData) {
   let universe: Universe | null = null;
   if (universeIdInput) {
     universe = await getUniverseById(supabase, universeIdInput);
+    if (!universe) {
+      const fromCatalog = catalogUniverses.find((u) => u.id === universeIdInput);
+      if (fromCatalog) {
+        universe = await ensureUniverseInSupabase(supabase, fromCatalog.slug);
+      }
+    }
   } else if (analysis.universeSlug) {
     universe =
-      (allUniverses ?? []).find((u) => u.slug === analysis.universeSlug) ?? null;
+      (allUniverses ?? []).find((u) => u.slug === analysis.universeSlug) ??
+      (await ensureUniverseInSupabase(supabase, analysis.universeSlug));
   }
 
   if (!universe) {

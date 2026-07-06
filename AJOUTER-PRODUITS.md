@@ -53,14 +53,95 @@ Tous les produits du fichier `data/products.json` sont copiés dans Supabase.
 
 ---
 
-## Ajouter une photo au projet (optionnel)
+## Ajouter des photos depuis votre ordinateur (recommandé pour beaucoup d'images)
 
-Si vous voulez héberger la photo sur le site Vercel :
+**Pas de sous-dossier** : mettez toutes les photos directement dans `public/products/` à la racine.
 
-1. Déposez le fichier dans `public/products/` (via GitHub ou votre ordinateur)
-2. Dans l'admin, utilisez le chemin `/products/nom-du-fichier.png`
+### Étapes
 
-Ou uploadez directement dans l'admin (plus simple).
+1. Copiez vos fichiers `.png` / `.jpg` dans `public/products/`
+2. Poussez vers GitHub (voir section « GitHub demande un mot de passe » ci-dessous)
+3. Le site se met à jour automatiquement sur Vercel
+
+Pour classer automatiquement un visuel Salaah (tasbih, natte, coin prière), ajoutez une ligne dans `data/product-type-map.json` :
+
+```json
+"/products/mon-fichier.png": "RANGE NATTE"
+```
+
+Types possibles : `SUPPORT TASBIH`, `RANGE NATTE`, `COIN PRIÈRE`, `NATTE DE PRIÈRE`.
+
+Puis lancez `npm run import-photos` (ou demandez à l'agent de le faire) pour régénérer le catalogue.
+
+---
+
+## GitHub demande un mot de passe ?
+
+GitHub **n'accepte plus** le mot de passe du compte pour `git push`. Utilisez un **token** (PAT) ou **SSH**.
+
+### Option A — Token (le plus simple)
+
+1. GitHub → **Settings** → **Developer settings** → **Personal access tokens** → **Tokens (classic)**
+2. **Generate new token (classic)** — cochez au minimum `repo`
+3. Copiez le token (il ne s'affiche qu'une fois)
+
+Sur votre Mac/PC, dans le dossier du projet :
+
+```bash
+git add public/products/
+git commit -m "Ajout photos produits"
+git push origin main
+```
+
+Quand Git demande :
+- **Username** : votre identifiant GitHub (ex. `PENDATHIAW`)
+- **Password** : collez le **token**, pas votre mot de passe GitHub
+
+Pour ne pas retaper le token à chaque fois (macOS) :
+
+```bash
+git config --global credential.helper osxkeychain
+```
+
+### Option B — SSH
+
+1. Générez une clé : `ssh-keygen -t ed25519 -C "votre@email.com"`
+2. Ajoutez la clé publique (`~/.ssh/id_ed25519.pub`) dans GitHub → **Settings** → **SSH keys**
+3. Changez l'URL du dépôt :
+
+```bash
+git remote set-url origin git@github.com:PENDATHIAW/muse.git
+git push origin main
+```
+
+### Alternative sans Git : upload GitHub web
+
+1. Ouvrez https://github.com/PENDATHIAW/muse/tree/main/public/products
+2. **Add file** → **Upload files**
+3. Glissez vos photos → **Commit changes**
+
+Vercel redéploie le site en quelques minutes.
+
+---
+
+## Upload admin ne fonctionne pas ?
+
+L'upload dans `/admin/produits/nouveau` envoie les images vers **Supabase Storage** (pas vers `public/products/` sur Vercel).
+
+Vérifiez sur [Supabase Dashboard](https://supabase.com/dashboard) :
+
+1. **Storage** → bucket `product-images` doit exister (public)
+2. **Project Settings** → **API** → copiez la clé **service_role** (secrète)
+
+Sur [Vercel](https://vercel.com) → projet **muse** → **Settings** → **Environment Variables** :
+
+| Variable | Valeur |
+|----------|--------|
+| `SUPABASE_SERVICE_ROLE_KEY` | clé service_role Supabase |
+
+Redéployez après avoir ajouté la variable.
+
+**En attendant** : ajoutez les photos via GitHub (`public/products/`) — c'est la méthode la plus fiable pour un lot d'images.
 
 ---
 

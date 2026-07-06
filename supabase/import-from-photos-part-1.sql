@@ -1,6 +1,6 @@
 -- Import automatique photos MUSE (partie)
 -- Exécutez dans Supabase → SQL Editor, une partie à la fois
--- Partie 1/4 (40 produits)
+-- Partie 1/7 (40 produits)
 
 DO $$
 DECLARE
@@ -376,6 +376,88 @@ BEGIN
     VALUES (v_product_id, '/products/15a0820e-e669-4c4d-9c84-51cd133a0c0f.png', 'VIDE-POCHE TERANGA REF M05 MUSE', true, 0);
   END IF;
 
+  -- VIDE-POCHE TERANGA REF M06
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M06',
+      '1dc7fa8f-528a-4e0c-b305-baeabf338aaf',
+      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M06 transforme ce geste banal en petit rituel d''accueil.',
+      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M06 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 6,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/1DC7FA8F-528A-4E0C-B305-BAEABF338AAF.png', 'VIDE-POCHE TERANGA REF M06 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M07
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M07',
+      '1e8c3793-1c36-4fb3-8a32-3e510719edab',
+      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M07 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
+      'VIDE-POCHE TERANGA REF M07 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 7,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/1E8C3793-1C36-4FB3-8A32-3E510719EDAB.png', 'VIDE-POCHE TERANGA REF M07 MUSE', true, 0);
+  END IF;
+
   -- SUPPORT BIJOUX REF M01
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'support-bijoux-coiffeuse';
   IF v_universe_id IS NOT NULL THEN
@@ -458,7 +540,7 @@ BEGIN
     VALUES (v_product_id, '/products/1a4cd869-5e17-4689-bb01-fd44d50bc2b8.png', 'COIN PRIÈRE REF M04 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M06
+  -- VIDE-POCHE TERANGA REF M08
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -468,10 +550,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M06',
+      'VIDE-POCHE TERANGA REF M08',
       '1bedd536-5f6d-4786-b101-056f1571cab7',
-      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M06 transforme ce geste banal en petit rituel d''accueil.',
-      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M06 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
+      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M08 : beau, utile, personnalisable.',
+      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M08 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -482,7 +564,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 6,
+      'available', 'published', false, 8,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -496,7 +578,7 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/1bedd536-5f6d-4786-b101-056f1571cab7.png', 'VIDE-POCHE TERANGA REF M06 MUSE', true, 0);
+    VALUES (v_product_id, '/products/1bedd536-5f6d-4786-b101-056f1571cab7.png', 'VIDE-POCHE TERANGA REF M08 MUSE', true, 0);
   END IF;
 
   -- RANGE NATTE REF M05
@@ -663,7 +745,7 @@ BEGIN
     VALUES (v_product_id, '/products/2075d708-8839-4081-9b32-a1e9c3e9700b.png', 'SUPPORT TASBIH REF M07 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M07
+  -- VIDE-POCHE TERANGA REF M09
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -673,10 +755,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M07',
+      'VIDE-POCHE TERANGA REF M09',
       '21e37ce8-6c82-4b14-b1e9-8509eaec8bdc',
-      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M07 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
-      'VIDE-POCHE TERANGA REF M07 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M09 accueille votre quotidien avec la chaleur de la Teranga.',
+      'VIDE-POCHE TERANGA REF M09 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -687,7 +769,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 7,
+      'available', 'published', false, 9,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -701,7 +783,7 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/21e37ce8-6c82-4b14-b1e9-8509eaec8bdc.png', 'VIDE-POCHE TERANGA REF M07 MUSE', true, 0);
+    VALUES (v_product_id, '/products/21e37ce8-6c82-4b14-b1e9-8509eaec8bdc.png', 'VIDE-POCHE TERANGA REF M09 MUSE', true, 0);
   END IF;
 
   -- DÉCO MURALE REF M01
@@ -745,88 +827,6 @@ BEGIN
     VALUES (v_product_id, '/products/242765f9-fc7d-4909-aa0b-b67c66dc9a04.png', 'DÉCO MURALE REF M01 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M08
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M08',
-      '25dee405-6dd3-4154-bdc9-aa16247dfb98',
-      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M08 : beau, utile, personnalisable.',
-      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M08 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 8,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/25dee405-6dd3-4154-bdc9-aa16247dfb98.png', 'VIDE-POCHE TERANGA REF M08 MUSE', true, 0);
-  END IF;
-
-  -- VIDE-POCHE TERANGA REF M09
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M09',
-      '268f1631-fd4c-4012-8451-1d4f3e2a21e7',
-      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M09 accueille votre quotidien avec la chaleur de la Teranga.',
-      'VIDE-POCHE TERANGA REF M09 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 9,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/268f1631-fd4c-4012-8451-1d4f3e2a21e7.png', 'VIDE-POCHE TERANGA REF M09 MUSE', true, 0);
-  END IF;
-
   -- VIDE-POCHE TERANGA REF M10
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
@@ -838,7 +838,7 @@ BEGIN
     ) VALUES (
       v_universe_id,
       'VIDE-POCHE TERANGA REF M10',
-      '290b28bd-a15b-4b72-8b28-299f3de8abb2',
+      '25dee405-6dd3-4154-bdc9-aa16247dfb98',
       'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M10 transforme ce geste banal en petit rituel d''accueil.',
       'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M10 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
@@ -865,7 +865,89 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/290b28bd-a15b-4b72-8b28-299f3de8abb2.png', 'VIDE-POCHE TERANGA REF M10 MUSE', true, 0);
+    VALUES (v_product_id, '/products/25dee405-6dd3-4154-bdc9-aa16247dfb98.png', 'VIDE-POCHE TERANGA REF M10 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M11
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M11',
+      '268f1631-fd4c-4012-8451-1d4f3e2a21e7',
+      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M11 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
+      'VIDE-POCHE TERANGA REF M11 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 11,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/268f1631-fd4c-4012-8451-1d4f3e2a21e7.png', 'VIDE-POCHE TERANGA REF M11 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M12
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M12',
+      '290b28bd-a15b-4b72-8b28-299f3de8abb2',
+      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M12 : beau, utile, personnalisable.',
+      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M12 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 12,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/290b28bd-a15b-4b72-8b28-299f3de8abb2.png', 'VIDE-POCHE TERANGA REF M12 MUSE', true, 0);
   END IF;
 
   -- ORGANISATEUR CUISINE REF M02
@@ -909,7 +991,7 @@ BEGIN
     VALUES (v_product_id, '/products/2988ba56-051a-4276-adeb-9162b85b36a5.png', 'ORGANISATEUR CUISINE REF M02 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M11
+  -- VIDE-POCHE TERANGA REF M13
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -919,10 +1001,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M11',
-      '2a676412-2db1-4b8e-8efe-b0da9d1f8bac',
-      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M11 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
-      'VIDE-POCHE TERANGA REF M11 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'VIDE-POCHE TERANGA REF M13',
+      '2f591edd-aad1-4f19-bf28-a9111b4201d2',
+      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M13 accueille votre quotidien avec la chaleur de la Teranga.',
+      'VIDE-POCHE TERANGA REF M13 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -933,7 +1015,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 11,
+      'available', 'published', false, 13,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -947,10 +1029,10 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/2a676412-2db1-4b8e-8efe-b0da9d1f8bac.png', 'VIDE-POCHE TERANGA REF M11 MUSE', true, 0);
+    VALUES (v_product_id, '/products/2F591EDD-AAD1-4F19-BF28-A9111B4201D2.png', 'VIDE-POCHE TERANGA REF M13 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M12
+  -- VIDE-POCHE TERANGA REF M14
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -960,10 +1042,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M12',
-      '2bb50489-f1a2-4793-af05-9979caffb5c3',
-      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M12 : beau, utile, personnalisable.',
-      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M12 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
+      'VIDE-POCHE TERANGA REF M14',
+      '2a676412-2db1-4b8e-8efe-b0da9d1f8bac',
+      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M14 transforme ce geste banal en petit rituel d''accueil.',
+      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M14 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -974,7 +1056,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 12,
+      'available', 'published', false, 14,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -988,7 +1070,48 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/2bb50489-f1a2-4793-af05-9979caffb5c3.png', 'VIDE-POCHE TERANGA REF M12 MUSE', true, 0);
+    VALUES (v_product_id, '/products/2a676412-2db1-4b8e-8efe-b0da9d1f8bac.png', 'VIDE-POCHE TERANGA REF M14 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M15
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M15',
+      '2bb50489-f1a2-4793-af05-9979caffb5c3',
+      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M15 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
+      'VIDE-POCHE TERANGA REF M15 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 15,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/2bb50489-f1a2-4793-af05-9979caffb5c3.png', 'VIDE-POCHE TERANGA REF M15 MUSE', true, 0);
   END IF;
 
   -- ORGANISATEUR CUISINE REF M03
@@ -1032,7 +1155,7 @@ BEGIN
     VALUES (v_product_id, '/products/2ea6406a-793d-494f-9420-588a4b90bf0c.png', 'ORGANISATEUR CUISINE REF M03 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M13
+  -- VIDE-POCHE TERANGA REF M16
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -1042,10 +1165,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M13',
+      'VIDE-POCHE TERANGA REF M16',
       '319774fd-d4a4-40d1-8c8f-792dd7a826e5',
-      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M13 accueille votre quotidien avec la chaleur de la Teranga.',
-      'VIDE-POCHE TERANGA REF M13 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
+      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M16 : beau, utile, personnalisable.',
+      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M16 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -1056,7 +1179,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 13,
+      'available', 'published', false, 16,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -1070,10 +1193,10 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/319774fd-d4a4-40d1-8c8f-792dd7a826e5.png', 'VIDE-POCHE TERANGA REF M13 MUSE', true, 0);
+    VALUES (v_product_id, '/products/319774fd-d4a4-40d1-8c8f-792dd7a826e5.png', 'VIDE-POCHE TERANGA REF M16 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M14
+  -- VIDE-POCHE TERANGA REF M17
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -1083,10 +1206,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M14',
-      '3261cbd8-830f-4d86-ae61-9dd27b0a79dc',
-      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M14 transforme ce geste banal en petit rituel d''accueil.',
-      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M14 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
+      'VIDE-POCHE TERANGA REF M17',
+      '320a35d9-d180-4857-95af-ca95cc92d222',
+      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M17 accueille votre quotidien avec la chaleur de la Teranga.',
+      'VIDE-POCHE TERANGA REF M17 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -1097,7 +1220,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 14,
+      'available', 'published', false, 17,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -1111,7 +1234,89 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/3261cbd8-830f-4d86-ae61-9dd27b0a79dc.png', 'VIDE-POCHE TERANGA REF M14 MUSE', true, 0);
+    VALUES (v_product_id, '/products/320a35d9-d180-4857-95af-ca95cc92d222.png', 'VIDE-POCHE TERANGA REF M17 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M18
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M18',
+      '323a3173-b20d-4e19-9ea4-6d746fecdc6d',
+      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M18 transforme ce geste banal en petit rituel d''accueil.',
+      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M18 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 18,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/323a3173-b20d-4e19-9ea4-6d746fecdc6d.png', 'VIDE-POCHE TERANGA REF M18 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M19
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M19',
+      '3261cbd8-830f-4d86-ae61-9dd27b0a79dc',
+      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M19 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
+      'VIDE-POCHE TERANGA REF M19 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 19,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/3261cbd8-830f-4d86-ae61-9dd27b0a79dc.png', 'VIDE-POCHE TERANGA REF M19 MUSE', true, 0);
   END IF;
 
   -- SUPPORT BIJOUX REF M02
@@ -1155,7 +1360,7 @@ BEGIN
     VALUES (v_product_id, '/products/3409794b-a37b-46ba-9309-c976278d45bd.png', 'SUPPORT BIJOUX REF M02 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M15
+  -- VIDE-POCHE TERANGA REF M20
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -1165,10 +1370,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M15',
+      'VIDE-POCHE TERANGA REF M20',
       '34ce5036-160d-41f1-88e7-14cc0e8738fb',
-      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M15 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
-      'VIDE-POCHE TERANGA REF M15 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
+      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M20 : beau, utile, personnalisable.',
+      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M20 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -1179,7 +1384,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 15,
+      'available', 'published', false, 20,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -1193,10 +1398,10 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/34ce5036-160d-41f1-88e7-14cc0e8738fb.png', 'VIDE-POCHE TERANGA REF M15 MUSE', true, 0);
+    VALUES (v_product_id, '/products/34ce5036-160d-41f1-88e7-14cc0e8738fb.png', 'VIDE-POCHE TERANGA REF M20 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M16
+  -- VIDE-POCHE TERANGA REF M21
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
     INSERT INTO public.products (
@@ -1206,10 +1411,10 @@ BEGIN
       personalization_options, stock_status, status, is_featured, display_order, tags
     ) VALUES (
       v_universe_id,
-      'VIDE-POCHE TERANGA REF M16',
+      'VIDE-POCHE TERANGA REF M21',
       '3754cc1b-e544-42c5-991c-675b4054a3b4',
-      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M16 : beau, utile, personnalisable.',
-      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M16 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
+      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M21 accueille votre quotidien avec la chaleur de la Teranga.',
+      'VIDE-POCHE TERANGA REF M21 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
       'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
       'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
@@ -1220,7 +1425,7 @@ BEGIN
       '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
       '["mat"]'::jsonb,
       '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 16,
+      'available', 'published', false, 21,
       '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
     ) ON CONFLICT (slug) DO UPDATE SET
       name = EXCLUDED.name,
@@ -1234,7 +1439,48 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/3754cc1b-e544-42c5-991c-675b4054a3b4.png', 'VIDE-POCHE TERANGA REF M16 MUSE', true, 0);
+    VALUES (v_product_id, '/products/3754cc1b-e544-42c5-991c-675b4054a3b4.png', 'VIDE-POCHE TERANGA REF M21 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M22
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M22',
+      '3805ca06-c788-4f55-8c28-f6732a6b18af-2',
+      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M22 transforme ce geste banal en petit rituel d''accueil.',
+      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M22 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 22,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/3805ca06-c788-4f55-8c28-f6732a6b18af-2.png', 'VIDE-POCHE TERANGA REF M22 MUSE', true, 0);
   END IF;
 
   -- COIN PRIÈRE REF M08
@@ -1278,334 +1524,6 @@ BEGIN
     VALUES (v_product_id, '/products/3805ca06-c788-4f55-8c28-f6732a6b18af.png', 'COIN PRIÈRE REF M08 MUSE', true, 0);
   END IF;
 
-  -- VIDE-POCHE TERANGA REF M17
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M17',
-      '393bb64e-cc7f-4b79-b9aa-69174ef68399',
-      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M17 accueille votre quotidien avec la chaleur de la Teranga.',
-      'VIDE-POCHE TERANGA REF M17 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 17,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/393bb64e-cc7f-4b79-b9aa-69174ef68399.png', 'VIDE-POCHE TERANGA REF M17 MUSE', true, 0);
-  END IF;
-
-  -- VIDE-POCHE TERANGA REF M18
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M18',
-      '3a974963-994b-49e0-a453-ea3017c8e88e',
-      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M18 transforme ce geste banal en petit rituel d''accueil.',
-      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M18 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 18,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/3a974963-994b-49e0-a453-ea3017c8e88e.png', 'VIDE-POCHE TERANGA REF M18 MUSE', true, 0);
-  END IF;
-
-  -- VIDE-POCHE TERANGA REF M19
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M19',
-      '3aa7ce75-1e08-46d8-8135-1bbf1c3f4bac',
-      'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M19 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
-      'VIDE-POCHE TERANGA REF M19 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 19,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/3aa7ce75-1e08-46d8-8135-1bbf1c3f4bac.png', 'VIDE-POCHE TERANGA REF M19 MUSE', true, 0);
-  END IF;
-
-  -- VIDE-POCHE TERANGA REF M20
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M20',
-      '3fd6c3cb-893d-44d3-b208-cc599ce892e0',
-      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M20 : beau, utile, personnalisable.',
-      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M20 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 20,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/3fd6c3cb-893d-44d3-b208-cc599ce892e0.png', 'VIDE-POCHE TERANGA REF M20 MUSE', true, 0);
-  END IF;
-
-  -- VIDE-POCHE TERANGA REF M21
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M21',
-      '406bb427-b3cc-428d-8bfb-b59023cdf558',
-      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M21 accueille votre quotidien avec la chaleur de la Teranga.',
-      'VIDE-POCHE TERANGA REF M21 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 21,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/406bb427-b3cc-428d-8bfb-b59023cdf558.png', 'VIDE-POCHE TERANGA REF M21 MUSE', true, 0);
-  END IF;
-
-  -- BOÎTE À CLÉS REF M01
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'boite-a-cles-murale';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'BOÎTE À CLÉS REF M01',
-      '4090092d-f3f8-4db9-aa23-97f6c0106bac',
-      '« Tu as vu mes clés ? » — plus jamais. BOÎTE À CLÉS REF M01 les accueille dès la porte.',
-      'BOÎTE À CLÉS REF M01 est la réponse élégante au chaos des clés égarées. Accrochez-la près de la porte, déposez clés et badges en arrivant, respirez. Imprimée en PLA+ ou PETG par MUSE, chaque boîte peut porter votre nom, une couleur signature ou un logo discret.',
-      'Accrochez la boîte près de la porte. Déposez clés, badges et petits objets en arrivant. Certains modèles incluent un crochet ou un vide-poche intégré.',
-      'Née du besoin de ne plus chercher ses clés en sortant — une entrée organisée, esthétique et fonctionnelle.',
-      'Entrée, couloir, prise murale à hauteur de main (1,40 m environ).',
-      10000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '4-6 heures',
-      'PLA+ ou PETG',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["nom","couleur","logo discret"]'::jsonb,
-      'available', 'published', true, 1,
-      '["nouveauté","personnalisable","boite a cles murale"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/4090092d-f3f8-4db9-aa23-97f6c0106bac.png', 'BOÎTE À CLÉS REF M01 MUSE', true, 0);
-  END IF;
-
-  -- VIDE-POCHE TERANGA REF M22
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'VIDE-POCHE TERANGA REF M22',
-      '40958511-78ef-43fc-82eb-c4439842555f',
-      'Rentrer chez soi, poser ses clés, respirer : VIDE-POCHE TERANGA REF M22 transforme ce geste banal en petit rituel d''accueil.',
-      'On connaît tous cette table d''entrée qui devient dépotoir. VIDE-POCHE TERANGA REF M22 remet de l''ordre avec une touche de caractère : lignes modernes, matière premium, personnalisation MUSE. Chaque pièce est imprimée sur demande, prête à devenir le premier objet que vos invités remarquent — et le dernier que vous touchez en sortant le matin.',
-      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
-      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
-      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
-      9000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '3-5 heures',
-      'PLA mat ou effet pierre',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["mot Teranga","couleur","initiales"]'::jsonb,
-      'available', 'published', false, 22,
-      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/40958511-78ef-43fc-82eb-c4439842555f.png', 'VIDE-POCHE TERANGA REF M22 MUSE', true, 0);
-  END IF;
-
-  -- ORGANISATEUR CUISINE REF M04
-  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'muse-kitchen';
-  IF v_universe_id IS NOT NULL THEN
-    INSERT INTO public.products (
-      universe_id, name, slug, short_description, long_description,
-      usage, inspiration, placement,
-      price, dimensions, print_time, material, colors, finishes,
-      personalization_options, stock_status, status, is_featured, display_order, tags
-    ) VALUES (
-      v_universe_id,
-      'ORGANISATEUR CUISINE REF M04',
-      '4226855b-a2d2-435d-8ee8-264de9ec5922',
-      'Cuisine propre, esprit léger. ORGANISATEUR CUISINE REF M04 accroche l''ordre au mur — littéralement.',
-      'La cuisine est le cœur de la maison — autant lui offrir des objets à la hauteur. ORGANISATEUR CUISINE REF M04 allie fonction et caractère : drainage intelligent, accroches modulables, finition premium. Imprimé sur commande par MUSE pour s''adapter à votre espace.',
-      'Fixez au mur ou posez sur le plan de travail. Rangez spatules, cuillères, éponges ou condiments selon le modèle.',
-      'Inspirée des cuisines organisées — libérer le plan de travail tout en gardant ustensiles à portée de main.',
-      'Cuisine, crédence murale, plan de travail près de l''évier ou coin préparation.',
-      12000,
-      'Sur mesure — indiquez vos contraintes lors de la commande',
-      '5-8 heures',
-      'PETG ou ASA recommandé',
-      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
-      '["mat"]'::jsonb,
-      '["couleur","logo MUSE","configuration"]'::jsonb,
-      'available', 'published', false, 4,
-      '["nouveauté","personnalisable","muse kitchen"]'::jsonb
-    ) ON CONFLICT (slug) DO UPDATE SET
-      name = EXCLUDED.name,
-      short_description = EXCLUDED.short_description,
-      long_description = EXCLUDED.long_description,
-      usage = EXCLUDED.usage,
-      inspiration = EXCLUDED.inspiration,
-      placement = EXCLUDED.placement,
-      price = EXCLUDED.price,
-      universe_id = EXCLUDED.universe_id
-    RETURNING id INTO v_product_id;
-    DELETE FROM public.product_images WHERE product_id = v_product_id;
-    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/4226855b-a2d2-435d-8ee8-264de9ec5922.png', 'ORGANISATEUR CUISINE REF M04 MUSE', true, 0);
-  END IF;
-
   -- VIDE-POCHE TERANGA REF M23
   SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
   IF v_universe_id IS NOT NULL THEN
@@ -1617,7 +1535,7 @@ BEGIN
     ) VALUES (
       v_universe_id,
       'VIDE-POCHE TERANGA REF M23',
-      '425af7e7-44d1-45eb-9af1-8dbf9fc32a15',
+      '393bb64e-cc7f-4b79-b9aa-69174ef68399',
       'Clés, montre, pièces, lunettes — VIDE-POCHE TERANGA REF M23 range tout ça avec élégance. Zéro chaos, cent pour cent Teranga.',
       'VIDE-POCHE TERANGA REF M23 ne se contente pas de ranger : il raconte une invitation à ralentir. Posez vos clés, gardez votre montre à portée de main, offrez à votre entrée la dignité qu''elle mérite. Finition mat ou effet pierre, palette MUSE (ivoire, sage, terracotta…), texte ou initiales sur demande. Un cadeau d''accueil qui a du sens.',
       'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
@@ -1644,6 +1562,88 @@ BEGIN
     RETURNING id INTO v_product_id;
     DELETE FROM public.product_images WHERE product_id = v_product_id;
     INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
-    VALUES (v_product_id, '/products/425af7e7-44d1-45eb-9af1-8dbf9fc32a15.png', 'VIDE-POCHE TERANGA REF M23 MUSE', true, 0);
+    VALUES (v_product_id, '/products/393bb64e-cc7f-4b79-b9aa-69174ef68399.png', 'VIDE-POCHE TERANGA REF M23 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M24
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M24',
+      '3a974963-994b-49e0-a453-ea3017c8e88e',
+      'Le vide-poche qui ne fait pas « vide-poche de supermarché ». VIDE-POCHE TERANGA REF M24 : beau, utile, personnalisable.',
+      'Entre le porte-manteau et le canapé, il manquait souvent l''objet juste. VIDE-POCHE TERANGA REF M24 comble ce vide avec humour et sophistication : assez grand pour être utile, assez beau pour rester visible. Impression 3D artisanale, personnalisation facile — parce que même les petits objets méritent le sur-mesure.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 24,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/3a974963-994b-49e0-a453-ea3017c8e88e.png', 'VIDE-POCHE TERANGA REF M24 MUSE', true, 0);
+  END IF;
+
+  -- VIDE-POCHE TERANGA REF M25
+  SELECT id INTO v_universe_id FROM public.universes WHERE slug = 'vide-poche-teranga';
+  IF v_universe_id IS NOT NULL THEN
+    INSERT INTO public.products (
+      universe_id, name, slug, short_description, long_description,
+      usage, inspiration, placement,
+      price, dimensions, print_time, material, colors, finishes,
+      personalization_options, stock_status, status, is_featured, display_order, tags
+    ) VALUES (
+      v_universe_id,
+      'VIDE-POCHE TERANGA REF M25',
+      '3aa7ce75-1e08-46d8-8135-1bbf1c3f4bac',
+      'Votre entrée mérite mieux qu''une pile de clés en vrac. VIDE-POCHE TERANGA REF M25 accueille votre quotidien avec la chaleur de la Teranga.',
+      'VIDE-POCHE TERANGA REF M25 est pensé pour ce moment où l''on franchit la porte les mains pleines et l''esprit ailleurs. Imprimé en 3D par MUSE, il accueille clés, montre et petits trésors du quotidien avec une finition soignée. Inspiré de la Teranga sénégalaise — accueillir avec générosité —, il habille votre entrée sans l''encombrer. Couleur, initiales, message discret : on l''adapte à votre maison, pas l''inverse.',
+      'Déposez clés, montre, bijoux, pièces ou lunettes au retour à la maison. Parfait comme petit cadeau d''accueil ou de table.',
+      'Inspiré par la Teranga sénégalaise : accueillir, ranger, et offrir un bel objet dès l''entrée de la maison.',
+      'Console d''entrée, table de chevet, bureau, réception d''hôtel ou comptoir de boutique.',
+      9000,
+      'Sur mesure — indiquez vos contraintes lors de la commande',
+      '3-5 heures',
+      'PLA mat ou effet pierre',
+      '["ivoire","sage","terracotta","moka","noir mat"]'::jsonb,
+      '["mat"]'::jsonb,
+      '["mot Teranga","couleur","initiales"]'::jsonb,
+      'available', 'published', false, 25,
+      '["nouveauté","personnalisable","vide poche teranga"]'::jsonb
+    ) ON CONFLICT (slug) DO UPDATE SET
+      name = EXCLUDED.name,
+      short_description = EXCLUDED.short_description,
+      long_description = EXCLUDED.long_description,
+      usage = EXCLUDED.usage,
+      inspiration = EXCLUDED.inspiration,
+      placement = EXCLUDED.placement,
+      price = EXCLUDED.price,
+      universe_id = EXCLUDED.universe_id
+    RETURNING id INTO v_product_id;
+    DELETE FROM public.product_images WHERE product_id = v_product_id;
+    INSERT INTO public.product_images (product_id, image_url, alt_text, is_main, display_order)
+    VALUES (v_product_id, '/products/3aa7ce75-1e08-46d8-8135-1bbf1c3f4bac.png', 'VIDE-POCHE TERANGA REF M25 MUSE', true, 0);
   END IF;
 END $$;

@@ -387,6 +387,7 @@ function guessUniverse(relativePath, filename) {
   const mapped = resolveUniverseFromMap(relativePath, filename);
   if (mapped) return mapped;
 
+  const key = relativePath.replace(/\\/g, "/");
   const parts = key.split("/").filter(Boolean);
   const folder = parts.length >= 2 ? parts[parts.length - 2] : parts[0];
   if (PRODUCT_FOLDER_UNIVERSE[folder]) return PRODUCT_FOLDER_UNIVERSE[folder];

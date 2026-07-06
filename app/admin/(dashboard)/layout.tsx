@@ -15,6 +15,7 @@ export default function AdminDashboardLayout({
         </div>
         <div className="p-6 lg:p-8">{children}</div>
       </div>
+      <ToasterRoot />
     </div>
   );
 }

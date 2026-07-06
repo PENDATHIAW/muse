@@ -78,6 +78,12 @@ function buildProductPayload(
       String(formData.get("dimensions") ?? "").trim() ||
       defaults?.dimensions ||
       "",
+    conception_days: (() => {
+      const raw = String(formData.get("conception_days") ?? "").trim();
+      if (!raw) return null;
+      const n = Number(raw);
+      return Number.isFinite(n) && n > 0 ? Math.round(n) : null;
+    })(),
     print_time:
       String(formData.get("print_time") ?? "").trim() ||
       defaults?.print_time ||
@@ -411,6 +417,7 @@ export async function syncCatalogJsonToSupabase() {
       price: product.price ?? defaults.price,
       old_price: product.old_price,
       dimensions: product.dimensions || defaults.dimensions,
+      conception_days: product.conception_days ?? null,
       print_time: product.print_time || defaults.print_time,
       material: product.material || defaults.material,
       colors: product.colors?.length ? product.colors : defaults.colors,

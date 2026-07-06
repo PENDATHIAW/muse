@@ -22,7 +22,6 @@ export function HeroSection({
           <div className="flex justify-center">
             <MuseLogo
               size="hero"
-              framed
               showTagline
               tagline={brandTagline}
               className="mx-auto"

@@ -66,3 +66,36 @@ export const STOCK_STATUS_LABELS: Record<string, string> = {
   out_of_stock: "Rupture",
   made_to_order: "Sur commande",
 };
+
+export const ORDER_QUOTE_STATUS_LABELS: Record<string, string> = {
+  draft: "Brouillon",
+  sent: "Envoyée",
+  validated: "Validée par le client",
+  rejected: "Refusée",
+  cancelled: "Annulée",
+};
+
+export function formatConceptionDays(days: number | null | undefined): string | null {
+  if (days == null || days <= 0) return null;
+  return days === 1 ? "1 jour ouvré" : `${days} jours ouvrés`;
+}
+
+export function buildQuoteWhatsAppMessage(
+  customerName: string,
+  quoteUrl: string,
+  productName: string
+): string {
+  return `Bonjour ${customerName}, voici votre fiche de commande MUSE pour « ${productName} ». Merci de la consulter et de valider : ${quoteUrl}`;
+}
+
+export function buildQuoteEmailSubject(productName: string): string {
+  return `MUSE — Votre fiche de commande : ${productName}`;
+}
+
+export function buildQuoteEmailBody(
+  customerName: string,
+  quoteUrl: string,
+  productName: string
+): string {
+  return `Bonjour ${customerName},\n\nVoici votre fiche de commande MUSE pour « ${productName} ».\n\nConsultez-la et validez-la ici :\n${quoteUrl}\n\nMerci de votre confiance,\nL'équipe MUSE`;
+}

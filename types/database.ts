@@ -24,6 +24,8 @@ export interface Product {
   price: number;
   old_price: number | null;
   dimensions: string;
+  /** Délai de conception en jours — renseigné via admin, affiché au client */
+  conception_days?: number | null;
   print_time: string;
   material: string;
   colors: string[];
@@ -72,6 +74,35 @@ export interface Inquiry {
   updated_at: string;
   product?: Pick<Product, "id" | "name" | "slug"> | null;
   universe?: Pick<Universe, "id" | "name" | "slug"> | null;
+}
+
+export type OrderQuoteStatus = "draft" | "sent" | "validated" | "rejected" | "cancelled";
+
+export interface OrderQuote {
+  id: string;
+  token: string;
+  inquiry_id: string | null;
+  customer_name: string;
+  customer_phone: string;
+  customer_email: string | null;
+  product_id: string | null;
+  product_name: string;
+  product_image_url: string;
+  universe_name: string;
+  unit_price: number;
+  quantity: number;
+  dimensions: string;
+  colors: string;
+  finishes: string;
+  personalization: string;
+  conception_days: number | null;
+  delivery_note: string;
+  admin_message: string;
+  status: OrderQuoteStatus;
+  send_channel: "" | "whatsapp" | "email";
+  client_validated_at: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Setting {

@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+
+const LOGO_SRC = "/logo-muse.png";
 
 interface MuseLogoProps {
   className?: string;
@@ -9,13 +12,15 @@ interface MuseLogoProps {
   tagline?: string;
   /** Affiche le logo dans un cadre sombre (recommandé pour le visuel officiel MUSE) */
   framed?: boolean;
+  /** Affiche uniquement la partie haute du visuel (symbole + MUSE) */
+  cropToMark?: boolean;
 }
 
 const sizeMap = {
-  sm: { text: "text-lg", width: 100, height: 36 },
-  md: { text: "text-2xl", width: 130, height: 48 },
-  lg: { text: "text-4xl", width: 180, height: 72 },
-  hero: { text: "text-5xl", width: 280, height: 140 },
+  sm: { width: 120, height: 48, heroHeight: 0 },
+  md: { width: 140, height: 56, heroHeight: 0 },
+  lg: { width: 200, height: 80, heroHeight: 0 },
+  hero: { width: 320, height: 420, heroHeight: 420 },
 };
 
 export function MuseLogo({
@@ -25,49 +30,58 @@ export function MuseLogo({
   showTagline = false,
   tagline = "Shaping your ideas",
   framed = false,
+  cropToMark = false,
 }: MuseLogoProps) {
   const sizes = sizeMap[size];
+  const useCrop = cropToMark || size !== "hero";
+
+  const image = (
+    <div
+      className={cn(
+        "relative overflow-hidden",
+        useCrop ? "rounded-lg" : "rounded-2xl",
+        framed && "bg-muse-charcoal shadow-lg",
+        size === "hero" && !useCrop && "shadow-xl",
+        className
+      )}
+      style={{
+        width: sizes.width,
+        height: useCrop ? sizes.height : sizes.heroHeight,
+      }}
+    >
+      <Image
+        src={LOGO_SRC}
+        alt="MUSE — Shaping your ideas"
+        fill
+        priority={size === "hero"}
+        className={cn(
+          useCrop ? "object-cover object-[center_12%]" : "object-contain object-top",
+          framed && useCrop && "p-1"
+        )}
+        sizes={`${sizes.width}px`}
+      />
+    </div>
+  );
 
   const content = (
     <div className={cn("flex flex-col items-center text-center", className)}>
-      <span
-        className={cn(
-          "font-serif font-semibold tracking-[0.4em] text-muse-charcoal",
-          sizes.text
-        )}
-      >
-        MUSE
-      </span>
+      {image}
       {(showTagline || size === "hero") && (
-        <span className="mt-2 font-serif text-sm italic tracking-wide text-muse-moka sm:text-base">
+        <span className="mt-3 font-serif text-sm italic tracking-wide text-muse-moka sm:text-base">
           {tagline}
         </span>
       )}
     </div>
   );
 
-  const wrapped = framed ? (
+  const wrapped = framed && size !== "hero" ? (
     <div
       className={cn(
-        "inline-flex items-center justify-center rounded-2xl bg-muse-charcoal px-6 py-4 shadow-lg",
-        size === "hero" && "px-10 py-6"
+        "inline-flex items-center justify-center rounded-2xl bg-muse-charcoal px-4 py-3 shadow-lg",
+        size === "lg" && "px-6 py-4"
       )}
     >
-      <div className="flex flex-col items-center text-center">
-        <span
-          className={cn(
-            "font-serif font-semibold tracking-[0.4em] text-white",
-            sizes.text
-          )}
-        >
-          MUSE
-        </span>
-        {(showTagline || size === "hero") && (
-          <span className="mt-2 font-serif text-sm italic tracking-wide text-muse-beige sm:text-base">
-            {tagline}
-          </span>
-        )}
-      </div>
+      {image}
     </div>
   ) : (
     content
@@ -79,7 +93,7 @@ export function MuseLogo({
       className="inline-flex flex-col items-center"
       aria-label="MUSE — Accueil"
     >
-      {wrapped}
+      {size === "hero" ? content : wrapped}
     </Link>
   );
 }

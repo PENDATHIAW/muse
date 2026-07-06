@@ -69,8 +69,12 @@ export async function persistNewCatalogProducts(
   const token = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
 
   if (token) {
-    const result = await commitCatalogUpdates({ newProducts, photoMapUpdates });
-    return { ...result, method: "github" };
+    try {
+      const result = await commitCatalogUpdates({ newProducts, photoMapUpdates });
+      return { ...result, method: "github" };
+    } catch {
+      // Token invalide ou API GitHub indisponible → fallback Supabase
+    }
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -78,7 +82,6 @@ export async function persistNewCatalogProducts(
     return { ...result, method: "local" };
   }
 
-  // Production sans GITHUB_TOKEN : enregistrement via Supabase (dans addNewImagesToCatalog)
   const toAdd = newProducts.filter(Boolean).length;
   return { added: toAdd, committed: false, method: "supabase-only" };
 }

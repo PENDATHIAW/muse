@@ -701,8 +701,10 @@ export async function getNewProductImages() {
 }
 
 async function syncProductsToSupabase(products: CatalogProduct[]) {
-  const supabase = await createClient();
+  const service = createServiceClient();
+  const supabase = service ?? (await createClient());
   let synced = 0;
+  const errors: string[] = [];
 
   const { data: universes } = await supabase.from("universes").select("id, slug, name");
   const universeBySlug = new Map(
@@ -714,7 +716,10 @@ async function syncProductsToSupabase(products: CatalogProduct[]) {
       universeBySlug.get(product.universe_id) ??
       (await ensureUniverseInSupabase(supabase, product.universe_id));
 
-    if (!universe) continue;
+    if (!universe) {
+      errors.push(`Univers introuvable : ${product.universe_id}`);
+      continue;
+    }
 
     const defaults = buildProductFieldsFromUniverse(
       product.name,
@@ -756,24 +761,28 @@ async function syncProductsToSupabase(products: CatalogProduct[]) {
       .select("id")
       .single();
 
-    if (error || !saved) continue;
+    if (error || !saved) {
+      errors.push(`${product.name} : ${error?.message ?? "échec insertion"}`);
+      continue;
+    }
 
     const imageUrl = product.images?.[0]?.image_url;
     if (imageUrl) {
       await supabase.from("product_images").delete().eq("product_id", saved.id);
-      await supabase.from("product_images").insert({
+      const { error: imgError } = await supabase.from("product_images").insert({
         product_id: saved.id,
         image_url: imageUrl,
         alt_text: product.images?.[0]?.alt_text || product.name,
         is_main: true,
         display_order: 0,
       });
+      if (imgError) errors.push(`${product.name} (image) : ${imgError.message}`);
     }
 
     synced += 1;
   }
 
-  return synced;
+  return { synced, errors };
 }
 
 export async function addNewImagesToCatalog(imagePaths?: string[]) {
@@ -783,13 +792,16 @@ export async function addNewImagesToCatalog(imagePaths?: string[]) {
       return { error: "Aucune nouvelle image à ajouter." };
     }
 
+    const MAX_BATCH = 25;
     const selected = imagePaths?.length
       ? allNew.filter((img) => imagePaths.includes(img.imagePath))
-      : allNew;
+      : allNew.slice(0, MAX_BATCH);
 
     if (selected.length === 0) {
       return { error: "Images sélectionnées introuvables ou déjà cataloguées." };
     }
+
+    const remaining = imagePaths?.length ? 0 : Math.max(0, allNew.length - MAX_BATCH);
 
     const startOrder = (productsJson as RawProduct[]).length;
     const { products, photoMapUpdates } = buildProductsFromImages(
@@ -800,9 +812,12 @@ export async function addNewImagesToCatalog(imagePaths?: string[]) {
     const result = await persistNewCatalogProducts(products, photoMapUpdates);
 
     let supabaseSynced = 0;
+    let syncErrors: string[] = [];
     try {
       if (result.method === "supabase-only" || result.method === "github") {
-        supabaseSynced = await syncProductsToSupabase(products);
+        const syncResult = await syncProductsToSupabase(products);
+        supabaseSynced = syncResult.synced;
+        syncErrors = syncResult.errors;
       }
     } catch (syncError) {
       if (result.method === "supabase-only") {
@@ -816,9 +831,9 @@ export async function addNewImagesToCatalog(imagePaths?: string[]) {
     }
 
     if (result.method === "supabase-only" && supabaseSynced === 0) {
+      const detail = syncErrors[0] ?? "vérifiez SUPABASE_SERVICE_ROLE_KEY sur Vercel";
       return {
-        error:
-          "Aucun produit enregistré. Vérifiez votre connexion admin ou ajoutez GITHUB_TOKEN sur Vercel.",
+        error: `Aucun produit enregistré (${detail}).`,
       };
     }
 
@@ -829,7 +844,11 @@ export async function addNewImagesToCatalog(imagePaths?: string[]) {
       result.method === "github" && result.committed
         ? `${result.added} produit(s) ajouté(s). Le catalogue Git se met à jour en 1–2 minutes.`
         : result.method === "supabase-only"
-          ? `${supabaseSynced} produit(s) ajouté(s) au catalogue — visibles immédiatement sur le site.`
+          ? `${supabaseSynced} produit(s) ajouté(s) au catalogue — visibles immédiatement sur le site.${
+              remaining > 0
+                ? ` Il en reste ${remaining} : recliquez sur « Tout ajouter ».`
+                : ""
+            }`
           : result.added > 0
             ? `${result.added} produit(s) ajouté(s) localement.`
             : "Aucun produit ajouté.";

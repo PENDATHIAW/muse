@@ -801,23 +801,45 @@ export async function addNewImagesToCatalog(imagePaths?: string[]) {
 
     let supabaseSynced = 0;
     try {
-      supabaseSynced = await syncProductsToSupabase(products);
-    } catch {
-      // Catalogue Git enregistré — sync Supabase optionnelle
+      if (result.method === "supabase-only" || result.method === "github") {
+        supabaseSynced = await syncProductsToSupabase(products);
+      }
+    } catch (syncError) {
+      if (result.method === "supabase-only") {
+        return {
+          error:
+            syncError instanceof Error
+              ? `Enregistrement impossible : ${syncError.message}`
+              : "Impossible d'enregistrer le catalogue via Supabase.",
+        };
+      }
+    }
+
+    if (result.method === "supabase-only" && supabaseSynced === 0) {
+      return {
+        error:
+          "Aucun produit enregistré. Vérifiez votre connexion admin ou ajoutez GITHUB_TOKEN sur Vercel.",
+      };
     }
 
     revalidatePath("/admin/produits");
     revalidatePublicCatalog();
 
+    const message =
+      result.method === "github" && result.committed
+        ? `${result.added} produit(s) ajouté(s). Le catalogue Git se met à jour en 1–2 minutes.`
+        : result.method === "supabase-only"
+          ? `${supabaseSynced} produit(s) ajouté(s) au catalogue — visibles immédiatement sur le site.`
+          : result.added > 0
+            ? `${result.added} produit(s) ajouté(s) localement.`
+            : "Aucun produit ajouté.";
+
     return {
       success: true,
-      added: result.added,
+      added: result.method === "supabase-only" ? supabaseSynced : result.added,
       committed: result.committed,
       supabaseSynced,
-      message:
-        result.committed && result.added > 0
-          ? `${result.added} produit(s) ajouté(s). Le site se met à jour en 1–2 minutes après le déploiement Vercel.`
-          : "Aucun produit ajouté.",
+      message,
     };
   } catch (error) {
     return {

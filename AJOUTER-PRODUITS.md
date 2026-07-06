@@ -39,15 +39,15 @@ Sur chaque produit → **Modifier** pour ajuster prix, nom ou textes.
 
 ---
 
-## Configuration Vercel (une seule fois)
+## Configuration Vercel (optionnel)
 
-Pour que le bouton **Ajouter au catalogue** enregistre le catalogue sur GitHub :
+Le bouton **Ajouter au catalogue** fonctionne **sans** `GITHUB_TOKEN` : les produits sont enregistrés directement dans la base Supabase et visibles immédiatement.
+
+`GITHUB_TOKEN` est utile seulement si vous voulez aussi mettre à jour `data/products.json` sur GitHub automatiquement :
 
 | Variable | Valeur |
 |----------|--------|
 | `GITHUB_TOKEN` | Token GitHub (classic) avec scope `repo` |
-
-Sans ce token, l'admin détecte les images mais ne peut pas sauvegarder en production. En local (`npm run dev`), l'enregistrement se fait directement dans `data/products.json`.
 
 ---
 

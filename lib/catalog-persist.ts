@@ -56,21 +56,29 @@ export function buildProductsFromImages(
   return { products, photoMapUpdates };
 }
 
+export type PersistResult = {
+  added: number;
+  committed: boolean;
+  method: "github" | "local" | "supabase-only";
+};
+
 export async function persistNewCatalogProducts(
   newProducts: CatalogProduct[],
   photoMapUpdates: Record<string, string>
-) {
+): Promise<PersistResult> {
   const token = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN;
 
   if (token) {
-    return commitCatalogUpdates({ newProducts, photoMapUpdates });
+    const result = await commitCatalogUpdates({ newProducts, photoMapUpdates });
+    return { ...result, method: "github" };
   }
 
   if (process.env.NODE_ENV === "development") {
-    return appendLocally(newProducts, photoMapUpdates);
+    const result = appendLocally(newProducts, photoMapUpdates);
+    return { ...result, method: "local" };
   }
 
-  throw new Error(
-    "Impossible d'enregistrer le catalogue : configurez GITHUB_TOKEN sur Vercel (scope repo) pour valider depuis l'admin."
-  );
+  // Production sans GITHUB_TOKEN : enregistrement via Supabase (dans addNewImagesToCatalog)
+  const toAdd = newProducts.filter(Boolean).length;
+  return { added: toAdd, committed: false, method: "supabase-only" };
 }

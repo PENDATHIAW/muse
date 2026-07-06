@@ -7,7 +7,9 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "import-photos": "node scripts/import-catalogue-photos.mjs"
+    "import-photos": "node scripts/import-catalogue-photos.mjs",
+    "sync-product-photos": "node scripts/sync-assets-to-products.mjs",
+    "prune-catalog": "node scripts/prune-published-catalog.mjs"
   },
   "engines": {
     "node": ">=20"

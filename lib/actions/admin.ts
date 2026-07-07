@@ -9,8 +9,7 @@ import {
   buildProductsFromImages,
   persistNewCatalogProducts,
 } from "@/lib/catalog-persist";
-import { getUndiscoveredImages } from "@/lib/scan-public-products";
-import type { CatalogProduct } from "@/lib/scan-public-products";
+import type { CatalogProduct, UndiscoveredImage } from "@/lib/scan-public-products";
 import { buildProductFieldsFromUniverse } from "@/lib/universe-catalog";
 import { createClient } from "@/lib/supabase/server";
 import { createServiceClient } from "@/lib/supabase/service";
@@ -25,6 +24,16 @@ type RawProduct = Omit<Product, "created_at" | "updated_at" | "universe" | "imag
     display_order: number;
   }>;
 };
+
+async function getUndiscoveredImagesForAdmin(): Promise<UndiscoveredImage[]> {
+  // This feature is local-only: scanning public/products on Vercel causes function tracing bloat.
+  if (process.env.NODE_ENV === "production") {
+    return [];
+  }
+
+  const scanModule = await import("@/lib/scan-public-products");
+  return scanModule.getUndiscoveredImages();
+}
 
 function revalidatePublicCatalog(slug?: string) {
   revalidatePath("/");
@@ -689,7 +698,7 @@ export async function reorderProductImages(
 
 export async function getNewProductImages() {
   try {
-    const images = getUndiscoveredImages();
+    const images = await getUndiscoveredImagesForAdmin();
     return { images, count: images.length };
   } catch (error) {
     return {
@@ -787,7 +796,7 @@ async function syncProductsToSupabase(products: CatalogProduct[]) {
 
 export async function addNewImagesToCatalog(imagePaths?: string[]) {
   try {
-    const allNew = getUndiscoveredImages();
+    const allNew = await getUndiscoveredImagesForAdmin();
     if (allNew.length === 0) {
       return { error: "Aucune nouvelle image à ajouter." };
     }

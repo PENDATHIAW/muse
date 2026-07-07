@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "12mb",
     },
   },
+  outputFileTracingExcludes: {
+    // Prevent Vercel serverless traces from pulling every product image.
+    "/**": ["./public/products/**/*"],
+  },
   images: supabaseHostname
     ? {
         remotePatterns: [

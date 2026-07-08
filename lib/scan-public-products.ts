@@ -145,6 +145,7 @@ export function scanPublicProductFiles(): ScannedFile[] {
   // Vercel traces local fs reads and can pull all product images into serverless bundles.
   if (process.env.NODE_ENV === "production") return [];
 
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const fs = require("node:fs") as typeof import("node:fs");
   const productsDir = path.join(process.cwd(), "public/products");
 

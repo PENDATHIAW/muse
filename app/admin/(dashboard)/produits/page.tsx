@@ -32,11 +32,13 @@ export default async function AdminProductsPage() {
       <NewPhotosPanel images={newImagesResult.images} />
 
       <div className="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
-        <strong className="text-foreground">Workflow :</strong> déposez vos photos dans{" "}
-        <code>public/products/</code> → poussez sur GitHub → revenez ici →{" "}
-        <strong className="text-foreground">Ajouter au catalogue</strong>. Univers, référence
-        REF Mxx, prix et textes sont automatiques. Modifiez ensuite via{" "}
-        <strong className="text-foreground">Modifier</strong>.
+        <strong className="text-foreground">Workflow recommandé :</strong>{" "}
+        <Link href="/admin/produits/nouveau" className="text-primary hover:underline">
+          Ajouter manuellement
+        </Link>{" "}
+        pour envoyer les nouvelles photos directement vers Supabase Storage
+        (sans commit Git ni redéploiement). Le panneau ci-dessus reste utile
+        uniquement pour l&apos;ancien workflow local via <code>public/products/</code>.
       </div>
 
       <div className="mt-6">

@@ -39,6 +39,34 @@ Admin : http://localhost:3000/admin/login (compte Supabase Auth)
 4. **Authentication → Users** → créez un utilisateur admin
 5. Copiez les clés API dans Vercel → **Redeploy**
 
+## Upload des images vers Supabase
+
+### A) Nouveau workflow (recommandé, sans redéploiement)
+
+1. Ouvrez `/admin/produits/nouveau`
+2. Sélectionnez vos photos
+3. Renseignez le prix (et optionnellement nom + univers)
+4. Cliquez **Ajouter au site**
+
+Les images sont envoyées directement dans le bucket Supabase `product-images`
+et visibles immédiatement sur le catalogue.
+
+### B) Migration en masse d'images locales existantes
+
+Si vous avez déjà un stock dans `public/products/`, lancez en local :
+
+```bash
+npm run upload-photos-supabase
+```
+
+Ce script :
+- upload toutes les images locales vers Supabase Storage
+- remplace les URL `/products/...` dans `product_images` (et couvertures univers) par les URL publiques Supabase
+
+Variables nécessaires dans `.env.local` :
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+
 ## Admin web (`/admin`)
 
 - CRUD univers, produits, images, demandes, réglages

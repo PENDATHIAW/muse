@@ -721,7 +721,7 @@ async function syncProductsToSupabase(products: CatalogProduct[]) {
   );
 
   for (const product of products) {
-    let universe =
+    const universe =
       universeBySlug.get(product.universe_id) ??
       (await ensureUniverseInSupabase(supabase, product.universe_id));
 

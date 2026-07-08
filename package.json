@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "import-photos": "node scripts/import-catalogue-photos.mjs",
+    "upload-photos-supabase": "node scripts/upload-products-to-supabase.mjs",
     "sync-product-photos": "node scripts/sync-assets-to-products.mjs",
     "prune-catalog": "node scripts/prune-published-catalog.mjs"
   },

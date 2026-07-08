@@ -1,53 +1,53 @@
-# Visuels produits MUSE (GitHub)
+# Photos produits MUSE
 
-Stockez vos photos ici — **pas besoin de Supabase Storage**.
+Mets toutes tes images dans ce dossier :
 
-## Structure recommandée
-
-```
+```txt
 public/products/
-  charge-guard-2-en-1/
-    main.jpg          ← image principale
-    2.jpg             ← galerie (optionnel)
-  organisateur-mural-cuisine-drainage/
-    main.jpg
-  muse-kitchen/
-    cover.jpg         ← couverture univers (optionnel)
 ```
 
-Le nom du dossier doit correspondre au **slug** du produit (visible dans Admin → Produits).
+Le nouveau site scanne automatiquement ce dossier et affiche **toutes les photos** comme produits.
 
-## Workflow
+## Organisation conseillée
 
-1. **Ajoutez vos fichiers** dans ce dossier (localement ou via GitHub web)
-2. **Commit + push** sur GitHub
-3. Dans **Admin → Produits → [produit] → Images**, liez le chemin :
-   - `/products/charge-guard-2-en-1/main.jpg`
-4. Cochez « image principale » pour la photo de couverture
+Tu peux déposer les photos directement :
 
-## Formats
-
-- JPEG, PNG ou WebP
-- Taille conseillée : 1200 × 1500 px (ratio 4:5)
-- Poids : &lt; 500 Ko si possible (site plus rapide)
-
-## Couvertures univers
-
-Même principe — champ « URL image de couverture » dans Admin → Univers :
-
-```
-/products/muse-kitchen/cover.jpg
+```txt
+public/products/plateau-chaussures-terracotta.jpg
+public/products/support-coran-sage.png
+public/products/organisateur-salle-de-bain.webp
 ```
 
-Ou dossier dédié :
+Ou les ranger par univers :
 
+```txt
+public/products/entry/plateau-chaussures.jpg
+public/products/bathroom/boite-coton.png
+public/products/kitchen/station-cafe.webp
+public/products/prayer/support-coran.jpg
+public/products/desk/organisateur-bureau.jpg
 ```
-public/univers/muse-kitchen/cover.jpg  →  /univers/muse-kitchen/cover.jpg
+
+## Univers détectés automatiquement
+
+Le site classe les images selon les mots dans le nom du fichier ou du dossier :
+
+- `entry`, `entrée`, `chaussures`, `clés`, `parapluie`
+- `bathroom`, `bain`, `douche`, `savon`, `rasoir`, `coton`
+- `kitchen`, `cuisine`, `épices`, `café`, `évier`, `ustensile`
+- `living`, `salon`, `vase`, `lampe`, `bougie`, `diffuseur`
+- `bedroom`, `chambre`, `chevet`, `parfum`, `dressing`
+- `kids`, `enfant`, `jouet`, `crayon`, `nuage`
+- `prayer`, `prière`, `natte`, `coran`, `quran`, `tasbih`, `duaa`, `ramadan`
+- `desk`, `bureau`, `document`, `stylo`, `ordinateur`, `câble`
+- `vanity`, `maquillage`, `bijoux`, `coiffeuse`, `peigne`
+
+## Important
+
+- Les images ne sont **pas coupées** sur les fiches produits : elles sont affichées avec `object-fit: contain`.
+- Pour que les images apparaissent en ligne après déploiement, elles doivent être ajoutées puis commit/push dans `public/products`.
+- Change le numéro WhatsApp dans `.env.local` :
+
+```txt
+NEXT_PUBLIC_WHATSAPP_PHONE=221XXXXXXXXX
 ```
-
-## Logo & PDF
-
-| Fichier | Chemin |
-|---------|--------|
-| Logo | `public/logo-muse.png` |
-| Catalogue | `public/catalogue_muse_2026.pdf` |

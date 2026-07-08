@@ -17,6 +17,7 @@ const ROOT = path.join(__dirname, "..");
 const PRODUCTS_DIR = path.join(ROOT, "public/products");
 const MAP_PATH = path.join(ROOT, "data/photo-universe-map.json");
 const REPORT_PATH = path.join(ROOT, "data/auto-universe-report.json");
+const MIN_VISION_CONFIDENCE = 0.3;
 const argv = process.argv.slice(2);
 const dryRun = argv.includes("--dry-run");
 const limitArgIndex = argv.findIndex((arg) => arg === "--limit");
@@ -303,14 +304,20 @@ async function main() {
     }
 
     const ranked = Array.from(bestByUniverse.entries()).sort((a, b) => b[1] - a[1]);
-    const [bestUniverse, confidence] = ranked[0] ?? ["a-classer", 0];
+    const [rawUniverse, rawConfidence] = ranked[0] ?? ["a-classer", 0];
+    const bestUniverse =
+      rawConfidence >= MIN_VISION_CONFIDENCE ? rawUniverse : "a-classer";
+    const confidence = rawConfidence;
 
     map[mapKey] = bestUniverse;
     universeCount[bestUniverse] = (universeCount[bestUniverse] ?? 0) + 1;
     report.push({
       filename,
       universe: bestUniverse,
-      source: "vision",
+      source:
+        bestUniverse === "a-classer" && rawUniverse !== "a-classer"
+          ? "vision-low-confidence"
+          : "vision",
       confidence: Number(confidence.toFixed(6)),
       top3: ranked.slice(0, 3).map(([universe, score]) => ({
         universe,

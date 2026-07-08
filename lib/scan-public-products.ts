@@ -137,7 +137,7 @@ function guessUniverse(relativePath: string, filename: string): string {
     if (haystack.includes(keyword)) return universe;
   }
 
-  return "vide-poche-teranga";
+  return "a-classer";
 }
 
 export function scanPublicProductFiles(): ScannedFile[] {

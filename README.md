@@ -56,10 +56,12 @@ et visibles immédiatement sur le catalogue.
 Si vous avez déjà un stock dans `public/products/`, lancez en local :
 
 ```bash
+npm run classify-photos
 npm run upload-photos-supabase
 ```
 
 Ce script :
+- classe automatiquement les photos par univers (`data/photo-universe-map.json`) via analyse visuelle
 - upload toutes les images locales vers Supabase Storage
 - remplace les URL `/products/...` dans `product_images` (et couvertures univers) par les URL publiques Supabase
 

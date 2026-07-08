@@ -398,7 +398,7 @@ function guessUniverse(relativePath, filename) {
     if (haystack.includes(keyword)) return universe;
   }
 
-  return "vide-poche-teranga";
+  return "a-classer";
 }
 
 function walkImages(baseDir, urlPrefix) {

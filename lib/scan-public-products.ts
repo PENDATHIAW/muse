@@ -1,4 +1,3 @@
-import fs from "fs";
 import path from "path";
 import productsJson from "@/data/products.json";
 import photoUniverseMap from "@/data/photo-universe-map.json";
@@ -11,7 +10,6 @@ import { slugify } from "@/lib/utils-muse";
 import type { Universe } from "@/types/database";
 
 const IMAGE_EXT = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
-const PRODUCTS_DIR = path.join(process.cwd(), "public/products");
 
 const KEYWORD_UNIVERSE: Array<[string, string]> = [
   ["muse-kitchen", "muse-kitchen"],
@@ -139,15 +137,23 @@ function guessUniverse(relativePath: string, filename: string): string {
     if (haystack.includes(keyword)) return universe;
   }
 
-  return "vide-poche-teranga";
+  return "a-classer";
 }
 
 export function scanPublicProductFiles(): ScannedFile[] {
-  if (!fs.existsSync(PRODUCTS_DIR)) return [];
+  // On production builds/deployments this scan is intentionally disabled:
+  // Vercel traces local fs reads and can pull all product images into serverless bundles.
+  if (process.env.NODE_ENV === "production") return [];
+
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const fs = require("node:fs") as typeof import("node:fs");
+  const productsDir = path.join(process.cwd(), "public/products");
+
+  if (!fs.existsSync(productsDir)) return [];
 
   const results: ScannedFile[] = [];
 
-  for (const entry of fs.readdirSync(PRODUCTS_DIR, { withFileTypes: true })) {
+  for (const entry of fs.readdirSync(productsDir, { withFileTypes: true })) {
     if (entry.name.startsWith(".") || entry.name === "README.md") continue;
     if (entry.isDirectory()) continue;
 

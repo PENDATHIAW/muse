@@ -63,9 +63,9 @@ export function NewPhotosPanel({ images }: NewPhotosPanelProps) {
               {items.length > 1 ? "s" : ""} détectée{items.length > 1 ? "s" : ""}
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Vous avez poussé des photos dans <code>public/products/</code>.
-              Cliquez pour les ajouter au catalogue : univers, référence REF Mxx,
-              prix et descriptions sont générés automatiquement.
+              Mode legacy local : des photos ont été détectées dans{" "}
+              <code>public/products/</code>. Cliquez pour les ajouter au catalogue
+              avec génération automatique (univers, référence REF Mxx, prix et descriptions).
             </p>
           </div>
         </div>

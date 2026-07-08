@@ -43,6 +43,9 @@ function mergeProductCatalogs(remote: Product[], local: Product[]): Product[] {
     const localProduct = localBySlug.get(remoteProduct.slug);
     if (!localProduct) return remoteProduct;
 
+    const mergedImages =
+      remoteProduct.images?.length ? remoteProduct.images : localProduct.images;
+
     return {
       ...remoteProduct,
       name: localProduct.name,
@@ -54,7 +57,7 @@ function mergeProductCatalogs(remote: Product[], local: Product[]): Product[] {
       price: localProduct.price ?? remoteProduct.price,
       dimensions: localProduct.dimensions || remoteProduct.dimensions,
       conception_days: localProduct.conception_days ?? remoteProduct.conception_days,
-      images: localProduct.images?.length ? localProduct.images : remoteProduct.images,
+      images: mergedImages,
       tags: localProduct.tags?.length ? localProduct.tags : remoteProduct.tags,
       universe: localProduct.universe ?? remoteProduct.universe,
     };

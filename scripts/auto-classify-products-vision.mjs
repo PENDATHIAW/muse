@@ -198,12 +198,14 @@ function guessUniverseByKeyword(filename) {
 
 function buildPromptIndex() {
   const index = [];
+  const promptToUniverse = {};
   for (const [universe, prompts] of Object.entries(UNIVERSE_LABELS)) {
     for (const prompt of prompts) {
       index.push({ universe, prompt });
+      promptToUniverse[prompt] = universe;
     }
   }
-  return index;
+  return { index, promptToUniverse };
 }
 
 async function main() {
@@ -216,10 +218,11 @@ async function main() {
   }
 
   const map = loadMap();
-  const promptIndex = buildPromptIndex();
+  const { index: promptIndex, promptToUniverse } = buildPromptIndex();
   const labels = promptIndex.map((item) => item.prompt);
   const report = [];
   const universeCount = {};
+  const errorFiles = [];
 
   console.log(`→ Chargement du classifieur visuel (CLIP)...`);
   const classifier = await pipeline(
@@ -269,20 +272,38 @@ async function main() {
       continue;
     }
 
-    const predictions = await classifier(imagePath, labels);
+    let predictions;
+    try {
+      predictions = await classifier(imagePath, labels);
+    } catch (error) {
+      // Certaines images locales peuvent être corrompues/illisibles.
+      // On ne bloque pas tout le lot : on les marque "a-classer" et on continue.
+      map[mapKey] = "a-classer";
+      errorFiles.push({
+        filename,
+        reason: error instanceof Error ? error.message : String(error),
+      });
+      report.push({
+        filename,
+        universe: "a-classer",
+        source: "error",
+        confidence: 0,
+      });
+      continue;
+    }
 
     const bestByUniverse = new Map();
     for (const prediction of predictions) {
-      const mapping = promptIndex.find((item) => item.prompt === prediction.label);
-      if (!mapping) continue;
-      const prev = bestByUniverse.get(mapping.universe) ?? 0;
+      const universe = promptToUniverse[prediction.label];
+      if (!universe) continue;
+      const prev = bestByUniverse.get(universe) ?? 0;
       if (prediction.score > prev) {
-        bestByUniverse.set(mapping.universe, prediction.score);
+        bestByUniverse.set(universe, prediction.score);
       }
     }
 
     const ranked = Array.from(bestByUniverse.entries()).sort((a, b) => b[1] - a[1]);
-    const [bestUniverse, confidence] = ranked[0] ?? ["vide-poche-teranga", 0];
+    const [bestUniverse, confidence] = ranked[0] ?? ["a-classer", 0];
 
     map[mapKey] = bestUniverse;
     universeCount[bestUniverse] = (universeCount[bestUniverse] ?? 0) + 1;
@@ -305,6 +326,9 @@ async function main() {
   if (!dryRun) {
     saveJson(MAP_PATH, map);
     saveJson(REPORT_PATH, report);
+    if (errorFiles.length > 0) {
+      saveJson(path.join(ROOT, "data/auto-universe-errors.json"), errorFiles);
+    }
   }
 
   console.log("\n✅ Classification terminée");
@@ -320,6 +344,9 @@ async function main() {
     console.log(`\nFichiers générés :`);
     console.log(`- data/photo-universe-map.json`);
     console.log(`- data/auto-universe-report.json`);
+    if (errorFiles.length > 0) {
+      console.log(`- data/auto-universe-errors.json (${errorFiles.length} image(s) à classer)`);
+    }
   }
 }
 
